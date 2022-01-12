@@ -6,7 +6,7 @@ from django.contrib.auth.views import (
     LogoutView as BaseLogoutView, PasswordChangeView as BasePasswordChangeView,
     PasswordResetDoneView as BasePasswordResetDoneView, PasswordResetConfirmView as BasePasswordResetConfirmView,
 )
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.crypto import get_random_string
 from django.utils.decorators import method_decorator
 from django.utils.http import is_safe_url
@@ -131,6 +131,15 @@ class SignUpView(GuestOnlyView, FormView):
             messages.success(request, _('You are successfully signed up!'))
 
         return redirect('index')
+
+
+
+def PatientView(request):
+    return render(request, "accounts/patient_record_form.html")
+
+def PatientList(request):
+    print("aaa",request.POST)
+    return render(request, "accounts/patient_record_list.html")
 
 
 class ActivateView(View):
