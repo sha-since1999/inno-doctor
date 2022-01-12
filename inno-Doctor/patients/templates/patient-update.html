@@ -1,0 +1,16 @@
+{% extends 'layouts/default/page.html' %}
+{% block title %}patient-update{% endblock title %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block content %}
+<div class="card-body">
+    <h4>Update Patient</h4>
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <a type="button" class="btn btn-danger" href="/patients/patient-check">Cancel</a>
+        <button type="submit" class="btn btn-success">Update</button>
+    </form>
+</div>
+{% endblock %}

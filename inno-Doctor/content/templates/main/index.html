@@ -7,7 +7,6 @@
     {% if request.user.is_authenticated %}
 
         {% trans 'Your username is' %} <b>{{ request.user.username }}</b>.
-
     {% else %}
 
         {% trans 'You are a guest.' %}
