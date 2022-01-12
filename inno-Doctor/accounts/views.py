@@ -151,14 +151,15 @@ def PatientList(request):
                 ips_id = ips_id
         ).values_list('ips_id', flat = True).order_by(
                 '-timestamp')[:1]
-        medication_statements = MedicationStatement.objects.filter(
-                e_prescription_id = prescription_id)
+        medication_statements = {"med_stats" :
+            MedicationStatement.objects.filter(
+                e_prescription_id = prescription_id)}
 
-        print(medication_statements)
-        return render(request, "accounts/patient_record_list.html")
+        return render(request, "accounts/patient_record_list.html", medication_statements)
     finally:
+        message = {"msg":"no patient found"}
         return render(
-            request, "accounts/patient_record_list.html",
+            request, "accounts/patient_record_list.html", message
             )
 
 class ActivateView(View):
