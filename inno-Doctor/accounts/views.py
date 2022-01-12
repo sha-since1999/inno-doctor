@@ -157,7 +157,7 @@ def PatientList(request):
 
         return render(request, "accounts/patient_record_list.html", medication_statements)
     finally:
-        message = {"msg":"no patient found"}
+        message = {"msg" : "no patient found"}
         return render(
             request, "accounts/patient_record_list.html", message
             )
