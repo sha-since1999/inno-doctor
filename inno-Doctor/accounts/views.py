@@ -1,3 +1,5 @@
+import json
+
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, REDIRECT_FIELD_NAME
 from django.contrib.auth.models import User as Activation
@@ -28,6 +30,8 @@ from .forms import (
     RestorePasswordForm, RestorePasswordViaEmailOrUsernameForm, RemindUsernameForm,
     ResendActivationCodeForm, ResendActivationCodeViaEmailForm, ChangeProfileForm, ChangeEmailForm,
 )
+from .models import (EPrescription, InternationalPatientSummary,
+                     MedicationStatement, )
 
 
 class GuestOnlyView(View):
@@ -133,14 +137,29 @@ class SignUpView(GuestOnlyView, FormView):
         return redirect('index')
 
 
-
 def PatientView(request):
     return render(request, "accounts/patient_record_form.html")
 
 def PatientList(request):
-    print("aaa",request.POST)
-    return render(request, "accounts/patient_record_list.html")
+    aadhar_no = request.POST.get('aadharid')
+    try:
+        print("try")
+        ips_id = InternationalPatientSummary.objects.get(
+                aadhar_no = aadhar_no
+        ).id
+        prescription_id = EPrescription.objects.filter(
+                ips_id = ips_id
+        ).values_list('ips_id', flat = True).order_by(
+                '-timestamp')[:1]
+        medication_statements = MedicationStatement.objects.filter(
+                e_prescription_id = prescription_id)
 
+        print(medication_statements)
+        return render(request, "accounts/patient_record_list.html")
+    finally:
+        return render(
+            request, "accounts/patient_record_list.html",
+            )
 
 class ActivateView(View):
     @staticmethod
