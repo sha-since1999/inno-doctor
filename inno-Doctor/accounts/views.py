@@ -338,3 +338,28 @@ class RestorePasswordDoneView(BasePasswordResetDoneView):
 
 class LogOutView(LoginRequiredMixin, BaseLogoutView):
     template_name = 'accounts/log_out.html'
+
+
+
+def patient_summary(request):
+    return render(request,'accounts/patientsummary.html')
+
+
+def Med_State(request):
+    return render(request,'accounts/medstate.html')
+
+def Problem_List(request):
+    return render(request,'accounts/problemlist.html')
+
+def Vital_signs(request):
+    return render(request,'accounts/vitalsigns.html')
+
+def Social_History(request):
+    return render(request,'accounts/patientsummary.html')
+
+def past_illness(request):
+    return render(request,'accounts/pastillness.html')
+
+
+
+
