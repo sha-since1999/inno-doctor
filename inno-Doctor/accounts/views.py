@@ -153,16 +153,13 @@ def PatientList(request):
                 '-timestamp')[:1]
         medication_items = MedicationItem.objects.filter(
                 medication_statement_id=medication_id)
-        print(medication_items)
-        args = {'medication_orders': medication_items }
+        my_values = [item.dose_amount for item in medication_items]
+        args = {'medication_items': medication_items }
         return render(request, "accounts/patient_record_list.html", args)
     else:
         messages.error(request, 'Patient is not registered')
         return render(request, "accounts/patient_record_form.html")
-    # finally:
-    #     return render(
-    #         request, "accounts/patient_record_list.html",
-    #         )
+
 
 class ActivateView(View):
     @staticmethod

@@ -2,35 +2,21 @@
 
 {% load bootstrap4 %}
 {% load i18n %}
-
 {% block content %}
-<!-- <h3>Record list page</h3>
-<h3>Name</h3>
-<h3>e-prescription:   {{medication_orders.eprescription}}</h3>
-<h3>medication_item:  {{medication_orders.medication_item}}</h3>
-<h3>route:  {{medication_orders.route}}</h3>
-<h3>dosage_instructions:  {{medication_orders.dosage_instructions}}</h3>
-<h2>Dose directions</h2>
-<h3>Dose amount: {{dosage_instructions.dose_amount}}</h3>
-<h3>Dose duration:  {{dosage_instructions.dose_duration}}</h3>
-<h3>Dose unit:  {{dosage_instructions.dose_unit}}</h3>
-<h3>Dose frequency{{dosage_instructions.dose_frequency}}</h3>
-<h3>Dose interval{{dosage_instructions.dose_interval}}</h3>
-<h3>Dose specific timing:  {{dosage_instructions.dose_specific_timing}}</h3> -->
-{% for medication_order in medication_orders %}
+{% for medication_order in medication_items %}
 <table class="table table-dark">
     <tbody>
         <tr>
             <th scope="row">Name</th>
-            <td>Mark</td>
-        </tr>
-        <tr>
-            <th scope="row">e-prescription</th>
-            <td>{{medication_order.eprescription_id}}</td>
+            <td>{{medication_order.name}}</td>
         </tr>
         <tr>
             <th scope="row">Medication item</th>
             <td>{{medication_order.medication_item}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Category</th>
+            <td>{{medication_order.category}}</td>
         </tr>
         <tr>
             <th scope="row">route</th>
@@ -39,35 +25,33 @@
     </tbody>
 </table>
 <h3>Dosage instructions</h3>
-{% for dosage_instruction in medication_order.dosage_instructions %}
       <table class="table table-dark">
         <tbody>
-          <tr>
-            <th scope="row">Dose amount</th>
-            <td>{{dosage_instruction.dose_amount}}</td>
-            </tr>
-          <tr>
-            <th scope="row">Dose duration</th>
-            <td>{{dosage_instruction.dose_duration}}</td>
-          </tr>
-          <tr>
-            <th scope="row">Dose unit</th>
-            <td>{{dosage_instruction.dose_unit}}</td>
-          </tr>
-          <tr>
-            <th scope="row">Dose frequency</th>
-            <td>{{dosage_instruction.dose_frequency}}</td>
-          </tr>
-          <tr>
-            <th scope="row">Dose interval</th>
-            <td>{{dosage_instruction.dose_interval}}</td>
-          </tr>
-          <tr>
-            <th scope="row">Dose specific timing</th>
-            <td>{{dosage_instruction.dose_specific_timing}}</td>
-          </tr>
+            <tr>
+                <th scope="row">Dose amount</th>
+                <td>{{medication_order.dose_amount}}</td>
+                </tr>
+              <tr>
+                <th scope="row">Dose duration</th>
+                <td>{{medication_order.dose_duration}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Dose unit</th>
+                <td>{{medication_order.dose_unit}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Dose frequency</th>
+                <td>{{medication_order.dose_frequency}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Dose interval</th>
+                <td>{{medication_order.dose_interval}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Dose specific timing</th>
+                <td>{{medication_order.dose_specific_timing}}</td>
+              </tr>
         </tbody>
       </table>
-      {% endfor %}
 {% endfor %}
 {% endblock %}
