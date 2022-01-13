@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views import (
-    LogInView, MedStateView, PastIllnessView, PatientSummaryView, ProblemListView, ResendActivationCodeView, RemindUsernameView, SignUpView, PatientView,PatientList,  ActivateView, LogOutView,
+    LogInView, MedStateView, PatientSummaryView, ProblemListView, ResendActivationCodeView, RemindUsernameView, SignUpView, PatientView,PatientList,  ActivateView, LogOutView,
     ChangeEmailView, ChangeEmailActivateView, ChangeProfileView, ChangePasswordView,
     RestorePasswordView, RestorePasswordDoneView, RestorePasswordConfirmView, SocialHistoryView, VitalSignsView,
 )
