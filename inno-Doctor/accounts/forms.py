@@ -1,5 +1,5 @@
 from datetime import timedelta
-
+from django.utils import timezone
 from django import forms
 from django.forms import ValidationError
 from django.conf import settings
@@ -9,6 +9,8 @@ from django.utils import timezone
 from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
 from .models import MedicationStatement
+from .models import   EPrescription
+from .models import ProblemList
 
 
 class UserCacheMixin:
@@ -284,6 +286,40 @@ class MedState(forms.ModelForm):
             'body_site': forms.TextInput(),
 
        }
+
+
+class ePrescription(forms.ModelForm):
+    class Meta:
+        model = EPrescription
+        fields = ('id', 'ips')
+        widgets ={
+            'id': forms.TextInput(),
+            'ips': forms.TextInput(),
+            
+
+         }
+
+
+
+class ProbList(forms.ModelForm):
+    class Meta:
+        model = ProblemList
+        fields = ('id', 'ips','problem','body_site','severity','abatement_date','diagnostic_certainity')
+        widgets ={
+            'id': forms.TextInput(),
+            'ips': forms.TextInput(),
+            'problem': forms.TextInput(),
+            'body_site': forms.TextInput(),
+            'severity': forms.TextInput(),
+            'abatement_date': forms.TextInput(),
+            'diagnostic_certainity': forms.TextInput()
+        
+         }
+
+
+
+
+
 
 
 
