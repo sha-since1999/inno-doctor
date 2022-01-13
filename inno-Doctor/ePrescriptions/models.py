@@ -9,8 +9,8 @@ class InternationalPatientSummary(models.Model):
     aadhar_no = models.IntegerField(unique=True, null=False, blank=False)
     
     
-    class Meta:
-        app_label = 'InternationalPatientSummary'
+    # class Meta:
+    #     app_label = 'InternationalPatientSummary'
 
 class ProblemList(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -23,8 +23,8 @@ class ProblemList(models.Model):
     onset_date = models.DateField(auto_now=True)
     abatement_date = models.DateField()
     diagnostic_certainty = models.CharField(max_length=200)
-    class Meta:
-        app_label = 'ProblemList'
+    # class Meta:
+    #     app_label = 'ProblemList'
 
 class VitalSigns(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -41,8 +41,8 @@ class VitalSigns(models.Model):
     body_mass_index = models.FloatField()
     blood_pressure_systolic = models.FloatField()
     blood_pressure_diastolic = models.FloatField()
-    class Meta:
-        app_label = 'VitalSigns'
+    # class Meta:
+    #     app_label = 'VitalSigns'
 
 class SocialHistory(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -53,8 +53,8 @@ class SocialHistory(models.Model):
     alcohol_consumption_status = models.CharField(max_length=50)
     alcohol_consumption_unit = models.IntegerField()
     alcohol_consumption_frequency = models.CharField(max_length=100)
-    class Meta:
-        app_label = 'SocialHistory'
+    # class Meta:
+    #     app_label = 'SocialHistory'
 
 class MedicationStatement(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -84,15 +84,15 @@ class MedicationStatement(models.Model):
     dose_specific_timing = models.TimeField()
     route = models.CharField(max_length=100, null=False, blank=False)
     body_site = models.CharField(max_length=100, null=False, blank=False)
-    class Meta:
-        app_label = 'MedicationStatement'
+    # class Meta:
+    #     app_label = 'MedicationStatement'
 
 class EPrescription(models.Model):
     id = models.IntegerField(primary_key=True)
     ips = models.ForeignKey(InternationalPatientSummary, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now=True)
-    class Meta:
-        app_label = 'EPrescription'
+    # class Meta:
+    #     app_label = 'EPrescription'
 
 class MedicationOrder(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -102,8 +102,8 @@ class MedicationOrder(models.Model):
     dosage_instructions = models.CharField(max_length=200)
     reason = models.CharField(max_length=200)
     comment = models.CharField(max_length=200)
-    class Meta:
-        app_label = 'MedicationOrder'
+    # class Meta:
+    #     app_label = 'MedicationOrder'
 class DosageInstructions(models.Model):
     id = models.IntegerField(primary_key=True)
     medication_order = models.ForeignKey(MedicationOrder, on_delete=models.CASCADE)
@@ -113,5 +113,5 @@ class DosageInstructions(models.Model):
     dose_frequency = models.CharField(max_length=100, null=True, blank=True)
     dose_interval = models.CharField(max_length=100, null=True, blank=True)
     dose_specific_timing = models.TimeField()
-    class Meta:
-        app_label = 'DosageInstructions'
+    # class Meta:
+    #     app_label = 'DosageInstructions'
