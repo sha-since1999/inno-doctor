@@ -8,6 +8,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.utils import timezone
 from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
+from .models import SocialHistory
+from .models import VitalSigns
+
 
 
 class UserCacheMixin:
