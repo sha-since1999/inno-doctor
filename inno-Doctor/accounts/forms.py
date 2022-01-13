@@ -253,3 +253,41 @@ class RemindUsernameForm(UserCacheMixin, forms.Form):
         self.user_cache = user
 
         return email
+
+class VitalSignsForm(forms.ModelForm):
+    class Meta:
+        model = VitalSigns
+        fields = ('id','ips','body_weight','height','respiration_rate','pulse_rate','body_temperature','head_circumference','pulse_oximetry','body_mass_index', 'blood_pressure_systolic','blood_pressure_diastolic')
+        
+        widgets={
+        'id': forms.TextInput(attrs={'class':'form-control'}), 
+        'ips': forms.TextInput(attrs={'class':'form-control'}),
+        'body_weight' : forms.TextInput(attrs={'class':'form-control'}),
+        'height' : forms.TextInput(attrs={'class':'form-control'}),
+        'respiration_rate' : forms.TextInput(attrs={'class':'form-control'}),
+        'pulse_rate' : forms.TextInput(attrs={'class':'form-control'}),
+        'body_temperature': forms.TextInput(attrs={'class':'form-control'}),
+        'head_circumference' : forms.TextInput(attrs={'class':'form-control'}),
+        'pulse_oximetry' : forms.TextInput(attrs={'class':'form-control'}),
+        'body_mass_index' : forms.TextInput(attrs={'class':'form-control'}), 
+        'blood_pressure_systolic' : forms.TextInput(attrs={'class':'form-control'}),
+        'blood_pressure_diastolic' : forms.TextInput(attrs={'class':'form-control'})
+        
+        }
+
+
+class SocialHistoryForm(forms.ModelForm):
+    class Meta:
+        model = SocialHistory
+        fields = ('id','ips','tobacco_smoking_status','alcohol_consumption_status','alcohol_consumption_frequency')
+        
+        widgets={
+        'id': forms.TextInput(attrs={'class':'form-control'}),
+        'ips': forms.TextInput(attrs={'class':'form-control'}),
+        'tobacco_smoking_status': forms.TextInput(attrs={'class':'form-control'}),
+        'alcohol_consumption_status' : forms.TextInput(attrs={'class':'form-control'}), 
+        'alcohol_consumption_frequency' : forms.TextInput(attrs={'class':'form-control'})
+        
+        }
+
+
