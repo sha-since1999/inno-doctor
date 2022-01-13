@@ -24,9 +24,7 @@ class ProblemList(models.Model):
 
 class VitalSigns(models.Model):
     id = models.IntegerField(primary_key=True)
-    ips = models.ForeignKey(
-        InternationalPatientSummary, on_delete=models.CASCADE
-    )
+    ips = models.OneToOneField(InternationalPatientSummary, on_delete=models.CASCADE)
     body_weight = models.FloatField()
     height = models.FloatField()
     respiration_rate = models.FloatField()
@@ -41,9 +39,7 @@ class VitalSigns(models.Model):
 
 class SocialHistory(models.Model):
     id = models.IntegerField(primary_key=True)
-    ips = models.ForeignKey(
-        InternationalPatientSummary, on_delete=models.CASCADE
-    )
+    ips = models.OneToOneField(InternationalPatientSummary, on_delete=models.CASCADE)
     tobacco_smoking_status = models.CharField(max_length=50)
     alcohol_consumption_status = models.CharField(max_length=50)
     alcohol_consumption_unit = models.IntegerField()
@@ -52,56 +48,51 @@ class SocialHistory(models.Model):
 
 class MedicationStatement(models.Model):
     id = models.IntegerField(primary_key=True)
-    ips = models.ForeignKey(InternationalPatientSummary, on_delete=
-    models.CASCADE)
-    medication_item = models.CharField(max_length=200, null=False,
-                                       blank=False)
-    name = models.CharField(max_length=200, null=False, blank=False)
-    form = models.CharField(max_length=100, null=False, blank=False)
-    category = models.CharField(max_length=100, null=False, blank=False)
-    unit_of_prescription = models.CharField(
-        max_length=100, null=False, blank=False
-    )
-    batch_id = models.CharField(max_length=100, null=False, blank=False)
-    expiry = models.DateField(null=False, blank=False)
-    dose_amount = models.FloatField(null=False, blank=False)
-    dose_duration = models.CharField(
-        max_length=100, null=False, blank=False
-    )
-    dose_unit = models.CharField(max_length=100, null=False, blank=False)
-    dose_frequency = models.CharField(
-        max_length=100, null=True, blank=True
-    )
-    dose_interval = models.CharField(
-        max_length=100, null=True, blank=True
-    )
-    dose_specific_timing = models.TimeField()
-    route = models.CharField(max_length=100, null=False, blank=False)
-    body_site = models.CharField(max_length=100, null=False, blank=False)
-
-
-class EPrescription(models.Model):
-    id = models.IntegerField(primary_key=True)
     ips = models.ForeignKey(InternationalPatientSummary, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now=True)
 
 
-class MedicationOrder(models.Model):
+class MedicationItem(models.Model):
     id = models.IntegerField(primary_key=True)
-    eprescription = models.ForeignKey(EPrescription, on_delete=models.CASCADE)
+    medication_statement = models.ForeignKey(MedicationStatement, on_delete=models.CASCADE)
     medication_item = models.CharField(max_length=200, null=False, blank=False)
-    route = models.CharField(max_length=100, null=False, blank=False)
-    dosage_instructions = models.CharField(max_length=200)
-    reason = models.CharField(max_length=200)
-    comment = models.CharField(max_length=200)
-
-
-class DosageInstructions(models.Model):
-    id = models.IntegerField(primary_key=True)
-    medication_order = models.OneToOneField(MedicationOrder, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200, null=False, blank=False)
+    form = models.CharField(max_length=100, null=False, blank=False)
+    category = models.CharField(max_length=100, null=False, blank=False)
+    unit_of_prescription = models.CharField(max_length=100, null=False, blank=False)
+    batch_id = models.CharField(max_length=100, null=False, blank=False)
+    expiry = models.DateField(null=False, blank=False)
     dose_amount = models.FloatField(null=False, blank=False)
     dose_duration = models.CharField(max_length=100, null=False, blank=False)
     dose_unit = models.CharField(max_length=100, null=False, blank=False)
     dose_frequency = models.CharField(max_length=100, null=True, blank=True)
     dose_interval = models.CharField(max_length=100, null=True, blank=True)
     dose_specific_timing = models.TimeField()
+    route = models.CharField(max_length=100, null=False, blank=False)
+    body_site = models.CharField(max_length=100, null=False, blank=False)
+
+# class EPrescription(models.Model):
+#     id = models.IntegerField(primary_key=True)
+#     ips = models.ForeignKey(InternationalPatientSummary, on_delete=models.CASCADE)
+#     timestamp = models.DateTimeField(auto_now=True)
+#
+#
+# class MedicationOrder(models.Model):
+#     id = models.IntegerField(primary_key=True)
+#     eprescription = models.ForeignKey(EPrescription, on_delete=models.CASCADE)
+#     medication_item = models.CharField(max_length=200, null=False, blank=False)
+#     route = models.CharField(max_length=100, null=False, blank=False)
+#     dosage_instructions = models.CharField(max_length=200)
+#     reason = models.CharField(max_length=200)
+#     comment = models.CharField(max_length=200)
+#
+#
+# class DosageInstructions(models.Model):
+#     id = models.IntegerField(primary_key=True)
+#     medication_order = models.OneToOneField(MedicationOrder, on_delete=models.CASCADE)
+#     dose_amount = models.FloatField(null=False, blank=False)
+#     dose_duration = models.CharField(max_length=100, null=False, blank=False)
+#     dose_unit = models.CharField(max_length=100, null=False, blank=False)
+#     dose_frequency = models.CharField(max_length=100, null=True, blank=True)
+#     dose_interval = models.CharField(max_length=100, null=True, blank=True)
+#     dose_specific_timing = models.TimeField()
