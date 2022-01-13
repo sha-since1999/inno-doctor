@@ -264,28 +264,27 @@ class RemindUsernameForm(UserCacheMixin, forms.Form):
 class MedState(forms.ModelForm):
     class Meta:
         model = MedicationStatement
-        fields = ('id', 'e_prescription','medication_item', 'name', 'form','category','unit_of_prescription','batch_id','expiry','dose_amount', 'dose_duration','dose_unit','dose_frequency','dose_interval','dose_specific_timing','route','body_site' )
+        fields = ('e_prescription','medication_item', 'name', 'form','category','unit_of_prescription','batch_id','expiry','dose_amount', 'dose_duration','dose_unit','dose_frequency','dose_interval','dose_specific_timing','route','body_site' )
         
         widgets ={
-            'id': forms.TextInput(),
-            'e_prescription': forms.TextInput(),
-            'medication_item': forms.TextInput(),
-            'name': forms.TextInput(),
-            'form': forms.TextInput(),
-            'category': forms.TextInput(),
-            'unit_of_prescription': forms.TextInput(),
-            'batch_id': forms.TextInput(),
-            'expiry': forms.TextInput(),
-            'dose_amount': forms.TextInput(),
-            'dose_duration': forms.TextInput(),
-            'dose_unit': forms.TextInput(),
-            'dose_frequency': forms.TextInput(),
-            'dose_interval': forms.TextInput(),
-            'dose_specific_timing': forms.TextInput(),
-            'route': forms.TextInput(),
-            'body_site': forms.TextInput(),
+            'e_prescription': forms.TextInput(attrs={'class':'form-control'}),
+            'medication_item': forms.TextInput(attrs={'class':'form-control'}),
+            'name': forms.TextInput(attrs={'class':'form-control'}),
+            'form': forms.TextInput(attrs={'class':'form-control'}),
+            'category': forms.TextInput(attrs={'class':'form-control'}),
+            'unit_of_prescription': forms.TextInput(attrs={'class':'form-control'}),
+            'batch_id': forms.TextInput(attrs={'class':'form-control'}),
+            'expiry': forms.TextInput(attrs={'class':'form-control'}),
+            'dose_amount': forms.TextInput(attrs={'class':'form-control'}),
+            'dose_duration': forms.TextInput(attrs={'class':'form-control'}),
+            'dose_unit': forms.TextInput(attrs={'class':'form-control'}),
+            'dose_frequency': forms.TextInput(attrs={'class':'form-control'}),
+            'dose_interval': forms.TextInput(attrs={'class':'form-control'}),
+            'dose_specific_timing': forms.TextInput(attrs={'class':'form-control'}),
+            'route': forms.TextInput(attrs={'class':'form-control'}),
+            'body_site': forms.TextInput(attrs={'class':'form-control'}),
 
-       }
+        }
 
 
 class ePrescription(forms.ModelForm):
