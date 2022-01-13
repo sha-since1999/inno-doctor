@@ -30,9 +30,8 @@ from .forms import (
     RestorePasswordForm, RestorePasswordViaEmailOrUsernameForm, RemindUsernameForm,
     ResendActivationCodeForm, ResendActivationCodeViaEmailForm, ChangeProfileForm, ChangeEmailForm,
 )
-from .models import (DosageInstructions, EPrescription,
-                     InternationalPatientSummary,
-                     MedicationOrder, MedicationStatement, )
+from .models import (MedicationItem,
+                     InternationalPatientSummary, MedicationStatement, )
 
 
 class GuestOnlyView(View):
@@ -144,28 +143,18 @@ def PatientView(request):
 def PatientList(request):
     aadhar_no = request.POST.get('aadharid')
     date_of_birth=request.POST.get('bdate')
-    # try:
     if (InternationalPatientSummary.objects.filter(aadhar_no=aadhar_no).exists()) and (InternationalPatientSummary.objects.filter(date_of_birth=date_of_birth).exists()):
         ips_id = InternationalPatientSummary.objects.get(
                 aadhar_no = aadhar_no
         ).id
-        prescription_id = EPrescription.objects.filter(
+        medication_id = MedicationStatement.objects.filter(
                 ips_id = ips_id
-        ).values_list('ips_id', flat = True).order_by(
+        ).values_list('id', flat = True).order_by(
                 '-timestamp')[:1]
-        medication_orders = MedicationOrder.objects.filter(
-                eprescription_id=prescription_id).values()
-        med_ids = [med.get('id') for med in medication_orders]
-        dosage_instructions = DosageInstructions.objects.filter(
-                medication_order_id__in=med_ids
-        ).values()
-        for med in medication_orders:
-            dosages = []
-            for dosage in dosage_instructions:
-                if dosage['medication_order_id'] == med['id']:
-                    dosages.append(dosage)
-            med['dosage_instructions'] = dosages
-        args = {'medication_orders': medication_orders, 'dosage_instructions': dosage_instructions[0]}
+        medication_items = MedicationItem.objects.filter(
+                medication_statement_id=medication_id)
+        print(medication_items)
+        args = {'medication_orders': medication_items }
         return render(request, "accounts/patient_record_list.html", args)
     else:
         messages.error(request, 'Patient is not registered')
