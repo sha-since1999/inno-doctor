@@ -63,6 +63,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'accounts:sign_up' %}">{% trans 'Create an account' %}</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'patient_records:patient_record_form' %}">{% trans 'Patient Check-in' %}</a>
+                </li>
             {% endif %}
         </ul>
 
