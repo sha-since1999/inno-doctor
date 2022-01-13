@@ -3,8 +3,9 @@ from django.db import models
 
 class InternationalPatientSummary(models.Model):
     GENDER = (
-        ("MALE", "Male"),
-        ("FEMALE", "Female")
+        ("M", "Male"),
+        ("F", "Female"),
+        ("O", "Other")
     )
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=200, null=False, blank=False)
