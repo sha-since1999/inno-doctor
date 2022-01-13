@@ -98,11 +98,10 @@ class MedicationOrder(models.Model):
 
 class DosageInstructions(models.Model):
     id = models.IntegerField(primary_key=True)
-    medication_order = models.ForeignKey(MedicationOrder, on_delete=models.CASCADE)
+    medication_order = models.OneToOneField(MedicationOrder, on_delete=models.CASCADE)
     dose_amount = models.FloatField(null=False, blank=False)
     dose_duration = models.CharField(max_length=100, null=False, blank=False)
     dose_unit = models.CharField(max_length=100, null=False, blank=False)
     dose_frequency = models.CharField(max_length=100, null=True, blank=True)
     dose_interval = models.CharField(max_length=100, null=True, blank=True)
     dose_specific_timing = models.TimeField()
-

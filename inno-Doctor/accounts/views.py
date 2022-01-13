@@ -30,8 +30,9 @@ from .forms import (
     RestorePasswordForm, RestorePasswordViaEmailOrUsernameForm, RemindUsernameForm,
     ResendActivationCodeForm, ResendActivationCodeViaEmailForm, ChangeProfileForm, ChangeEmailForm,
 )
-from .models import (EPrescription, InternationalPatientSummary,
-                     MedicationStatement, )
+from .models import (DosageInstructions, EPrescription,
+                     InternationalPatientSummary,
+                     MedicationOrder, MedicationStatement, )
 
 
 class GuestOnlyView(View):
@@ -151,10 +152,21 @@ def PatientList(request):
                 ips_id = ips_id
         ).values_list('ips_id', flat = True).order_by(
                 '-timestamp')[:1]
-        medication_statements = MedicationStatement.objects.filter(
-                e_prescription_id = prescription_id)
-
-        print(medication_statements)
+        args = {'medication_order': []}
+        medication_orders = MedicationOrder.objects.filter(
+                eprescription_id=prescription_id).values()
+        med_ids = [med.get('id') for med in medication_orders]
+        dosage_instructions = DosageInstructions.objects.filter(
+                medication_order_id__in=med_ids
+        ).values()
+        print(dosage_instructions)
+        for med in medication_orders:
+            dosages = []
+            for dosage in dosage_instructions:
+                if dosage['medication_order_id'] == med['id']:
+                    dosages.append(dosage)
+            med['dosage_instructions'] = dosages
+        print(medication_orders)
         return render(request, "accounts/patient_record_list.html")
     finally:
         return render(
