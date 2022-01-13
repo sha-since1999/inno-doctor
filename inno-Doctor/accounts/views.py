@@ -143,8 +143,9 @@ def PatientView(request):
 
 def PatientList(request):
     aadhar_no = request.POST.get('aadharid')
-    try:
-        print("try")
+    date_of_birth=request.POST.get('bdate')
+    # try:
+    if (InternationalPatientSummary.objects.filter(aadhar_no=aadhar_no).exists()) and (InternationalPatientSummary.objects.filter(date_of_birth=date_of_birth).exists()):
         ips_id = InternationalPatientSummary.objects.get(
                 aadhar_no = aadhar_no
         ).id
@@ -152,26 +153,27 @@ def PatientList(request):
                 ips_id = ips_id
         ).values_list('ips_id', flat = True).order_by(
                 '-timestamp')[:1]
-        args = {'medication_order': []}
         medication_orders = MedicationOrder.objects.filter(
                 eprescription_id=prescription_id).values()
         med_ids = [med.get('id') for med in medication_orders]
         dosage_instructions = DosageInstructions.objects.filter(
                 medication_order_id__in=med_ids
         ).values()
-        print(dosage_instructions)
         for med in medication_orders:
             dosages = []
             for dosage in dosage_instructions:
                 if dosage['medication_order_id'] == med['id']:
                     dosages.append(dosage)
             med['dosage_instructions'] = dosages
-        print(medication_orders)
-        return render(request, "accounts/patient_record_list.html")
-    finally:
-        return render(
-            request, "accounts/patient_record_list.html",
-            )
+        args = {'medication_orders': medication_orders, 'dosage_instructions': dosage_instructions[0]}
+        return render(request, "accounts/patient_record_list.html", args)
+    else:
+        messages.error(request, 'Patient is not registered')
+        return render(request, "accounts/patient_record_form.html")
+    # finally:
+    #     return render(
+    #         request, "accounts/patient_record_list.html",
+    #         )
 
 class ActivateView(View):
     @staticmethod
