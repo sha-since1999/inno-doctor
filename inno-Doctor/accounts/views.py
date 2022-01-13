@@ -6,6 +6,7 @@ from django.contrib.auth.views import (
     LogoutView as BaseLogoutView, PasswordChangeView as BasePasswordChangeView,
     PasswordResetDoneView as BasePasswordResetDoneView, PasswordResetConfirmView as BasePasswordResetConfirmView,
 )
+from django.db import models
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.crypto import get_random_string
 from django.utils.decorators import method_decorator
@@ -16,8 +17,10 @@ from django.utils.translation import gettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
-from django.views.generic import View, FormView
+from django.views.generic import View, FormView,TemplateView,CreateView
 from django.conf import settings
+from .models import MedicationStatement, ProblemList
+from .forms import MedState,ProbList
 
 from .utils import (
     send_activation_email, send_reset_password_email, send_forgotten_username_email, send_activation_change_email,
@@ -341,24 +344,24 @@ class LogOutView(LoginRequiredMixin, BaseLogoutView):
 
 
 
-def patient_summary(request):
-    return render(request,'accounts/patientsummary.html')
+class PatientSummaryView(TemplateView):
+    template_name = 'accounts/patientsummary.html'
 
+class MedStateView(CreateView):
+    model = MedicationStatement
+    form_class = MedState
+    template_name = 'accounts/medstate.html'
 
-def Med_State(request):
-    return render(request,'accounts/medstate.html')
+class ProblemListView(CreateView):
+    model=ProblemList
+    form_class=ProbList
+    template_name = 'accounts/problemlist.html'
+    
+class VitalSignsView(TemplateView):
+    template_name = 'accounts/vitalsigns.html'
 
-def Problem_List(request):
-    return render(request,'accounts/problemlist.html')
-
-def Vital_signs(request):
-    return render(request,'accounts/vitalsigns.html')
-
-def Social_History(request):
-    return render(request,'accounts/patientsummary.html')
-
-def past_illness(request):
-    return render(request,'accounts/pastillness.html')
+class SocialHistoryView(TemplateView):
+    template_name = 'accounts/socialhistory.html'
 
 
 

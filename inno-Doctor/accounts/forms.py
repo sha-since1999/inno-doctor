@@ -287,34 +287,25 @@ class MedState(forms.ModelForm):
         }
 
 
-class ePrescription(forms.ModelForm):
-    class Meta:
-        model = EPrescription
-        fields = ('id', 'ips')
-        widgets ={
-            'id': forms.TextInput(),
-            'ips': forms.TextInput(),
-            
 
-         }
 
 
 
 class ProbList(forms.ModelForm):
     class Meta:
         model = ProblemList
-        fields = ('id', 'ips','problem','body_site','severity','abatement_date','diagnostic_certainity')
+        fields = ('id','onset_date','ips','problem','body_site','severity','abatement_date','diagnostic_certainity')
         widgets ={
-            'id': forms.TextInput(),
-            'ips': forms.TextInput(),
-            'problem': forms.TextInput(),
-            'body_site': forms.TextInput(),
-            'severity': forms.TextInput(),
-            'abatement_date': forms.TextInput(),
-            'diagnostic_certainity': forms.TextInput()
+            'id': forms.TextInput(attrs={'class':'form-control'}),
+            'ips': forms.TextInput(attrs={'class':'form-control'}),
+            'problem': forms.TextInput(attrs={'class':'form-control'}),
+            'body_site': forms.TextInput(attrs={'class':'form-control'}),
+            'severity': forms.TextInput(attrs={'class':'form-control'}),
+            'abatement_date': forms.TextInput(attrs={'class':'form-control'}),
+            'diagnostic_certainity': forms.TextInput(attrs={'class':'form-control'}),
+            # 'onset_date': forms.TextInput(attrs={'class':'form-control'}),
         
          }
-
 
 
 

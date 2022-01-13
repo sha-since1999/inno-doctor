@@ -19,7 +19,7 @@ class InternationalPatientSummary(models.Model):
 class EPrescription(models.Model):
     id = models.IntegerField(primary_key = True)
     ips = models.ForeignKey(InternationalPatientSummary, on_delete = models.CASCADE)
-    timestamp = models.DateTimeField(auto_now = True)
+    timestamp = models.DateTimeField(auto_now_add = True)
 
 
 class ProblemList(models.Model):
@@ -30,7 +30,7 @@ class ProblemList(models.Model):
     problem = models.CharField(max_length = 250, null = False, blank = False)
     body_site = models.CharField(max_length = 300, null = False, blank = False)
     severity = models.CharField(max_length = 100)
-    onset_date = models.DateField(auto_now = True)
+    onset_date = models.DateField(auto_now_add= True)
     abatement_date = models.DateField()
     diagnostic_certainity = models.CharField(max_length = 200)
 

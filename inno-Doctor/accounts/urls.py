@@ -4,8 +4,8 @@ from django.urls import path
 from .views import (
     LogInView, ResendActivationCodeView, RemindUsernameView, SignUpView, PatientView,PatientList,  ActivateView, LogOutView,
     ChangeEmailView, ChangeEmailActivateView, ChangeProfileView, ChangePasswordView,
-     RestorePasswordView, RestorePasswordDoneView, RestorePasswordConfirmView,patient_summary,Med_State,Problem_List,
-Vital_signs,Social_History,past_illness
+     RestorePasswordView, RestorePasswordDoneView, RestorePasswordConfirmView,PatientSummaryView,MedStateView,ProblemListView,
+     VitalSignsView,SocialHistoryView
     
 )
 
@@ -32,12 +32,11 @@ urlpatterns = [
     path('change/password/', ChangePasswordView.as_view(), name='change_password'),
     path('change/email/', ChangeEmailView.as_view(), name='change_email'),
     path('change/email/<code>/', ChangeEmailActivateView.as_view(), name='change_email_activation'),
-    path('doctor/patient_summary/',patient_summary,name='ps'),
-    path('doctor/patient_summary/med_state',Med_State,name='ms'),
-    path('doctor/patient_summary/problem_list',Problem_List,name='pl'),
-    path('doctor/patient_summary/vital_sign',Vital_signs,name='vs'),
-    path('doctor/patient_summary/social_history',Social_History,name='sh'),
-    path('doctor/patient_summary/past_illness',past_illness,name='pi'),
-
+    path('doctor/patient_summary/',PatientSummaryView.as_view(),name='ps'),
+    path('doctor/patient_summary/med_state',MedStateView.as_view(),name='ms'),
+    path('doctor/patient_summary/problem_list',ProblemListView.as_view(),name='pl'),
+    path('doctor/patient_summary/vital_sign',VitalSignsView.as_view(),name='vs'),
+    path('doctor/patient_summary/social_history',SocialHistoryView.as_view(),name='sh'),
+    
     
 ]
