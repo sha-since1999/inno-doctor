@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.utils import timezone
 from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
-from .models import MedicationStatement, VitalSigns
+from .models import MedicationStatement
 
 
 class UserCacheMixin:
@@ -282,21 +282,4 @@ class MedState(forms.ModelForm):
 
         }
 
-class VitalS(forms.ModelForm):
-    class Meta:
-        model= VitalSigns
-        fields = ('body_weight', 'height', 'respiration_rate', 'pulse_rate', 'body_temperature', 'head_circumference', 'pulse_oximetry', 'body_mass_index', 'blood_pressure_systolic','blood_pressure_diastolic')
-
-        widgets ={
-            'body_weight': forms.TextInput(attrs={'class':'form-control'}),
-            'height': forms.TextInput(attrs={'class':'form-control'}),
-            'respiration_rate': forms.TextInput(attrs={'class':'form-control'}),
-            'pulse_rate': forms.TextInput(attrs={'class':'form-control'}),
-            'body_temperature': forms.TextInput(attrs={'class':'form-control'}),
-            'head_circumference': forms.TextInput(attrs={'class':'form-control'}),
-            'pulse_oximetry': forms.TextInput(attrs={'class':'form-control'}),
-            'body_mass_index': forms.TextInput(attrs={'class':'form-control'}),
-            'blood_pressure_systolic': forms.TextInput(attrs={'class':'form-control'}),
-            'blood_pressure_diastolic': forms.TextInput(attrs={'class':'form-control'}),
-        }
 
