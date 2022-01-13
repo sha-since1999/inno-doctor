@@ -34,5 +34,5 @@ urlpatterns = [
     path('doctor/patient_summary/problem_list',ProblemListView.as_view(),name='pl'),
     path('doctor/patient_summary/vital_sign',VitalSignsView.as_view(),name='vs'),
     path('doctor/patient_summary/social_history',SocialHistoryView.as_view(),name='sh'),
-    path('doctor/patient_summary/past_illness',PastIllnessView.as_view(),name='pi'),
+    
 ]

@@ -357,11 +357,9 @@ class MedStateView(CreateView):
 class ProblemListView(TemplateView):
     template_name = 'accounts/problemlist.html'
 
-class VitalSignsView(CreateView):
+class VitalSignsView(TemplateView):
     template_name = 'accounts/vitalsigns.html'
 
 class SocialHistoryView(TemplateView):
     template_name = 'accounts/socialhistory.html'
 
-class PastIllnessView(TemplateView):
-    template_name = 'accounts/pastillness.html'
