@@ -16,8 +16,11 @@ from django.utils.translation import gettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
-from django.views.generic import View, FormView
+from django.views.generic import View, FormView, TemplateView, CreateView
 from django.conf import settings
+
+from .models import MedicationStatement, VitalSigns
+from .forms import MedState, VitalS
 
 from .utils import (
     send_activation_email, send_reset_password_email, send_forgotten_username_email, send_activation_change_email,
@@ -338,3 +341,29 @@ class RestorePasswordDoneView(BasePasswordResetDoneView):
 
 class LogOutView(LoginRequiredMixin, BaseLogoutView):
     template_name = 'accounts/log_out.html'
+
+
+#--------------------------------------------------------------------
+
+
+class PatientSummaryView(TemplateView):
+    template_name = 'accounts/patientsummary.html'
+
+class MedStateView(CreateView):
+    model = MedicationStatement
+    form_class = MedState
+    template_name = 'accounts/medstate.html'
+
+class ProblemListView(TemplateView):
+    template_name = 'accounts/problemlist.html'
+
+class VitalSignsView(CreateView):
+    model = VitalSigns
+    form_class = VitalS
+    template_name = 'accounts/vitalsigns.html'
+
+class SocialHistoryView(TemplateView):
+    template_name = 'accounts/socialhistory.html'
+
+class PastIllnessView(TemplateView):
+    template_name = 'accounts/pastillness.html'

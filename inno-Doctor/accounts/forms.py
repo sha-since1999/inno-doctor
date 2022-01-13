@@ -8,6 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.utils import timezone
 from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
+from .models import MedicationStatement, VitalSigns
 
 
 class UserCacheMixin:
@@ -253,3 +254,49 @@ class RemindUsernameForm(UserCacheMixin, forms.Form):
         self.user_cache = user
 
         return email
+
+#--------------------------------------------------
+
+class MedState(forms.ModelForm):
+    class Meta:
+        model = MedicationStatement
+        fields = ('e_prescription','medication_item', 'name', 'form','category','unit_of_prescription','batch_id','expiry','dose_amount', 'dose_duration','dose_unit','dose_frequency','dose_interval','dose_specific_timing','route','body_site' )
+        
+        widgets ={
+            'e_prescription': forms.TextInput(attrs={'class':'form-control'}),
+            'medication_item': forms.TextInput(attrs={'class':'form-control'}),
+            'name': forms.TextInput(attrs={'class':'form-control'}),
+            'form': forms.TextInput(attrs={'class':'form-control'}),
+            'category': forms.TextInput(attrs={'class':'form-control'}),
+            'unit_of_prescription': forms.TextInput(attrs={'class':'form-control'}),
+            'batch_id': forms.TextInput(attrs={'class':'form-control'}),
+            'expiry': forms.TextInput(attrs={'class':'form-control'}),
+            'dose_amount': forms.TextInput(attrs={'class':'form-control'}),
+            'dose_duration': forms.TextInput(attrs={'class':'form-control'}),
+            'dose_unit': forms.TextInput(attrs={'class':'form-control'}),
+            'dose_frequency': forms.TextInput(attrs={'class':'form-control'}),
+            'dose_interval': forms.TextInput(attrs={'class':'form-control'}),
+            'dose_specific_timing': forms.TextInput(attrs={'class':'form-control'}),
+            'route': forms.TextInput(attrs={'class':'form-control'}),
+            'body_site': forms.TextInput(attrs={'class':'form-control'}),
+
+        }
+
+class VitalS(forms.ModelForm):
+    class Meta:
+        model= VitalSigns
+        fields = ('body_weight', 'height', 'respiration_rate', 'pulse_rate', 'body_temperature', 'head_circumference', 'pulse_oximetry', 'body_mass_index', 'blood_pressure_systolic','blood_pressure_diastolic')
+
+        widgets ={
+            'body_weight': forms.TextInput(attrs={'class':'form-control'}),
+            'height': forms.TextInput(attrs={'class':'form-control'}),
+            'respiration_rate': forms.TextInput(attrs={'class':'form-control'}),
+            'pulse_rate': forms.TextInput(attrs={'class':'form-control'}),
+            'body_temperature': forms.TextInput(attrs={'class':'form-control'}),
+            'head_circumference': forms.TextInput(attrs={'class':'form-control'}),
+            'pulse_oximetry': forms.TextInput(attrs={'class':'form-control'}),
+            'body_mass_index': forms.TextInput(attrs={'class':'form-control'}),
+            'blood_pressure_systolic': forms.TextInput(attrs={'class':'form-control'}),
+            'blood_pressure_diastolic': forms.TextInput(attrs={'class':'form-control'}),
+        }
+
