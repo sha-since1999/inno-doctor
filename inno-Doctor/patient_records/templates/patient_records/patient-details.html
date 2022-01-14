@@ -1,0 +1,50 @@
+{% extends 'layouts/default/page.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block title %}patient-list{% endblock title %}
+{% block content %}
+<div class="card-body">
+    <h4>Patient info </h4> 
+    {% comment %} <a  href="/patient_records/patient-eprescription/{{patient}}"> e-prescription</a> {% endcomment %}
+    {% comment %} <form action='patient-eprescription/' method="POST" enctype='multipart/form-data'>
+        {% csrf_token %}
+        <input type ='hidden' value= {{Patient.aadhaarId}} name= 'aadhaarId'
+        <input type='submit' value= "eprescirption"> 
+    </form> {% endcomment %}
+
+    <a type="button" class="btn btn-warning" href="/patient_records/patient-eprescription/{{ patient.aadhaarId }}">eprescription</a>
+    <a type="button" class="btn btn-warning" href="/patient_records/patient-problem-list/{{ patient.aadhaarId }}">Add Problem List</a>
+    {% comment %} <a type="button" class="btn btn-warning" href="/patient_records/patient-vital-sign/{{ patient.aadhaarId }}">Add Problem List</a>
+    <a type="button" class="btn btn-warning" href="/patient_records/patient-eprescription/{{ patient.aadhaarId }}">Add Problem List</a>
+    <a type="button" class="btn btn-warning" href="/patient_records/patient-eprescription/{{ patient.aadhaarId }}">Add Problem List</a> {% endcomment %}
+    {% comment %} <a  href="{% url 'eprescription' aadharId=Patient.aadhaarId %}" > e-prescription</a> {% endcomment %}
+    <table class="table text-justify-content-around">
+        <tbody>
+            <tr>
+                <td scope="col">Patient Name</td>
+                <td>{{ patient.name }}</td>
+            </tr>
+             <tr>
+                <td scope="col">Aadhaar Id</td>
+                <td>{{ patient.aadhaarId }}</td>
+             </tr>
+            <tr>
+                <td scope="col">Date Of Birtd</td>
+                <td>{{ patient.date_of_birth }}</td>
+            </tr>
+            <tr>
+                <td scope="col">Gender</td>
+                <td>{{ patient.gender }}</td>
+            </tr>
+            <tr>
+                <td><a type="button" class="btn btn-success" href="/patient_records/patient-check">Back</a></td>
+                <td><a type="button" class="btn btn-warning" href="/patient_records/patient-update/{{ patient.aadhaarId }}">Update Patient Details</a></td>
+
+            </tr>
+        </tbody>
+       
+    </table>
+</div>
+{% endblock %}

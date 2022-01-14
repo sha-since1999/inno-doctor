@@ -1,11 +1,10 @@
 from django.contrib import admin
 
-from .models import (MedicationItem, InternationalPatientSummary,
+from .models import (MedicationItem, Patient,
                      ProblemList,
-                     VitalSigns, SocialHistory, MedicationStatement, )
-
+                     VitalSign, SocialHistory, MedicationStatement, )
 admin.site.register(
-	InternationalPatientSummary)
+	Patient)
 
 admin.site.register(
 		MedicationItem
@@ -14,7 +13,7 @@ admin.site.register(
 		ProblemList
 )
 admin.site.register(
-		VitalSigns
+		VitalSign
 )
 admin.site.register(
 		SocialHistory

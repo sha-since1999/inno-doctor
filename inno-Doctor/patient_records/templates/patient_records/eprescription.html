@@ -1,0 +1,29 @@
+{% extends 'layouts/default/page.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block title %}e-prescription{% endblock title %}
+{% block content %}
+<div class="card-body">
+    <h4>Patient E-prescription </h4> 
+    {% comment %} {% for medicationStatment in medicationStatements.iterator() %} {% endcomment %}
+
+        {% comment %} <p> medical statment : {{medicationStatement.id}}</p> {% endcomment %}
+        {% comment %} {% comment %} {% for medicationItem in medicationStatement.item_set.all()  %} {% endcomment %}
+        {% for medication_statement_id  in medicationStatementIds %}
+            <h2> {{medication_statement_id}} </h2>
+            {% for  items  in medicationItems%}
+                {% if items %}  
+                    {% for item  in items %}
+                            <div><h6> {{item.name}}</h6>  <h6> {{item.category}}</h6></div>
+
+                            
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        {% comment %} {% endfor %} {% endcomment %}
+{% comment %} {% endfor %} {% endcomment %}
+</div>
+{% endblock %}

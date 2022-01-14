@@ -38,10 +38,10 @@
             {% if request.user.is_authenticated %}
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'patients:patient-check' %}">{% trans 'Check Patient' %}</a>
+                    <a class="nav-link" href="{% url 'patient_records:patient-check' %}">{% trans 'Check Patient' %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'patients:patient-create' %}">{% trans 'Add Patient' %}</a>
+                    <a class="nav-link" href="{% url 'patient_records:patient-create' %}">{% trans 'Add Patient' %}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'accounts:change_password' %}">{% trans 'Change password' %}</a>

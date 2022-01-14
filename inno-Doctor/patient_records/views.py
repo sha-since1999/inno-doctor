@@ -1,19 +1,109 @@
+from django.http.response import HttpResponse
+from django.shortcuts import render, get_object_or_404, render_to_response
+from django.contrib import messages
+from django.views.generic.detail import DetailView
+
+from django.shortcuts import  redirect
+from .models import Patient
+
 from django.shortcuts import render
-from .models import  (MedicationItem,
-                     InternationalPatientSummary, MedicationStatement, )
+
+from .forms import (MedicationItemForm, PatientForm,
+                     ProblemListForm,
+                      MedicationStatementForm, )
+
+from .models import (MedicationItem, Patient,
+                     ProblemList,
+                     VitalSign, SocialHistory, MedicationStatement, )
+
+
 from django.contrib import messages
 
 
 # Create your views here.
+def eprescriptionList(request, id):  
+    patient = Patient.objects.get(aadhaarId=id)
+    try:
+        # medicationStatements=get_object_or_404(MedicationStatement, patient=patient)
+        medicationstatements=MedicationStatement.objects.filter(patient= patient)
+        medicationitems=[]
+        medication_statement_ids=[]
+        for medicationstatement in medicationstatements:
+            medicationitem = MedicationItem.objects.filter(medication_statement=medicationstatement)
+            medication_statement_ids.append(medicationstatement.id)
+            if medicationitem is not None:
+                medicationitems.append(medicationitem)
+        print(medicationitems)
+    except:
+            messages.error(request, 'no medication statemtment found!') 
+    return render(request,"patient_records/eprescription.html" ,context={"medicationStatementIds":medication_statement_ids, "medicationItems": medicationitems})
+    return  redirect('/patient_records/patient-detail/{}'.format(id))  
+
+def patientDetails(request):
+
+    if request.method == "POST":  
+        id= request.POST['aadhaarId']
+        try:
+            patient= get_object_or_404(Patient,aadhaarId=id)
+            return render(request,"patient_records/patient-details.html",context={'patient':patient})  
+        except:
+            messages.error(request, 'patient record found')
+         
+         
+def patientDetail(request , id)  : 
+    try:
+        patient= get_object_or_404(Patient,aadhaarId=id)
+        return render(request,"patient_records/patient-details.html",context={'patient':patient})  
+    except:
+        messages.error(request, 'patient record found')
+        
+    return redirect('/patient_records/patient-check')  
+
+        
+def patientCheck(request):  
+    patients = Patient.objects.all()  
+    return render(request , "patient_records/patient-check.html",{'patients':patients})  
+
+def patientCreate(request):  
+    if request.method == "POST":  
+        form = PatientForm(request.POST)  
+        if form.is_valid():  
+            try:  
+                form.save() 
+                messages.success(request, 'New Patient is successfully added.!')
+                model = form.instance
+                return redirect('/patient_records/patient-check')  
+            except:  
+                messages.error(request, 'failed to add patient')
+    else:  
+        form = PatientForm()  
+    return render(request,'patient_records/patient-create.html',{'form':form})  
+
+def patientUpdate(request, id):  
+    patient = Patient.objects.get(aadhaarId=id)
+    form = PatientForm(initial={'name': patient.name, 'aadhaarId': patient.aadhaarId, 'date_of_birth': patient.date_of_birth, 'gender': patient.gender})
+    if request.method == "POST":  
+        form = PatientForm(request.POST, instance=patient)  
+        if form.is_valid():  
+            try:  
+                form.save() 
+                # model = form.instance
+                # messages.success(request,'patient updated!')
+                return redirect('/patient_records/patient-check')  
+            except Exception as e: 
+                messages.error(request,'update error!')
+    return render(request,'patient_records/patient-update.html',{'form':form})  
+
+
 def PatientView(request):
     return render(request, "patient_records/patient_record_form.html")
 
 def PatientList(request):
-    aadhar_no = request.POST.get('aadharid')
+    aadhaarId = request.POST.get('aadharid')
     date_of_birth=request.POST.get('bdate')
-    if (InternationalPatientSummary.objects.filter(aadhar_no=aadhar_no).exists()) and (InternationalPatientSummary.objects.filter(date_of_birth=date_of_birth).exists()):
-        ips_id = InternationalPatientSummary.objects.get(
-                aadhar_no = aadhar_no
+    if (Patient.objects.filter(aadhaarId=aadhaarId).exists()) and (Patient.objects.filter(date_of_birth=date_of_birth).exists()):
+        ips_id = Patient.objects.get(
+                aadhaarId = aadhaarId
         ).id
         medication_id = MedicationStatement.objects.filter(
                 ips_id = ips_id
@@ -27,3 +117,25 @@ def PatientList(request):
     else:
         messages.error(request, 'Patient is not registered')
         return render(request, "patient_records/patient_record_form.html")
+
+
+
+def patientProblemList(request , id):
+    patient= Patient.objects.get(aadhaarId=id)
+    
+    if request.method == "POST":  
+        form = ProblemListForm(request.POST, initial={ 'patient':patient })  
+        if form.is_valid():  
+            try:  
+                obj=form.save( commit=False) 
+                obj.patient =Patient.objects.get(aadhaarId=id)
+                obj.save()
+                messages.success(request, 'New ProblemList is successfully added.!')
+                # model = form.instance
+                return redirect('/patient_records/patient-problem-list')  
+            except:  
+                messages.error(request, 'failed to add problem list')
+    else:  
+        form = ProblemListForm( initial={ 'patient':patient } )  
+    return render(request,'patient_records/patient-problem-list.html',{'form':form,'patient' :patient})  
+

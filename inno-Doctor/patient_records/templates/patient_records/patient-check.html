@@ -8,11 +8,12 @@
 
 
     <h2 id="top">Patients</h2>
-    <form action='patient-details/' method="POST" enctype='multipart/form-data'>
+<form action='patient-details/' method="POST" enctype='multipart/form-data'>
         {% csrf_token %}
         <label for="search-input"> Enter patient ID here <input id="search-input"  name="aadhaarId" type="text" placeholder='xxxx-xxxx-xxxx'>
         <input type='submit' value="check">
 </form>
+
 
 <div class="card-body">
     <h4>Patient Records</h4>
@@ -32,9 +33,9 @@
             <tr>
                 <td>{{ patient.name }}</td>
                 <td>{{ patient.aadhaarId }}</td>
-                <td>{{ patient.dob }}</td>
+                <td>{{ patient.date_of_birth }}</td>
                 <td>{{ patient.gender }}</td>
-                <td><a type="button" class="btn btn-warning" href="/patients/patient-update/{{ patient.aadhaarId }}">✍🏻</a></td>
+                <td><a type="button" class="btn btn-warning" href="/patient_records/patient-update/{{ patient.aadhaarId }}">✍🏻</a></td>
             </tr>
             {% endfor %}
         </tbody> 
