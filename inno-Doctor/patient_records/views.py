@@ -29,7 +29,6 @@ def PatientList(request):
         messages.error(request, 'Patient is not registered')
         return render(request, "patient_records/patient_record_form.html")
 
-
 def EPrescription(request, aadhar_no):
     ips = InternationalPatientSummary.objects.filter(aadhar_no=aadhar_no)
     if ips:
