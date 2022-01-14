@@ -6,12 +6,13 @@
 {% block content %}
 <div class="card-body">
     <h4>Update Patient</h4>
+    <h2>{{patient}}</h2>
     <form method="post">
         {% csrf_token %}
         {% bootstrap_form form %}
         <a type="button" class="btn btn-danger" href="/patients/patient-check">Cancel</a>
         <button type="submit" class="btn btn-success">Update</button>
-        <a type="button" class="btn btn-danger" href="/vitalsign/vital-sign">Vital</a>
+        <a type="button" class="btn btn-danger" href="/patient_records/vital_signf/{{ patient }}">Add Vital Signs</a>
     </form>
 </div>
 {% endblock %}

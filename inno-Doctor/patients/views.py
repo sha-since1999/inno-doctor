@@ -57,7 +57,7 @@ def patientUpdate(request, id):
                 return redirect('/patients/patient-check')  
             except Exception as e: 
                 messages.error(request,'update error!')
-    return render(request,'patient-update.html',{'form':form})  
+    return render(request,'patient-update.html',{'form':form, 'patient':patient.aadhaarId})  
 
 
 
@@ -73,3 +73,7 @@ class PatientViewSet(ModelViewSet):
 
     def perform_destroy(self, instance):
         instance.delete()
+
+
+def vitalSigns(request):
+    return render(request, "vital-signs.html")

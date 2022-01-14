@@ -15,7 +15,8 @@ urlpatterns = [
 
     path('accounts/', include('accounts.urls')),
     path('patients/', include('patients.urls')),
-    path('patient_records/', include('patient_records.urls'))
+    path('patient_records/', include('patient_records.urls')),
+    path('vitalsign/', include('vitalsign.urls'))
 ]
 
 if settings.DEBUG:
