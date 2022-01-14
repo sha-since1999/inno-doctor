@@ -2,7 +2,7 @@ from django.shortcuts import render,  redirect
 from .models import  (MedicationItem,
                       MedicationStatement, VitalSigns )
 from django.contrib import messages
-from .forms import SocialHistoryForm, VitalSignsForm
+from .forms import ProblemListForm, SocialHistoryForm, VitalSignsForm
 from patients.models import Patient
 # Create your views here.
 def PatientView(request):
@@ -59,3 +59,20 @@ def SocialHistoryPage(request):
     else:
         form = SocialHistoryForm()
     return render(request, "patient_records/social_history.html", {'form':form})
+
+
+def ProblemAddPage(request):
+    if request.method == "POST":
+        form = ProblemListForm(request.POST)
+        if form.is_valid():
+            try:
+                form.save()
+                messages.success(
+                        request, 'Problem added successfully!'
+                )
+                return redirect('/')
+            except:
+                messages.error(request, 'failed to add Problem')
+    else:
+        form = ProblemListForm()
+    return render(request, "patient_records/problem_list.html", {'form':form})

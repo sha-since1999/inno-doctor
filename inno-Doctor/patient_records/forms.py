@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import SocialHistory, VitalSigns
+from .models import ProblemList, SocialHistory, VitalSigns
 
 class VitalSignsForm(ModelForm):
     class Meta:
@@ -9,4 +9,10 @@ class VitalSignsForm(ModelForm):
 class SocialHistoryForm(ModelForm):
     class Meta:
         model = SocialHistory
+        fields = '__all__'
+
+
+class ProblemListForm(ModelForm):
+    class Meta:
+        model = ProblemList
         fields = '__all__'

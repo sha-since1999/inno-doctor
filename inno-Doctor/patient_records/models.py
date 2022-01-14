@@ -8,7 +8,7 @@ class ProblemList(models.Model):
         ("MODERATE", "Moderate"),
         ("SEVERE", "Severe")
     )
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     ips = models.ForeignKey(
         Patient, on_delete=models.CASCADE
     )
