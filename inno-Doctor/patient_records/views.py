@@ -11,12 +11,13 @@ def PatientView(request):
 def PatientList(request):
     aadhar_no = request.POST.get('aadharid')
     date_of_birth=request.POST.get('bdate')
-    if (Patient.objects.filter(aadhar_no=aadhar_no).exists()) and (Patient.objects.filter(date_of_birth=date_of_birth).exists()):
-        ips_id = Patient.objects.get(
-                aadhar_no = aadhar_no
-        ).id
+    if (Patient.objects.filter(aadhaarId=aadhar_no).exists()) and (
+            Patient.objects.filter(dob=date_of_birth).exists()):
+        ips = Patient.objects.get(
+                aadhaarId = aadhar_no
+        )
         medication_id = MedicationStatement.objects.filter(
-                ips_id = ips_id
+                ips=ips
         ).values_list('id', flat = True).order_by(
                 '-timestamp')[:1]
         medication_items = MedicationItem.objects.filter(
@@ -33,7 +34,7 @@ def VitalSignPage(request):
         form = VitalSignsForm(request.POST)
         if form.is_valid():  
             try:
-                form.save() 
+                form.save()
                 messages.success(request, 'Vital signs are successfully added.!')
                 return redirect('/')  
             except:  

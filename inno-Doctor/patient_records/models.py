@@ -1,18 +1,6 @@
 from django.db import models
 from patients.models import Patient
 
-# class InternationalPatientSummary(models.Model):
-#     GENDER = (
-#         ("M", "Male"),
-#         ("F", "Female"),
-#         ("O", "Other")
-#     )
-#     id = models.IntegerField(primary_key=True)
-#     name = models.CharField(max_length=200, null=False, blank=False)
-#     date_of_birth = models.DateField(null=False, blank=False)
-#     gender = models.CharField(max_length=10, choices = GENDER, default = None)
-#     aadhar_no = models.IntegerField(unique=True, null=False, blank=False)
-
 
 class ProblemList(models.Model):
     SEVERITY = (
