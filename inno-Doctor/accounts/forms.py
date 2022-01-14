@@ -294,7 +294,7 @@ class MedState(forms.ModelForm):
 class ProbList(forms.ModelForm):
     class Meta:
         model = ProblemList
-        fields = ('id','onset_date','ips','problem','body_site','severity','abatement_date','diagnostic_certainity')
+        fields = ('id','ips','problem','body_site','severity','abatement_date','diagnostic_certainity')
         widgets ={
             'id': forms.TextInput(attrs={'class':'form-control'}),
             'ips': forms.TextInput(attrs={'class':'form-control'}),
