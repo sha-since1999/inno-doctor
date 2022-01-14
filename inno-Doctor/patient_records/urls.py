@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views import (
-    PatientView, PatientList, VitalSignPage
+    PatientView, PatientList, SocialHistoryPage, VitalSignPage,
 )
 
 app_name = 'patient_records'
@@ -9,5 +9,6 @@ app_name = 'patient_records'
 urlpatterns = [
     path('patient_record_form/', PatientView, name='patient_record_form'),
     path('patient_record_list/', PatientList, name='patient_record_list'),
-    path('vital_signf/<int:id>', VitalSignPage, name='vital_signf'),
+    path('vital_signs', VitalSignPage, name='vital_signs'),
+    path('social_history', SocialHistoryPage, name = 'social_history'),
 ]

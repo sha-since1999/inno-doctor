@@ -58,7 +58,7 @@ class SocialHistory(models.Model):
         ("CURRENT_DRINKER", "Current Drinker"),
         ("FORMER_DRINKER", "Former Drinker")
     )
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     ips = models.OneToOneField(Patient, on_delete=models.CASCADE)
     tobacco_smoking_status = models.CharField(max_length=20, choices =
     SMOKING, default = None)
