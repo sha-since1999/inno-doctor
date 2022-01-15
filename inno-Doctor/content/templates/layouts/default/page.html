@@ -23,7 +23,8 @@
 
 </head>
 
-<body>
+
+<body style= "background-image: url({% static 'images/bg2.jpg' %})"  >
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark static-top">
 
@@ -78,13 +79,15 @@
 
 </nav>
 
-<div class="container-fluid mt-3">
+<div class="container-fluid mt-3 img-responsive"    >
 
     {% bootstrap_messages %}
-
+    
     {% block content %}
         No content.
+
     {% endblock %}
+    
 
 </div>
 
@@ -96,3 +99,5 @@
 
 </body>
 </html>
+
+

@@ -182,6 +182,42 @@ def patientVitalSignCreate(request , id):
     return render(request,'patient_records/patient-vital-sign.html',{'form':form,'patient' :patient})  
 
 
+def patientSocialHistoryUpdate(request , id):
+    patient= Patient.objects.get(aadhaarId=id)
+    socialhistory= SocialHistory.objects.get(patient=patient)
+    form= SocialHistoryForm( initial = {'tobacco_smoking_status':socialhistory.tobacco_smoking_status,'alcohol_consumption_status':socialhistory,'alcohol_consumption_unit':socialhistory.alcohol_consumption_unit, 'alcohol_consumption_frequency':socialhistory.alcohol_consumption_frequency} )
+    if request.method == "POST":  
+        form = SocialHistoryForm(request.POST, instance=socialhistory)  
+        if form.is_valid():  
+            try:  
+                form.save()
+                messages.success(request, 'New Social History is successfully Updated.!')
+                # model = form.instance
+                return  redirect('/patient_records/patient-detail/{}'.format(id)) 
+            except:  
+                messages.error(request, 'failed to Update Social History list')
+    return render(request,'patient_records/genralForm.html',{'form':form,'patient' :patient})  
+
+def patientVitalSignUpdate(request , id):
+    patient= Patient.objects.get(aadhaarId=id)
+    vitalsign= VitalSign.objects.get(patient= patient)
+    form= VitalSignForm(initial={'patient':patient ,'body_weight':vitalsign.body_weight,'height':vitalsign.height,'respiration_rate':vitalsign.respiration_rate,'pulse_rate':vitalsign.pulse_rate,'body_temperature':vitalsign.body_temperature,'head_circumference':vitalsign.head_circumference,'pulse_oximetry':vitalsign.pulse_oximetry,'body_mass_index':vitalsign.body_mass_index,'blood_pressure_systolic':vitalsign.blood_pressure_systolic,'blood_pressure_diastolic':vitalsign.blood_pressure_diastolic})
+    if request.method == "POST":  
+        form = VitalSignForm(request.POST, instance=vitalsign)  
+        if form.is_valid():  
+            try:  
+                obj=form.save( commit=False) 
+                obj.patient =Patient.objects.get(aadhaarId=id)
+                obj.save()
+                messages.success(request, 'New Vital Sign is successfully updated.!')
+                # model = form.instance
+                return  redirect('/patient_records/patient-detail/{}'.format(id)) 
+            except:  
+                messages.error(request, 'failed to update vital sign')
+                
+    return render(request,'patient_records/genralForm.html',{'form':form,'patient' :patient})  
+
+
 def medicationStatementCreate(request,id ):
     patient= Patient.objects.get(aadhaarId=id)
     new_medication_statement = MedicationStatementForm().save(commit=False)
@@ -226,15 +262,23 @@ def eprescriptionCreate(request,id):
 
 def patientProblemListView(request , id):
     patient= Patient.objects.get(aadhaarId=id)
-    form= ProblemList.objects.filter(patient =patient)
-    return render(request,'patient_records/patient-problem-list-view.html',{'form':form,'patient' :patient})  
+    forms= ProblemList.objects.filter(patient =patient)
+    allforms=forms
+    forms=[]
+    for form in allforms:
+        if form:
+            print(form)
+            print(form.problem)
+            forms.append(form)
+    print(forms)
+    return render(request,'patient_records/patient-problem-list-view.html',{'problemLists':forms,'patient' :patient})  
 
 def patientSocialHistoryView(request , id):
     patient= Patient.objects.get(aadhaarId=id)
-    form = SocialHistory.objects.filter(patient=patient)
-    return render(request,'patient_records/patient-social-history-list-view.html',{'form':form,'patient' :patient})  
+    form = SocialHistory.objects.get(patient=patient)
+    return render(request,'patient_records/patient-social-history-view.html',{'form':form,'patient' :patient})  
 
 def patientVitalSignView(request , id):
     patient= Patient.objects.get(aadhaarId=id)
-    form= VitalSign.objects.filter(patient=patient)
+    form= VitalSign.objects.get(patient=patient)
     return render(request,'patient_records/patient-vital-sign-view.html',{'form':form,'patient' :patient})  

@@ -60,10 +60,8 @@ class VitalSign(models.Model):
         verbose_name = "vitalsign"
         verbose_name_plural = "vitalsigns"
 
-
     def get_absolute_url(self):
         return reverse("vitalsign_detail", kwargs={"id": self.id})
-
 
 
 

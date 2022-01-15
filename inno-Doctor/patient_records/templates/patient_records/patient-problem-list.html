@@ -4,6 +4,11 @@
 {% load i18n %}
 {% block title %}problem-list{% endblock title %}
 {% block content %}
- {% comment %} {% include 'patient_records/form.html'  with aadhaarId=patient.aadhaarId  form=form%} {% endcomment %}
- {% include 'patient_records/table.html'  with aadhaarId=patient.aadhaarId  form=form%}
+<div class="container">
+    
+    {% comment %} {% include 'patient_records/form.html'  with aadhaarId=patient.aadhaarId  form=form%} {% endcomment %}
+    {% include 'patient_records/table.html'  with aadhaarId=patient.aadhaarId  form=form%}
+
+</div>
+
 {% endblock content %}
