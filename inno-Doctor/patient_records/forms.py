@@ -18,10 +18,11 @@ class MedicationItemForm(ModelForm):
 class MedicationStatementForm(ModelForm):
     class Meta:
         model = MedicationStatement
-        fields = '__all__'
+        fields = ("patient",)
         
 class ProblemListForm(ModelForm):
     class Meta:
         model = ProblemList
         fields = '__all__'
         
+

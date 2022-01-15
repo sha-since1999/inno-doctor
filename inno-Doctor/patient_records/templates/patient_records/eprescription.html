@@ -5,25 +5,71 @@
 
 {% block title %}e-prescription{% endblock title %}
 {% block content %}
-<div class="card-body">
-    <h4>Patient E-prescription </h4> 
+
+<div class="container-fluid">
+     <a type="button" class="btn btn-danger" href="/patient_records/patient-detail/{{aadhaarId}}">🔙</a><h2 class="d-inline align-top">Patient E-prescription </h2> 
     {% comment %} {% for medicationStatment in medicationStatements.iterator() %} {% endcomment %}
 
         {% comment %} <p> medical statment : {{medicationStatement.id}}</p> {% endcomment %}
         {% comment %} {% comment %} {% for medicationItem in medicationStatement.item_set.all()  %} {% endcomment %}
+        <br></br>
         {% for medication_statement_id  in medicationStatementIds %}
-            <h2> {{medication_statement_id}} </h2>
+        <div>
+            <h6> Medication Statemen Id:{{medication_statement_id}}  </h6>
             {% for  items  in medicationItems%}
-                {% if items %}  
-                    {% for item  in items %}
-                            <div><h6> {{item.name}}</h6>  <h6> {{item.category}}</h6></div>
-
-                            
-                    {% endfor %}
-                {% endif %}
+            {% if items %}  
+            <div class= "text-*-center small"  >
+                        <div class="container-fluid">
+                            <table class="table table-striped table-responsive fixed-table-body">
+                                <thead class="center-block">
+                                  <tr>
+                                    <th scope="col">medication_item_id</th>
+                                    <th scope="col">medication_item</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Form</th>
+                                    <th scope="col">category</th>
+                                    <th scope="col">unit_of_presecription</th>
+                                    <th scope="col">batch_id</th>
+                                    <th scope="col">expiry</th>
+                                    <th scope="col">dose_amount</th>
+                                    <th scope="col">dose_duration</th>
+                                    <th scope="col">dose_unit</th>
+                                    <th scope="col">dose_frequency</th>
+                                    <th scope="col">dose_interval</th>
+                                    <th scope="col">dose_specific_timig</th>
+                                    <th scope="col">route</th>
+                                    <th scope="col">body_site</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item  in items %}
+                                  <tr>
+                                    <tr scope="row">{{item.medication_item_id}}</td>
+                                        <td scope="row">{{item.medication_item}}</td>
+                                        <td scope="row">{{item.Name}}</td>
+                                        <td scope="row">{{item.Form}}</td>
+                                        <td scope="row">{{item.category}}</td>
+                                        <td scope="row">{{item.unit_of_presecription}}</td>
+                                        <td scope="row">{{item.batch_id}}</td>
+                                        <td scope="row">{{item.expiry}}</td>
+                                        <td scope="row">{{item.dose_amount}}</td>
+                                        <td scope="row">{{item.dose_duration}}</td>
+                                        <td scope="row">{{item.dose_unit}}</td>
+                                        <td scope="row">{{item.dose_frequency}}</td>
+                                        <td scope="row">{{item.dose_interval}}</td>
+                                        <td scope="row">{{item.dose_specific_timig}}</td>
+                                        <td scope="row">{{item.route}}</td>
+                                        <td scope="row">{{item.body_siteid}}</td>
+                                  </tr>
+                                  {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
+                    {% endif %}
             {% endfor %}
+        </div>
         {% endfor %}
-        {% comment %} {% endfor %} {% endcomment %}
-{% comment %} {% endfor %} {% endcomment %}
+        
 </div>
 {% endblock %}

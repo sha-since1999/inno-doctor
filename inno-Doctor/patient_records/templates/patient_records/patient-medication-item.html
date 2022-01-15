@@ -2,8 +2,10 @@
 {% load static %}
 {% load bootstrap4 %}
 {% load i18n %}
-{% block title %}problem-list{% endblock title %}
+{% block title %}new-medication-item{% endblock title %}
 {% block content %}
  {% comment %} {% include 'patient_records/form.html'  with aadhaarId=patient.aadhaarId  form=form%} {% endcomment %}
  {% include 'patient_records/table.html'  with aadhaarId=patient.aadhaarId  form=form%}
+
+ 
 {% endblock content %}

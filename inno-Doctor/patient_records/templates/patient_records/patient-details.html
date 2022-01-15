@@ -6,7 +6,9 @@
 {% block title %}patient-list{% endblock title %}
 {% block content %}
 <div class="card-body">
-    <h4>Patient info </h4> 
+    <a type="button" class="btn btn-success" href="/patient_records/patient-check">Back</a>
+    <tr> <h4 class="d-inline">Patient Information </h4> 
+    <hr>
     {% comment %} <a  href="/patient_records/patient-eprescription/{{patient}}"> e-prescription</a> {% endcomment %}
     {% comment %} <form action='patient-eprescription/' method="POST" enctype='multipart/form-data'>
         {% csrf_token %}
@@ -14,13 +16,15 @@
         <input type='submit' value= "eprescirption"> 
     </form> {% endcomment %}
 
-    <a type="button" class="btn btn-warning" href="/patient_records/patient-eprescription/{{ patient.aadhaarId }}">eprescription</a>
-    <a type="button" class="btn btn-warning" href="/patient_records/patient-problem-list/{{ patient.aadhaarId }}">Add Problem List</a>
+    
+   
     {% comment %} <a type="button" class="btn btn-warning" href="/patient_records/patient-vital-sign/{{ patient.aadhaarId }}">Add Problem List</a>
     <a type="button" class="btn btn-warning" href="/patient_records/patient-eprescription/{{ patient.aadhaarId }}">Add Problem List</a>
     <a type="button" class="btn btn-warning" href="/patient_records/patient-eprescription/{{ patient.aadhaarId }}">Add Problem List</a> {% endcomment %}
     {% comment %} <a  href="{% url 'eprescription' aadharId=Patient.aadhaarId %}" > e-prescription</a> {% endcomment %}
-    <table class="table text-justify-content-around">
+    <div class="row container">
+    <div class=" col container-fluid d-d-inline-block">
+    <table class="table text-justify-content-center table table-striped table-responsive">
         <tbody>
             <tr>
                 <td scope="col">Patient Name</td>
@@ -39,12 +43,43 @@
                 <td>{{ patient.gender }}</td>
             </tr>
             <tr>
-                <td><a type="button" class="btn btn-success" href="/patient_records/patient-check">Back</a></td>
-                <td><a type="button" class="btn btn-warning" href="/patient_records/patient-update/{{ patient.aadhaarId }}">Update Patient Details</a></td>
-
+                <td colspan=2><a type="button" class="btn btn-warning" href="/patient_records/patient-update/{{ patient.aadhaarId }}">Update Patient Details</a></td>
             </tr>
         </tbody>
-       
     </table>
+</div>
+    <div class="col container-fluid d-inline-block">
+    <table class="table text-justify-content-around table table-striped table-responsive fixed-table-body">
+        <tbody>
+            <tr>
+
+                <td scope="col" colspan=2><a type="button" class="btn btn-warning" href="/patient_records/patient-medication-statement/{{ patient.aadhaarId }}">Add new Medication Staement For Patient</a></td>
+            </tr>
+            <tr>
+                <td scope="col"><a type="button" class="btn btn-warning" href="/patient_records/patient-eprescription/{{ patient.aadhaarId }}">Check E-prescription</a></td>
+                <td scope="col"><a type="button" class="btn btn-warning" href="/patient_records/patient-eprescription/{{ patient.aadhaarId }}">Add  E-prescription Existing </a></td>
+            </tr>
+             <tr>
+
+                <td> <a type="button" class="btn btn-warning" href="/patient_records/patient-problem-list/{{ patient.aadhaarId }}">check Problem List</a></td>
+                <td> <a type="button" class="btn btn-warning" href="/patient_records/patient-problem-list/{{ patient.aadhaarId }}">Add Problem List</a></td>
+             </tr>
+          
+             <tr>
+                <td> <a type="button" class="btn btn-warning" href="/patient_records/patient-problem-list/{{ patient.aadhaarId }}">Check Vital Signs</a></td>
+                <td> <a type="button" class="btn btn-warning" href="/patient_records/patient-problem-list/{{ patient.aadhaarId }}">Add Vital SIgns</a></td>
+             </tr>
+          
+             <tr>
+
+                <td> <a type="button" class="btn btn-warning" href="/patient_records/patient-problem-list/{{ patient.aadhaarId }}">Check Social  History</a></td>
+                <td> <a type="button" class="btn btn-warning" href="/patient_records/patient-problem-list/{{ patient.aadhaarId }}">Add Social History</a></td>
+             </tr>
+          
+        
+        </tbody>
+    </table>
+</div>
+</div>
 </div>
 {% endblock %}

@@ -44,7 +44,7 @@ class ProblemList(models.Model):
 
 
 class VitalSign(models.Model):
-    id = models.IntegerField(primary_key=True)
+    # id = models.IntegerField(primary_key=True)
     patient = models.OneToOneField(Patient, on_delete=models.CASCADE)
     body_weight = models.FloatField()
     height = models.FloatField()
@@ -78,7 +78,7 @@ class SocialHistory(models.Model):
         ("CURRENT_DRINKER", "Current Drinker"),
         ("FORMER_DRINKER", "Former Drinker")
     )
-    id = models.IntegerField(primary_key=True)
+    # id = models.IntegerField(primary_key=True)
     patient = models.OneToOneField(Patient, on_delete=models.CASCADE)
     tobacco_smoking_status = models.CharField(max_length=20, choices =
     SMOKING, default = None)
@@ -91,9 +91,10 @@ class SocialHistory(models.Model):
 
 
 class MedicationStatement(models.Model):
-    id = models.IntegerField(primary_key=True)
+    # id = models.AutoField(primary_key=True)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now=True)
+    description= models.TextField( null =True ,help_text="give a short description!")
     class Meta:
         verbose_name = "medicationstatement"
         verbose_name_plural = "medicationstatements"
@@ -104,7 +105,7 @@ class MedicationStatement(models.Model):
 
 
 class MedicationItem(models.Model):
-    id = models.IntegerField(primary_key=True)
+    # id = models.IntegerField(primary_key=True)
     medication_statement = models.ForeignKey(MedicationStatement, on_delete=models.CASCADE)
     medication_item = models.CharField(max_length=200, null=False, blank=False)
     name = models.CharField(max_length=200, null=False, blank=False)
@@ -113,7 +114,7 @@ class MedicationItem(models.Model):
     unit_of_prescription = models.CharField(max_length=100, null=False, blank=False)
     batch_id = models.CharField(max_length=100, null=False, blank=False)
     expiry = models.DateField(null=False, blank=False)
-    dose_amount = models.FloatField(null=False, blank=False)
+    dose_amount = models.PositiveIntegerField(null=False, blank=False)
     dose_duration = models.CharField(max_length=100, null=False, blank=False)
     dose_unit = models.CharField(max_length=100, null=False, blank=False)
     dose_frequency = models.CharField(max_length=100, null=True, blank=True)

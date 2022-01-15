@@ -1,3 +1,4 @@
+from email.message import Message
 from django.http.response import HttpResponse
 from django.shortcuts import render, get_object_or_404, render_to_response
 from django.contrib import messages
@@ -34,9 +35,9 @@ def eprescriptionList(request, id):
             if medicationitem is not None:
                 medicationitems.append(medicationitem)
         print(medicationitems)
+        return render(request,"patient_records/eprescription.html" ,context={"medicationStatementIds":medication_statement_ids, "medicationItems": medicationitems,'aadhaarId':id})
     except:
             messages.error(request, 'no medication statemtment found!') 
-    return render(request,"patient_records/eprescription.html" ,context={"medicationStatementIds":medication_statement_ids, "medicationItems": medicationitems})
     return  redirect('/patient_records/patient-detail/{}'.format(id))  
 
 def patientDetails(request):
@@ -48,6 +49,7 @@ def patientDetails(request):
             return render(request,"patient_records/patient-details.html",context={'patient':patient})  
         except:
             messages.error(request, 'patient record found')
+    return redirect('/patient_records/patient-check')  
          
          
 def patientDetail(request , id)  : 
@@ -67,12 +69,13 @@ def patientCheck(request):
 def patientCreate(request):  
     if request.method == "POST":  
         form = PatientForm(request.POST)  
+        id= request.POST['aadhaarId']
         if form.is_valid():  
             try:  
                 form.save() 
                 messages.success(request, 'New Patient is successfully added.!')
                 model = form.instance
-                return redirect('/patient_records/patient-check')  
+                return  redirect('/patient_records/patient-detail/{}'.format(id))  
             except:  
                 messages.error(request, 'failed to add patient')
     else:  
@@ -88,7 +91,7 @@ def patientUpdate(request, id):
             try:  
                 form.save() 
                 # model = form.instance
-                # messages.success(request,'patient updated!')
+                messages.success(request,'patient updated!')
                 return redirect('/patient_records/patient-check')  
             except Exception as e: 
                 messages.error(request,'update error!')
@@ -138,4 +141,30 @@ def patientProblemList(request , id):
     else:  
         form = ProblemListForm( initial={ 'patient':patient } )  
     return render(request,'patient_records/patient-problem-list.html',{'form':form,'patient' :patient})  
+
+
+def medicationStatementCreate(request,id ):
+    patient= Patient.objects.get(aadhaarId=id)
+    new_medication_statement = MedicationStatementForm().save(commit=False)
+    try:
+        print("fails")
+        new_medication_statement.patient= patient
+        new_medication_statement_obj=new_medication_statement.save()
+        # new_medication_statement_obj = new_medication_statement.instance
+        print("success")
+    except:
+        messages.error(request, 'failed to open new medicaiton Statement form')
+        return  redirect('/patient_records/patient-detail/{}'.format(id)) 
+        # model.instance
+    if request.method == "POST":  
+        form =MedicationItemForm( request.POST, initial={'medication_statement':new_medication_statement_obj})
+        if form.is_valid():  
+            try:  
+                form.save()
+                messages.success(request, 'New Medication statement is successfully added.!')
+            except:
+                messages.error(request, 'failed to Add New medicaiton Statement list')
+            return  redirect('/patient_records/patient-detail/{}'.format(id))     
+        form=MedicationItemForm( request.POST, initial={'medication_statement':new_medication_statement_obj})
+    return render(request,'patient_records/patient-medication-item.html',{'form':form,'patient' :patient})  
 
