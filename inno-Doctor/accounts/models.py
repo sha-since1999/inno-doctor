@@ -31,7 +31,7 @@ class ProblemList(models.Model):
     problem = models.CharField(max_length = 250, null = False, blank = False)
     body_site = models.CharField(max_length = 300, null = False, blank = False)
     severity = models.CharField(max_length = 100)
-    onset_date = models.DateField(auto_now_add= True)
+    # onset_date = models.DateField(auto_now_add= True)
     abatement_date = models.DateField()
     diagnostic_certainity = models.CharField(max_length = 200)
 
