@@ -10,6 +10,7 @@ from .models import Patient
 from django.shortcuts import render
 
 from .forms import (MedicationItemForm, PatientForm,
+                    SocialHistoryForm,VitalSignForm,
                      ProblemListForm,
                       MedicationStatementForm, )
 
@@ -123,7 +124,7 @@ def PatientList(request):
 
 
 
-def patientProblemList(request , id):
+def patientProblemListCreate(request , id):
     patient= Patient.objects.get(aadhaarId=id)
     
     if request.method == "POST":  
@@ -135,12 +136,50 @@ def patientProblemList(request , id):
                 obj.save()
                 messages.success(request, 'New ProblemList is successfully added.!')
                 # model = form.instance
-                return redirect('/patient_records/patient-problem-list')  
+                return  redirect('/patient_records/patient-detail/{}'.format(id))   
             except:  
                 messages.error(request, 'failed to add problem list')
     else:  
         form = ProblemListForm( initial={ 'patient':patient } )  
     return render(request,'patient_records/patient-problem-list.html',{'form':form,'patient' :patient})  
+
+def patientSocialHistoryCreate(request , id):
+    patient= Patient.objects.get(aadhaarId=id)
+    
+    if request.method == "POST":  
+        form = SocialHistoryForm(request.POST, initial={ 'patient':patient })  
+        if form.is_valid():  
+            try:  
+                obj=form.save( commit=False) 
+                obj.patient =Patient.objects.get(aadhaarId=id)
+                obj.save()
+                messages.success(request, 'New Social History is successfully added.!')
+                # model = form.instance
+                return  redirect('/patient_records/patient-detail/{}'.format(id)) 
+            except:  
+                messages.error(request, 'failed to add Social History list')
+    else:  
+        form = SocialHistoryForm( initial={ 'patient':patient } )  
+    return render(request,'patient_records/patient-social-history-list.html',{'form':form,'patient' :patient})  
+
+def patientVitalSignCreate(request , id):
+    patient= Patient.objects.get(aadhaarId=id)
+    
+    if request.method == "POST":  
+        form = VitalSignForm(request.POST, initial={ 'patient':patient })  
+        if form.is_valid():  
+            try:  
+                obj=form.save( commit=False) 
+                obj.patient =Patient.objects.get(aadhaarId=id)
+                obj.save()
+                messages.success(request, 'New Vital Sign is successfully added.!')
+                # model = form.instance
+                return  redirect('/patient_records/patient-detail/{}'.format(id)) 
+            except:  
+                messages.error(request, 'failed to add vital sign')
+    else:  
+        form = VitalSignForm( initial={ 'patient':patient } )  
+    return render(request,'patient_records/patient-vital-sign.html',{'form':form,'patient' :patient})  
 
 
 def medicationStatementCreate(request,id ):
@@ -165,6 +204,37 @@ def medicationStatementCreate(request,id ):
             except:
                 messages.error(request, 'failed to Add New medicaiton Statement list')
             return  redirect('/patient_records/patient-detail/{}'.format(id))     
-        form=MedicationItemForm( request.POST, initial={'medication_statement':new_medication_statement_obj})
+    else :
+        form=MedicationItemForm( initial={'medication_statement':new_medication_statement_obj})
     return render(request,'patient_records/patient-medication-item.html',{'form':form,'patient' :patient})  
 
+def eprescriptionCreate(request,id):
+    patient= Patient.objects.get(aadhaarId=id)
+    if request.method =="POST":
+        # meditcation_statement= MedicationStatement.objects.filter(patient=patient)
+        form= MedicationItemForm(request.POST)
+        if form.is_valid():
+            try:  
+                form.save()
+                messages.success(request, 'New epresciption  is successfully added.!')
+            except:
+                messages.error(request, 'failed to Add New E-prescription  ')
+            return  redirect('/patient_records/patient-detail/{}'.format(id))     
+    else :
+            form=MedicationItemForm()   
+    return render(request,'patient_records/genralForm.html',{'form':form,'patient' :patient})   
+
+def patientProblemListView(request , id):
+    patient= Patient.objects.get(aadhaarId=id)
+    form= ProblemList.objects.filter(patient =patient)
+    return render(request,'patient_records/patient-problem-list-view.html',{'form':form,'patient' :patient})  
+
+def patientSocialHistoryView(request , id):
+    patient= Patient.objects.get(aadhaarId=id)
+    form = SocialHistory.objects.filter(patient=patient)
+    return render(request,'patient_records/patient-social-history-list-view.html',{'form':form,'patient' :patient})  
+
+def patientVitalSignView(request , id):
+    patient= Patient.objects.get(aadhaarId=id)
+    form= VitalSign.objects.filter(patient=patient)
+    return render(request,'patient_records/patient-vital-sign-view.html',{'form':form,'patient' :patient})  
