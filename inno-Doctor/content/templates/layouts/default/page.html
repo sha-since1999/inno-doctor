@@ -16,18 +16,35 @@
 
     <link rel="icon" href="{% static 'favicon.ico' %}">
 
-    <title>Simple Django Login and Registration</title>
+    <title>{% block title %} InnoDoctor{% endblock title %}</title>
 
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+
+    <style>
+        body{
+          
+         
+          background-color: #f5cbcb
+        }
+            .page-footer{
+              position: fixed;
+           left:0px;
+           bottom:0px;
+           z-index:1;
+           width:100%;
+          background-color : grey;
+            }
+        </style>
 
 </head>
 
 <body>
 
+
 <nav class="navbar navbar-expand-md navbar-dark bg-dark static-top">
 
-    <a class="navbar-brand" href="/">{% trans 'Home' %}</a>
+    <a class="navbar-brand" href="/">{% trans 'InnoDoctor' %}</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault">
         <span class="navbar-toggler-icon"></span>
@@ -36,6 +53,13 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             {% if request.user.is_authenticated %}
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'patients:patient-check' %}">{% trans 'Check Patient' %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'patients:patient-create' %}">{% trans 'Add Patient' %}</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'accounts:change_password' %}">{% trans 'Change password' %}</a>
                 </li>
@@ -48,6 +72,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'accounts:log_out' %}">{% trans 'Log out' %}</a>
                 </li>
+
             {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'accounts:log_in' %}">{% trans 'Log in' %}</a>
@@ -56,7 +81,7 @@
                     <a class="nav-link" href="{% url 'accounts:sign_up' %}">{% trans 'Create an account' %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'accounts:patient_record_form' %}">{% trans 'Patient records check-in' %}</a>
+                    <a class="nav-link" href="{% url 'patient_records:patient_record_form' %}">{% trans 'Patient Check-in' %}</a>
                 </li>
             {% endif %}
         </ul>
@@ -72,6 +97,8 @@
 
 <div class="container-fluid mt-3">
 
+    {% comment %} <img src={% static 'app/media/photo-1576091160550-2173dba999ef.jpeg' %}> {% endcomment %}
+
     {% bootstrap_messages %}
 
     {% block content %}
@@ -79,6 +106,16 @@
     {% endblock %}
 
 </div>
+
+<footer class="page-footer font-small blue">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2022 Copyright:
+      <a href="https://mdbootstrap.com/"> InnoDoctor.com</a>
+    </div>
+    <!-- Copyright -->
+  
+  </footer>
 
 <script src="{% static 'vendor/jquery/jquery-3.4.1.min.js' %}"></script>
 <script src="{% static 'vendor/popper/popper.min.js' %}"></script>

@@ -4,6 +4,9 @@
 
 {% block content %}
 
+<div class="container" style="width:50%; margin-top: 8%; border: 2px solid black; margin-bottom:5%;  ">
+
+
     <h4>{% trans 'Logged out' %}</h4>
 
     <p>
@@ -14,4 +17,5 @@
         <a href="{% url 'accounts:log_in' %}">{% trans 'Log in again' %}</a>
     </p>
 
+</div>
 {% endblock %}

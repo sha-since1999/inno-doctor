@@ -1,0 +1,24 @@
+{% extends 'layouts/default/page.html' %}
+
+{% load bootstrap4 %}
+{% load i18n %}
+
+
+{% block content %}
+<div class="container" style="width:50%; background-color: #83C4D1; margin-top: 8%; margin-bottom:5%;  ">
+
+
+<form action= "{% url 'patient_records:patient_record_list' %}"  method = "post">
+    {% csrf_token %}
+    <label for="aadharid" class="my-3"><b>Enter Aadhar Number:</b></label>
+        <input id="aadharid" class="my-3" type="number" name="aadharid" required>
+       
+        <br>
+        <label for="bdate" class="my-3"><b>Enter Date Of Birth:</b></label>&nbsp&nbsp&nbsp&nbsp
+        <input type="date" class="my-3" id="bdate" name="bdate"
+            value="2022-01-01" style="width:36%;" required><br/>
+            <br>
+        <input class="btn btn-success" style="margin-left: 40%; margin-bottom: 5%" type="submit" value="See records">
+</form>
+</div>
+{% endblock %}

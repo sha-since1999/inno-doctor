@@ -4,8 +4,9 @@
 {% load i18n %}
 
 {% block content %}
+<div class="container" style="width:50%;  margin-bottom:5%;  ">
 
-    <h4>{% trans 'Create an account' %}</h4>
+    <h4 style="text-align: center">{% trans 'Create an account' %}</h4>
 
     <form method="post">
 
@@ -15,5 +16,5 @@
         <button class="btn btn-success">{% trans 'Create' %}</button>
 
     </form>
-
+</div>
 {% endblock %}

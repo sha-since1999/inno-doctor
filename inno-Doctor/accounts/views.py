@@ -6,7 +6,7 @@ from django.contrib.auth.views import (
     LogoutView as BaseLogoutView, PasswordChangeView as BasePasswordChangeView,
     PasswordResetDoneView as BasePasswordResetDoneView, PasswordResetConfirmView as BasePasswordResetConfirmView,
 )
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.crypto import get_random_string
 from django.utils.decorators import method_decorator
 from django.utils.http import is_safe_url
@@ -16,11 +16,10 @@ from django.utils.translation import gettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
-from django.views.generic import View, FormView, TemplateView, CreateView
+from django.views.generic import View, FormView
 from django.conf import settings
 
-from .models import MedicationStatement
-from .forms import MedState
+
 
 from .utils import (
     send_activation_email, send_reset_password_email, send_forgotten_username_email, send_activation_change_email,
@@ -137,12 +136,6 @@ class SignUpView(GuestOnlyView, FormView):
 
 
 
-def PatientView(request):
-    return render(request, "accounts/patient_record_form.html")
-
-def PatientList(request):
-    print("aaa",request.POST)
-    return render(request, "accounts/patient_record_list.html")
 
 
 class ActivateView(View):
@@ -342,24 +335,4 @@ class RestorePasswordDoneView(BasePasswordResetDoneView):
 class LogOutView(LoginRequiredMixin, BaseLogoutView):
     template_name = 'accounts/log_out.html'
 
-
-#--------------------------------------------------------------------
-
-
-class PatientSummaryView(TemplateView):
-    template_name = 'accounts/patientsummary.html'
-
-class MedStateView(CreateView):
-    model = MedicationStatement
-    form_class = MedState
-    template_name = 'accounts/medstate.html'
-
-class ProblemListView(TemplateView):
-    template_name = 'accounts/problemlist.html'
-
-class VitalSignsView(TemplateView):
-    template_name = 'accounts/vitalsigns.html'
-
-class SocialHistoryView(TemplateView):
-    template_name = 'accounts/socialhistory.html'
 

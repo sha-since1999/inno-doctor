@@ -1,0 +1,36 @@
+{% extends 'layouts/default/page.html' %}
+{% block title %}patient-list{% endblock title %}
+{% block content %}
+
+<div class="container">
+<div class="card-body">
+    <h4>Patient info </h4>
+    <table class="table text-justify-content-around">
+        <tbody>
+            <tr>
+                <td scope="col">Patient Name</td>
+                <td>{{ patient.name }}</td>
+            </tr>
+             <tr>
+                <td scope="col">Aadhaar Id</td>
+                <td>{{ patient.aadhaarId }}</td>
+             </tr>
+            <tr>
+                <td scope="col">Date Of Birtd</td>
+                <td>{{ patient.dob }}</td>
+            </tr>
+            <tr>
+                <td scope="col">Gender</td>
+                <td>{{ patient.gender }}</td>
+            </tr>
+            <tr>
+                <td><a type="button" class="btn btn-success" href="/patients/patient-check">Back</a></td>
+                <td><a type="button" class="btn btn-warning" href="/patients/patient-update/{{ patient.aadhaarId }}">Update</a></td>
+
+            </tr>
+        </tbody>
+       
+    </table>
+</div>
+</div>
+{% endblock %}

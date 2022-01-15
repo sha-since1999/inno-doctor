@@ -5,7 +5,10 @@
 
 {% block content %}
 
-    <h4>{% trans 'Log in' %}</h4>
+<div class="container" style="width:50%; background-color: #83C4D1; margin-top: 5%;  margin-bottom:5%;  ">
+
+
+    <h4 style="text-align: center">{% trans 'Log in' %}</h4>
 
     <form method="post">
 
@@ -29,5 +32,6 @@
             <a href="{% url 'accounts:resend_activation_code' %}">{% trans 'Resend an activation code' %}</a>
         </li>
     </ul>
+</div>
 
 {% endblock %}
