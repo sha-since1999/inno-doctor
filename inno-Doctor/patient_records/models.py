@@ -29,7 +29,7 @@ class ProblemList(models.Model):
         ("MODERATE", "Moderate"),
         ("SEVERE", "Severe")
     )
-    id = models.IntegerField(primary_key=True)
+    # id = models.IntegerField(primary_key=True)
     patient = models.ForeignKey(
         Patient, on_delete=models.CASCADE
     )

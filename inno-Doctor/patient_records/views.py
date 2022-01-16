@@ -3,6 +3,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import render, get_object_or_404, render_to_response
 from django.contrib import messages
 from django.views.generic.detail import DetailView
+from django.urls import reverse
 
 from django.shortcuts import  redirect
 from .models import Patient
@@ -106,11 +107,11 @@ def PatientList(request):
     aadhaarId = request.POST.get('aadharid')
     date_of_birth=request.POST.get('bdate')
     if (Patient.objects.filter(aadhaarId=aadhaarId).exists()) and (Patient.objects.filter(date_of_birth=date_of_birth).exists()):
-        ips_id = Patient.objects.get(
-                aadhaarId = aadhaarId
-        ).id
+        # ips_id = Patient.objects.get(
+        #         aadhaarId = aadhaarId
+        # ).id
         medication_id = MedicationStatement.objects.filter(
-                ips_id = ips_id
+                patient_id = aadhaarId
         ).values_list('id', flat = True).order_by(
                 '-timestamp')[:1]
         medication_items = MedicationItem.objects.filter(
@@ -275,10 +276,16 @@ def patientProblemListView(request , id):
 
 def patientSocialHistoryView(request , id):
     patient= Patient.objects.get(aadhaarId=id)
-    form = SocialHistory.objects.get(patient=patient)
-    return render(request,'patient_records/patient-social-history-view.html',{'form':form,'patient' :patient})  
+    try:
+        form = SocialHistory.objects.get(patient=patient)
+    except:
+        return redirect(f'/patient_records/patient-social-history-create/{id}')
+    return render(request,'patient_records/patient-social-history-view.html',{'form':form,'patient' :patient})
 
 def patientVitalSignView(request , id):
     patient= Patient.objects.get(aadhaarId=id)
-    form= VitalSign.objects.get(patient=patient)
-    return render(request,'patient_records/patient-vital-sign-view.html',{'form':form,'patient' :patient})  
+    try:
+        form= VitalSign.objects.get(patient=patient)
+    except:
+        return redirect(f'/patient_records/patient-vital-sign-create/{id}')
+    return render(request,'patient_records/patient-vital-sign-view.html',{'form':form,'patient' :patient})

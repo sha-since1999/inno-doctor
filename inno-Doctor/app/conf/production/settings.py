@@ -8,7 +8,7 @@ CONTENT_DIR = os.path.join(BASE_DIR, 'content')
 SECRET_KEY = '3d305kajG5Jy8KBafCMpHwDIsNi0SqVaW'
 
 DEBUG = False
-ALLOWED_HOSTS = ['example.com','127.0.0.1']
+ALLOWED_HOSTS = ['example.com','127.0.0.1', 'localhost']
 
 SITE_ID = 1
 
@@ -19,13 +19,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     # Vendor apps
     'bootstrap4',
+    'rest_framework',
 
     # Application apps
     'main',
     'accounts',
+    'patient_records',
 ]
 
 MIDDLEWARE = [
