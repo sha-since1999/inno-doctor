@@ -4,13 +4,18 @@
 {% load i18n %}
 
 {% block content %}
+
+<div class="container" style="width:50%; padding-top: 10px; border-radius: 25px; border: 2px solid black; margin-bottom:5%;  ">
+
 <div class="card-body">
-    <h4>Update Patient</h4> 
+    <h4 style="text-align: center;">Update Patient</h4> 
     <form method="post">
         {% csrf_token %}
         {% bootstrap_form form %}
-        <a type="button" class="btn btn-danger" href="/patient_records/patient-check">Cancel</a>
-        <button type="submit" class="btn btn-success">Update</button>
+        <a type="button" class="btn btn-danger" href="/patient_records/patient-check" style="margin-left: 33%;">Cancel</a>
+        <button type="submit" class="btn btn-success" style="margin-left: 3%;">Update</button>
     </form>
+</div>
+
 </div>
 {% endblock %}

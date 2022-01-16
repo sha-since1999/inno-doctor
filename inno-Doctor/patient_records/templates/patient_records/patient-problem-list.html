@@ -4,7 +4,8 @@
 {% load i18n %}
 {% block title %}problem-list{% endblock title %}
 {% block content %}
-<div class="container">
+<div class="container" style="width:45%; margin-top: 5%; padding-top: 10px; border-radius: 25px; border: 2px solid black; margin-bottom:5%;  ">
+
     
     {% comment %} {% include 'patient_records/form.html'  with aadhaarId=patient.aadhaarId  form=form%} {% endcomment %}
     {% include 'patient_records/table.html'  with aadhaarId=patient.aadhaarId  form=form%}

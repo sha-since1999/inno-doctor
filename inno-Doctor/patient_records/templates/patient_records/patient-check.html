@@ -6,8 +6,10 @@
 {% block title %}patient-check{% endblock title %}
 {% block content %}
 
+<div class="container" style="width:50%; margin-top: 5%; padding-top: 10px; border-radius: 25px; border: 2px solid black; margin-bottom:5%;  ">
 
-    <h2 id="top">Patients</h2>
+
+    <h2 id="top" style="text-align: center;"> Patients</h2>
 <form action='patient-details/' method="POST" enctype='multipart/form-data'>
         {% csrf_token %}
         <label for="search-input"> Enter patient ID here <input id="search-input"  name="aadhaarId" type="text" placeholder='xxxx-xxxx-xxxx'>
@@ -41,6 +43,8 @@
         </tbody> 
     </table>
     <a type="button" class="btn btn-info" href="#top">scroll up</a>
+</div>
+
 </div>
 
 {% endblock %}

@@ -6,6 +6,8 @@
 {% block title %}patient-vital-sign-view{% endblock title %}
 {% block content %}
 
+<div class="container" style="width:50%; margin-top: 5%; padding-top: 10px; border-radius: 25px; border: 2px solid black; margin-bottom:5%;  ">
+
 <div class="container-fluid">
      <a type="button" class="btn btn-danger" href="/patient_records/patient-detail/{{patient.aadhaarId}}">🔙</a><h2 class="d-inline align-top">Patient Vital Sign View </h2> 
  <br></br>
@@ -43,7 +45,7 @@
                         <td scope="row">{{form.body_mass_index}}</td>
                         <td scope="row">{{form.blood_pressure_diastolic}}</td>
 
-                        <td> <a type="button" class="btn btn-warning" href="/patient_records/patient-vital-sign-edit/{{ patient.aadhaarId }}">Edit Vital Sign </a></td>
+                        <td> <a type="button" class="btn btn-warning" href="/patient_records/patient-vital-sign-edit/{{ patient.aadhaarId }}">Edit </a></td>
                     </tr>
                                 </tbody>
                             </table>
@@ -51,5 +53,6 @@
                 </div>
         </div>
         
+</div>
 </div>
 {% endblock %}

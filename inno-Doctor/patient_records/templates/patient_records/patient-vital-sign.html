@@ -4,6 +4,10 @@
 {% load i18n %}
 {% block title %}vital-sign-create{% endblock title %}
 {% block content %}
+<div class="container" style="width:50%; margin-top: 5%; padding-top: 10px; border-radius: 25px; border: 2px solid black; margin-bottom:5%;  ">
+
  {% comment %} {% include 'patient_records/form.html'  with aadhaarId=patient.aadhaarId  form=form%} {% endcomment %}
  {% include 'patient_records/table.html'  with aadhaarId=patient.aadhaarId  form=form%}
+
+</div>
 {% endblock content %}

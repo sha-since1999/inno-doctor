@@ -4,14 +4,20 @@
 
 {% block content %}
 
-    <h4>{% trans 'Logged out' %}</h4>
+<div class="container" style="width:50%; margin-top: 5%; margin-bottom:5%; border: 2px solid black; border-radius: 25px;  ">
+
+
+    <h4 class="my-3" style="text-align: center;">{% trans 'Logged out' %}</h4>
 
     <p>
         {% trans 'Thanks for spending some quality time with the site today.' %}
     </p>
 
     <p>
-        <a href="{% url 'accounts:log_in' %}">{% trans 'Log in again' %}</a>
+        <a class="btn btn-primary btn-sm" href="{% url 'accounts:log_in' %}" style="margin-left: 36%;">{% trans 'Sign in' %}</a>
+        <a class="btn btn-secondary btn-sm" href="{% url 'index' %}" style="margin-left: 3%;">{% trans 'Home' %}</a>
     </p>
+
+</div>
 
 {% endblock %}

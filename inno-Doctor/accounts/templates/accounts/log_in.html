@@ -5,7 +5,10 @@
 
 {% block content %}
 
-    <h4>{% trans 'Log in' %}</h4>
+<div class="container" style="width:50%; padding-top: 10px; border-radius: 25px; border: 2px solid black; ">
+
+
+    <h4 style="text-align: center;">{% trans 'Log in' %}</h4>
 
     <form method="post">
 
@@ -18,16 +21,14 @@
 
     <hr>
 
-    <ul>
-        <li>
-            <a href="{% url 'accounts:restore_password' %}">{% trans 'Forgot your password?' %}</a>
-        </li>
-        <li>
-            <a href="{% url 'accounts:remind_username' %}">{% trans 'Forgot your username?' %}</a>
-        </li>
-        <li>
-            <a href="{% url 'accounts:resend_activation_code' %}">{% trans 'Resend an activation code' %}</a>
-        </li>
-    </ul>
-
+   
+          {% comment %} <button class="btn btn-primary my-1 small text-muted">  <a href="{% url 'accounts:restore_password' %}" style="color: white">{% trans 'Forgot your password?' %}</a></button> <br/>
+       
+            <button class="btn btn-primary"><a href="{% url 'accounts:remind_username' %}" style="color: white">{% trans 'Forgot your username?' %}</a></button><br/>
+       
+            <button class="btn btn-primary my-1 mb-3"> <a href="{% url 'accounts:resend_activation_code' %}" style="color: white">{% trans 'Resend activation code' %}</a></button> {% endcomment %}
+            <a class="text-muted" href="{% url 'accounts:restore_password' %}"> {% trans 'Forgot your password?' %}</a><br/>
+            <a class="text-muted" href="{% url 'accounts:remind_username' %}"> {% trans 'Forgot your username?' %}</a><br/>
+            <a class="text-muted" href="{% url 'accounts:resend_activation_code' %}"> {% trans 'Resend activation code' %}</a><br/>
+</div>    
 {% endblock %}

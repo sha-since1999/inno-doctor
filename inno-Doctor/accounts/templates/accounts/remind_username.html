@@ -5,7 +5,11 @@
 
 {% block content %}
 
-    <h4>{% trans 'Remind a username' %}</h4>
+<div class="container" style="width:50%; padding-top: 10px; border-radius: 25px; border: 2px solid black; ">
+
+
+
+    <h4 style="text-align: center;">{% trans 'Remind a username' %}</h4>
 
     <form method="post">
 
@@ -18,10 +22,10 @@
 
     <hr>
 
-    <ul>
-        <li>
-            <a href="{% url 'accounts:log_in' %}">{% trans 'Log in' %}</a>
-        </li>
-    </ul>
+    
+    <button class="btn btn-success my-1 mb-3">       <a href="{% url 'accounts:log_in' %}">{% trans 'Log in' %}</a> </button>
+   
+
+</div>
 
 {% endblock %}

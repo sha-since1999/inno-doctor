@@ -6,7 +6,7 @@
 {% block title %}e-prescription{% endblock title %}
 {% block content %}
 
-<div class="container-fluid">
+<div class="container-fluid" style="text-align: center;">
      <a type="button" class="btn btn-danger" href="/patient_records/patient-detail/{{aadhaarId}}">🔙</a><h2 class="d-inline align-top">Patient E-prescription </h2> 
     {% comment %} {% for medicationStatment in medicationStatements.iterator() %} {% endcomment %}
 
@@ -14,7 +14,7 @@
         {% comment %} {% comment %} {% for medicationItem in medicationStatement.item_set.all()  %} {% endcomment %}
         <br></br>
         {% for medication_statement_id  in medicationStatementIds %}
-        <div>
+        <div class="my-2">
             <h6> Medication Statemen Id:{{medication_statement_id}}  </h6>
             {% for  items  in medicationItems%}
             {% if items %}  
