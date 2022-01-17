@@ -6,14 +6,20 @@
 
 {% block content %}
 
-<form action= "{% url 'patient_records:patient_record_list' %}"  %} method = "post">
+<div class="container" style="width:50%; margin-top: 5%; padding-top: 10px; border-radius: 25px; border: 2px solid black; margin-bottom:5%;  ">
+
+
+
+<form action= "{% url 'patient_records:patient_record_list' %}"  method = "post">
     {% csrf_token %}
-    <label for="aadharid">Enter aadhar number</label>
-        <input id="aadharid" type="number" name="aadharid" required><br/>
-        <label for="bdate">Enter birthdate:</label>
-        <input type="date" id="bdate" name="bdate"
-            value="2022-01-01" required><br/>
-        <input type="submit" value="See records">
+    <label class="my-2" for="aadharid"><b>Enter Aadhar Number:</b></label>
+        <input class="my-2" id="aadharid" type="number" name="aadharid" required><br/>
+        <label class="my-2" for="bdate"><b>Enter Date Of Birth:</b></label>
+        <input class="my-2" type="date" id="bdate" name="bdate"
+            value="2022-01-01" style="margin-left: 3.5%; width: 36%;" required><br/>
+        <input class="btn btn-success my-3" type="submit" value="See records" style="margin-left: 40%;">
 </form>
+
+</div>
 
 {% endblock %}

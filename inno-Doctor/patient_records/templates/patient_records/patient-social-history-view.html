@@ -1,0 +1,42 @@
+{% extends 'layouts/default/page.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block title %}patient-social-history-view{% endblock title %}
+{% block content %}
+
+<div class="container-fluid">
+     <a type="button" class="btn btn-danger" href="/patient_records/patient-detail/{{patient.aadhaarId}}">🔙</a><h2 class="d-inline align-top">Patient Social History View </h2> 
+ <br></br>
+ <div>
+     <div class= "text-*-center small"  >
+         <div class="container-fluid">
+             <table class="table table-striped table-responsive fixed-table-body">
+                 <thead class="center-block">
+                     <tr>
+
+                         <th scope="col">tobacco_smoking_status</th>
+                         <th scope="col">alcohol_consumption_status</th>
+                         <th scope="col">alcohol_consumption_unit</th>
+                         <th scope="col">alcohol_consumption_frequency</th> 
+
+                        </tr>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row">{{form.tobacco_smoking_status}}</td>
+                        <td scope="row">{{form.alcohol_consumption_status}}</td>
+                        <td scope="row">{{form.alcohol_consumption_unit}}</td>
+                        <td scope="row">{{form.alcohol_consumption_frequency}}</td>
+                        <td> <a type="button" class="btn btn-warning" href="/patient_records/patient-social-history-edit/{{ patient.aadhaarId }}">Edit</a></td>
+                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
+        </div>
+        
+</div>
+{% endblock %}

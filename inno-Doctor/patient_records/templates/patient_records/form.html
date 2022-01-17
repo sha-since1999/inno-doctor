@@ -1,0 +1,17 @@
+{% load static %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+<div class="container" style="width:50%; margin-top: 5%; margin-bottom:5%;  ">
+
+<div class="card-body">
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <a type="button" class="btn btn-danger" href="/patient_records/patient-detail/{{aadhaarId}}">Cancel</a>
+            <button type="submit" class="btn btn-success" value="save">Add Problems</button>
+        </form>
+    </div>
+</div>
+</div>

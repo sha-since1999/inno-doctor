@@ -1,0 +1,34 @@
+
+{% load static %}
+{% load bootstrap4 %}
+{% load i18n %}
+<form method="post" novalidate>
+    {% csrf_token %}
+  
+    {{ form.non_field_errors }}
+  
+    {% for hidden_field in form.hidden_fields %}
+      {{ hidden_field.errors }}
+      {{ hidden_field }}
+    {% endfor %}
+  
+    <table style="margin-left: 13%;">
+      {% for field in form.visible_fields %}
+        <tr>
+          <th>{{ field.label_tag }}</th>
+          <td>
+            {{ field.errors }}
+            {{ field }}
+            {{ field.help_text }}
+          </td>
+        </tr>
+      {% endfor %}
+      <tr>
+          <td><a type="button" class="btn btn-info my-3" href="/patient_records/patient-detail/{{aadhaarId}}">Cancel</a></td>
+          <td><button type="submit" class='btn btn-success my-3'>Submit</button></td>
+      </tr>
+
+    </table>
+    
+    
+  </form>

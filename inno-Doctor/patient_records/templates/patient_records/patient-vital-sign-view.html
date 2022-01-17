@@ -1,0 +1,58 @@
+{% extends 'layouts/default/page.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block title %}patient-vital-sign-view{% endblock title %}
+{% block content %}
+
+<div class="container" style="width:50%; margin-top: 5%; padding-top: 10px; border-radius: 25px; border: 2px solid black; margin-bottom:5%;  ">
+
+<div class="container-fluid">
+     <a type="button" class="btn btn-danger" href="/patient_records/patient-detail/{{patient.aadhaarId}}">🔙</a><h2 class="d-inline align-top">Patient Vital Sign View </h2> 
+ <br></br>
+ <div>
+     <div class= "text-*-center small"  >
+         <div class="container-fluid">
+             <table class="table table-striped table-responsive fixed-table-body">
+                 <thead class="center-block">
+                     <tr>
+
+                         <th scope="col">body_weight</th>
+                         <th scope="col">height</th>
+                         <th scope="col">respiration_rate</th>
+                         <th scope="col">pulse_rate</th> 
+                         <th scope="col">body_temperature</th> 
+                         <th scope="col">head_circumference</th> 
+                         <th scope="col">pulse_oximetry</th> 
+                         <th scope="col">body_mass_index</th> 
+                         <th scope="col">blood_pressure_systolic</th> 
+                         <th scope="col">blood_pressure_diastolic</th> 
+
+
+                        </tr>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row">{{form.body_weight}}</td>
+                        <td scope="row">{{form.height}}</td>
+                        <td scope="row">{{form.respiration_rate}}</td>
+                        <td scope="row">{{form.pulse_rate}}</td>
+                        <td scope="row">{{form.body_temperature}}</td>
+                        <td scope="row">{{form.head_circumference}}</td>
+                        <td scope="row">{{form.pulse_oximetry}}</td>
+                        <td scope="row">{{form.body_mass_index}}</td>
+                        <td scope="row">{{form.blood_pressure_diastolic}}</td>
+
+                        <td> <a type="button" class="btn btn-warning" href="/patient_records/patient-vital-sign-edit/{{ patient.aadhaarId }}">Edit </a></td>
+                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
+        </div>
+        
+</div>
+</div>
+{% endblock %}

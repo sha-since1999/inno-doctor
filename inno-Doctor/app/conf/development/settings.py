@@ -31,7 +31,6 @@ INSTALLED_APPS = [
     # Application apps
     'main',
     'accounts',
-    'patients',
     'patient_records',
 ]
 

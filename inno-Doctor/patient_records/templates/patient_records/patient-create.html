@@ -1,0 +1,23 @@
+{% extends 'layouts/default/page.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block title %}patient-create{% endblock title %}
+{% block content %}
+
+<div class="container" style="width:50%; padding-top: 10px; border-radius: 25px; border: 2px solid black; margin-bottom:5%;  ">
+
+<div class="card-body">
+    <h3 style="text-align: center;">Add Patient</h3>
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button type="submit" class="btn btn-success" value="save" style="margin-left: 33%;">Add</button>
+        <a type="button" class="btn btn-danger" href="/" style="margin-left: 3%;">Cancel</a>
+        
+    </form>
+</div>
+
+</div>
+{% endblock %}

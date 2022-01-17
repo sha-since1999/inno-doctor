@@ -1,0 +1,49 @@
+{% extends 'layouts/default/page.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block title %}problem-list-view{% endblock title %}
+{% block content %}
+
+<div class="container" style="width: 65%; text-align: center;">
+     <a type="button" class="btn btn-danger" href="/patient_records/patient-detail/{{patient.aadhaarId}}">🔙</a><h2 class="d-inline align-top">Patient Problem List View </h2> 
+ <br></br>
+ <div >
+     <div class= "text-*-center small"  >
+         <div class="container-fluid">
+             <table class="table table-striped table-responsive fixed-table-body">
+                 <thead class="center-block">
+                     <tr>
+                         <th scope="col">problem_list_id</th>
+                         <th scope="col">problem</th>
+                         <th scope="col">body_site</th>
+                         <th scope="col">severity</th>
+                         <th scope="col">onset_date</th>
+                         <th scope="col">abatement_date</th>
+                         <th scope="col">diagnostic_certainty</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in problemLists %}
+                                <h1>{{item.item_set.all}}</h1>
+                                  <tr>
+                                        <td scope="row">{{item.id}}</td>
+                                        <td scope="row">{{item.problem}}</td>
+                                        <td scope="row">{{item.body_site}}</td>
+                                        <td scope="row">{{item.severity}}</td>
+                                        <td scope="row">{{item.onset_date}}</td>
+                                        <td scope="row">{{item.abatement_date}}</td>
+                                        <td scope="row">{{item.diagnostic_certainty}}</td>
+                                  </tr>
+
+                        {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
+        </div>
+        
+</div>
+{% endblock %}

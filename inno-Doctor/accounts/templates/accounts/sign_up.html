@@ -5,15 +5,20 @@
 
 {% block content %}
 
-    <h4>{% trans 'Create an account' %}</h4>
+<div class="container" style="width:50%; padding-top: 10px; border-radius: 25px; margin-bottom: 5%; border: 2px solid black; ">
+
+
+    <h4 style="text-align: center;">{% trans 'Create an account' %}</h4>
 
     <form method="post">
 
         {% csrf_token %}
         {% bootstrap_form form %}
 
-        <button class="btn btn-success">{% trans 'Create' %}</button>
+        <button class="btn btn-success my-3" style="margin-left: 43%;">{% trans 'Create' %}</button>
 
     </form>
+
+</div>
 
 {% endblock %}
