@@ -186,7 +186,7 @@ def patientVitalSignCreate(request , id):
 def patientSocialHistoryUpdate(request , id):
     patient= Patient.objects.get(aadhaarId=id)
     socialhistory= SocialHistory.objects.get(patient=patient)
-    form= SocialHistoryForm( initial = {'tobacco_smoking_status':socialhistory.tobacco_smoking_status,'alcohol_consumption_status':socialhistory,'alcohol_consumption_unit':socialhistory.alcohol_consumption_unit, 'alcohol_consumption_frequency':socialhistory.alcohol_consumption_frequency} )
+    form= SocialHistoryForm( initial = {'patient':patient, 'tobacco_smoking_status':socialhistory.tobacco_smoking_status,'alcohol_consumption_status':socialhistory,'alcohol_consumption_unit':socialhistory.alcohol_consumption_unit, 'alcohol_consumption_frequency':socialhistory.alcohol_consumption_frequency} )
     if request.method == "POST":  
         form = SocialHistoryForm(request.POST, instance=socialhistory)  
         if form.is_valid():  

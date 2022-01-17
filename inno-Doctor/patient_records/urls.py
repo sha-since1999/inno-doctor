@@ -26,4 +26,9 @@ urlpatterns = [
 
     path('patient_record_form/', views.PatientView, name='patient_record_form'),
     path('patient_record_list/', views.PatientList, name='patient_record_list'),
+    
 ]
+
+
+
+

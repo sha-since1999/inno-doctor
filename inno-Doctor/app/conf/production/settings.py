@@ -1,14 +1,17 @@
 import os
-from os.path import dirname
+import warnings
 from django.utils.translation import ugettext_lazy as _
+from os.path import dirname
+
+warnings.simplefilter('error', DeprecationWarning)
 
 BASE_DIR = dirname(dirname(dirname(dirname(os.path.abspath(__file__)))))
 CONTENT_DIR = os.path.join(BASE_DIR, 'content')
 
-SECRET_KEY = '3d305kajG5Jy8KBafCMpHwDIsNi0SqVaW'
+SECRET_KEY = 'NhfTvayqggTBPswCXXhWaN69HuglgZIkM'
 
 DEBUG = False
-ALLOWED_HOSTS = ['example.com','127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['*','0.0.0.0']
 
 SITE_ID = 1
 
@@ -20,7 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-
+    
     # Vendor apps
     'bootstrap4',
     'rest_framework',
@@ -64,9 +67,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'app.wsgi.application'
 
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+# EMAIL_FILE_PATH = os.path.join(CONTENT_DIR, 'tmp/emails')
+# EMAIL_HOST_USER = os.path.join(CONTENT_DIR, 'tmp/emails')
+# DEFAULT_FROM_EMAIL ='test@example.com'
+
+
+
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER=os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 465
@@ -98,14 +109,18 @@ AUTH_PASSWORD_VALIDATORS = [
 
 ENABLE_USER_ACTIVATION = True
 DISABLE_USERNAME = False
-LOGIN_VIA_EMAIL = False
+LOGIN_VIA_EMAIL = True
 LOGIN_VIA_EMAIL_OR_USERNAME = True
 LOGIN_REDIRECT_URL = 'index'
 LOGIN_URL = 'accounts:log_in'
-USE_REMEMBER_ME = False
+USE_REMEMBER_ME = True
 
-RESTORE_PASSWORD_VIA_EMAIL_OR_USERNAME = True
-EMAIL_ACTIVATION_AFTER_CHANGING = True
+RESTORE_PASSWORD_VIA_EMAIL_OR_USERNAME = False
+ENABLE_ACTIVATION_AFTER_EMAIL_CHANGE = True
+
+SIGN_UP_FIELDS = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
+if DISABLE_USERNAME:
+    SIGN_UP_FIELDS = ['first_name', 'last_name', 'email', 'password1', 'password2']
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
@@ -116,6 +131,7 @@ LANGUAGES = [
     ('en', _('English')),
     ('ru', _('Russian')),
     ('zh-Hans', _('Simplified Chinese')),
+    ('fr', _('French')),
 ]
 
 TIME_ZONE = 'UTC'
@@ -134,7 +150,3 @@ STATICFILES_DIRS = [
 LOCALE_PATHS = [
     os.path.join(CONTENT_DIR, 'locale')
 ]
-
-SIGN_UP_FIELDS = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
-if DISABLE_USERNAME:
-    SIGN_UP_FIELDS = ['first_name', 'last_name', 'email', 'password1', 'password2']
