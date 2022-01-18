@@ -3,10 +3,13 @@ services:
   app:
     build: .
     volumes:
-      - .:/Inno-Doctor
+      - ./inno-Doctor:/inno-doctor
     ports:
       - 8000:8000
     image: inno-dcotor:django
+    # environment: 
+    #   - EMAIL_HOST_USER  :  ${EMAIL_HOST_USER}
+    #   - EMAIL_HOST_PASSWORD :  ${EMAIL_HOST_PASSWORD}
     container_name: django_container
 
     command: python manage.py runserver 0.0.0.0:8000
