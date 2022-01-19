@@ -36,7 +36,6 @@ def eprescriptionList(request, id):
             medication_statement_ids.append(medicationstatement.id)
             if medicationitem is not None:
                 medicationitems.append(medicationitem)
-        print(medicationitems)
         return render(request,"patient_records/eprescription.html" ,context={"medicationStatementIds":medication_statement_ids, "medicationItems": medicationitems,'aadhaarId':id})
     except:
             messages.error(request, 'no medication statemtment found!') 
@@ -50,7 +49,7 @@ def patientDetails(request):
             patient= get_object_or_404(Patient,aadhaarId=id)
             return render(request,"patient_records/patient-details.html",context={'patient':patient})  
         except:
-            messages.error(request, 'patient record found')
+            messages.error(request, 'patient record not found')
     return redirect('/patient_records/patient-check')  
          
          
@@ -221,6 +220,8 @@ def patientVitalSignUpdate(request , id):
 
 def medicationStatementCreate(request,id ):
     patient= Patient.objects.get(aadhaarId=id)
+    meditcation_statement= MedicationStatement.objects.filter(patient=patient)
+    print("ka", meditcation_statement, patient)
     new_medication_statement = MedicationStatementForm().save(commit=False)
     try:
         print("fails")
@@ -247,8 +248,9 @@ def medicationStatementCreate(request,id ):
 
 def eprescriptionCreate(request,id):
     patient= Patient.objects.get(aadhaarId=id)
+    meditcation_statement= MedicationStatement.objects.filter(patient=patient)
+    print("aaa", meditcation_statement)
     if request.method =="POST":
-        # meditcation_statement= MedicationStatement.objects.filter(patient=patient)
         form= MedicationItemForm(request.POST)
         if form.is_valid():
             try:  

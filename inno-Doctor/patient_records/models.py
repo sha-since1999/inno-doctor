@@ -39,7 +39,8 @@ class ProblemList(models.Model):
     onset_date = models.DateField(auto_now=True)
     abatement_date = models.DateField()
     diagnostic_certainty = models.CharField(max_length=200)
-
+    class Meta:
+        verbose_name_plural = "ProblemList"
     
 
 
@@ -85,7 +86,8 @@ class SocialHistory(models.Model):
         DRINKING, default = None)
     alcohol_consumption_unit = models.IntegerField()
     alcohol_consumption_frequency = models.CharField(max_length=100)
-
+    class Meta:
+        verbose_name_plural = "SocialHistory"
 
 
 class MedicationStatement(models.Model):
