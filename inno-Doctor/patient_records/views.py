@@ -221,7 +221,7 @@ def patientVitalSignUpdate(request , id):
 def medicationStatementCreate(request,id ):
     patient= Patient.objects.get(aadhaarId=id)
     meditcation_statement= MedicationStatement.objects.filter(patient=patient)
-    print("ka", meditcation_statement, patient)
+    # print("ka", meditcation_statement, patient)
     new_medication_statement = MedicationStatementForm().save(commit=False)
     try:
         print("fails")
