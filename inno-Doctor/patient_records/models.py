@@ -9,25 +9,30 @@ class Patient(models.Model):
         ("F", "Female"),
         ("O", "Other")
     )
-    aadhaarId          =models.CharField( primary_key=True , max_length=12 ,help_text= "patient aadhaar no | 12 digit" )
-    name                  = models.CharField( max_length=20,help_text="patient aadhaar")
-    date_of_birth    = models.DateField( max_length=8,help_text= "patient date of birth")
-    gender               = models.CharField( choices=GENDER_CHOICES, help_text="pateint gender", max_length=1)
+    aadhaarId = models.CharField(primary_key=True, max_length=12, help_text= "12 digit aadhar no" )
+    name = models.CharField(max_length=20)
+    date_of_birth = models.DateField(max_length=8, help_text="YYYY-MM-DD")
+    gender = models.CharField(choices=GENDER_CHOICES, max_length=1)
 
     
     # Patients  will be sorted using this field
-    last_udpated_on = models.DateTimeField(auto_now=True)
+    last_updated_on = models.DateTimeField(auto_now=True)
     
     class Meta:
         verbose_name = "patient"
         verbose_name_plural = "patients"
-        ordering = ["-last_udpated_on"]
+        ordering = ["-last_updated_on"]
 
 class ProblemList(models.Model):
     SEVERITY = (
         ("MILD", "Mild"),
         ("MODERATE", "Moderate"),
         ("SEVERE", "Severe")
+    )
+    DIGNOSTIC_CERTAINITY = (
+        ("S", "Suspected",),
+        ("P", "Probable",),
+        ("C", "Confirmed",),
     )
     # id = models.IntegerField(primary_key=True)
     patient = models.ForeignKey(
@@ -38,7 +43,7 @@ class ProblemList(models.Model):
     severity = models.CharField(max_length=20, choices = SEVERITY, default = None)
     onset_date = models.DateField(auto_now=True)
     abatement_date = models.DateField()
-    diagnostic_certainty = models.CharField(max_length=200)
+    diagnostic_certainty = models.CharField(max_length=20, choices=DIGNOSTIC_CERTAINITY, default=None)
     class Meta:
         verbose_name_plural = "ProblemList"
     
@@ -73,7 +78,7 @@ class SocialHistory(models.Model):
         ("FORMER_SMOKER", "Former Smoker")
     )
     DRINKING = (
-        ("NEVER_DRINKED", "Lifetime non-drinker"),
+        ("NEVER_DRANK", "Lifetime non-drinker"),
         ("CURRENT_DRINKER", "Current Drinker"),
         ("FORMER_DRINKER", "Former Drinker")
     )
@@ -94,7 +99,7 @@ class MedicationStatement(models.Model):
     # id = models.AutoField(primary_key=True)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now=True)
-    description= models.TextField( null =True ,help_text="give a short description!")
+    description= models.TextField(null=True ,help_text="give a short description!")
     class Meta:
         verbose_name = "medicationstatement"
         verbose_name_plural = "medicationstatements"

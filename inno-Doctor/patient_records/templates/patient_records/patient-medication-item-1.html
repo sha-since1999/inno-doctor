@@ -1,0 +1,18 @@
+{% extends 'layouts/default/page.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% load i18n %}
+{% block title %}new-medication-item{% endblock title %}
+{% block content %}
+ <div class="container" style="width:50%; padding-top: 10px; border-radius: 25px; border: 2px solid black; margin-bottom:5%;  ">
+  <form action="" method="POST">
+   {% csrf_token %}
+   {{ formset.management_form }}
+   {% for form in formset %}
+    {{ form }}
+    <hr>
+   {% endfor %}
+    <input type="submit" name="Submit">
+  </form>
+ </div>
+{% endblock content %}
