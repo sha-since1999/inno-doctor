@@ -66,4 +66,6 @@ MedicationStatementFormSet = inlineformset_factory(MedicationStatement,
                                                            'dose_specific_timing',
                                                            'route',
                                                            'body_site'
-                                                       ))
+                                                       ),
+                                                        extra=5
+                                                   )

@@ -28,19 +28,27 @@ from django.forms.models import inlineformset_factory
 # Create your views here.
 def eprescriptionList(request, id):  
     patient = Patient.objects.get(aadhaarId=id)
-    try:
-        # medicationStatements=get_object_or_404(MedicationStatement, patient=patient)
-        medicationstatements=MedicationStatement.objects.filter(patient= patient)
-        medicationitems=[]
-        medication_statement_ids=[]
-        for medicationstatement in medicationstatements:
-            medicationitem = MedicationItem.objects.filter(medication_statement=medicationstatement)
-            medication_statement_ids.append(medicationstatement.id)
-            if medicationitem is not None:
-                medicationitems.append(medicationitem)
-        return render(request,"patient_records/eprescription.html" ,context={"medicationStatementIds":medication_statement_ids, "medicationItems": medicationitems,'aadhaarId':id})
-    except:
-            messages.error(request, 'no medication statemtment found!') 
+   
+    # medicationStatements=get_object_or_404(MedicationStatement, patient=patient)
+    medicationstatements=MedicationStatement.objects.filter(patient=patient)
+    # print(medicationstatements)
+    medicationitems={}
+    # medication_statement_ids=[]
+    for medicationstatement in medicationstatements:
+        medicationitem = MedicationItem.objects.filter(medication_statement=medicationstatement)
+        # print(medicationitem)
+        # medication_statement_ids.append(medicationstatement.id)
+        if medicationitem is not None:
+            medicationitems[medicationstatement.id] = medicationitem
+    # print(medicationitems.items())
+    for a, b in medicationitems.items():
+        print(a)
+        for x in b:
+            print(x.name)
+    context = {"medicationitems": medicationitems, 'aadhaarId': id}
+    return render(request,"patient_records/eprescription.html" , context=context)
+    # except:
+    #         messages.error(request, 'no medication statemtment found!') 
     return  redirect('/patient_records/patient-detail/{}'.format(id))  
 
 def patientDetails(request):

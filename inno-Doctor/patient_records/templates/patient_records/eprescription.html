@@ -8,16 +8,11 @@
 
 <div class="container-fluid" style="text-align: center;">
      <a type="button" class="btn btn-danger" href="/patient_records/patient-detail/{{aadhaarId}}">🔙</a><h2 class="d-inline align-top">Patient Medical Statement </h2>
-    {% comment %} {% for medicationStatment in medicationStatements.iterator() %} {% endcomment %}
-
-        {% comment %} <p> medical statment : {{medicationStatement.id}}</p> {% endcomment %}
-        {% comment %} {% comment %} {% for medicationItem in medicationStatement.item_set.all()  %} {% endcomment %}
-        <br></br>
-        {% for medication_statement_id  in medicationStatementIds %}
+        <hr>
+        {% for i,j in medicationitems.items %}
         <div class="my-2">
-            <h6> Medication Statement Id:{{medication_statement_id}}  </h6>
-            {% for  items  in medicationItems%}
-            {% if items %}
+            <h6> Medication Statement Id:{{i}}</h6>
+<!--            {{ i }}-->
             <div class= "text-*-center small"  >
                         <div class="container-fluid">
                             <table class="table table-striped table-responsive fixed-table-body">
@@ -36,14 +31,15 @@
                                     <th scope="col">dose_unit</th>
                                     <th scope="col">dose_frequency</th>
                                     <th scope="col">dose_interval</th>
-                                    <th scope="col">dose_specific_timig</th>
+                                    <th scope="col">dose_specific_timing</th>
                                     <th scope="col">route</th>
                                     <th scope="col">body_site</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    {% for item  in items %}
-                                  <tr>
+                            {% for item in j %}
+                                {% if item %}
+                                    <tr>
                                         <td scope="row">{{item.medication_item}}</td>
                                         <td scope="row">{{item.name}}</td>
                                         <td scope="row">{{item.form}}</td>
@@ -60,15 +56,72 @@
                                         <td scope="row">{{item.route}}</td>
                                         <td scope="row">{{item.body_site}}</td>
                                   </tr>
+                                    {% endif %}
                                   {% endfor %}
                                 </tbody>
                             </table>
                         </div>
                 </div>
-                    {% endif %}
-            {% endfor %}
-        </div>
-        {% endfor %}
+
+            <hr>
+    {% endfor %}
+
+<!--        {% for medication_statement_id  in medicationStatementIds %}-->
+<!--        <div class="my-2">-->
+<!--            <h6> Medication Statement Id:{{medication_statement_id}}  </h6>-->
+<!--            {% for  items  in medicationItems%}-->
+<!--            {% if items %}-->
+<!--            <div class= "text-*-center small"  >-->
+<!--                        <div class="container-fluid">-->
+<!--                            <table class="table table-striped table-responsive fixed-table-body">-->
+<!--                                <thead class="center-block">-->
+<!--                                  <tr>-->
+
+<!--                                    <th scope="col">medication_item</th>-->
+<!--                                    <th scope="col">Name</th>-->
+<!--                                    <th scope="col">Form</th>-->
+<!--                                    <th scope="col">category</th>-->
+<!--                                    <th scope="col">unit_of_presecription</th>-->
+<!--                                    <th scope="col">batch_id</th>-->
+<!--                                    <th scope="col">expiry</th>-->
+<!--                                    <th scope="col">dose_amount</th>-->
+<!--                                    <th scope="col">dose_duration</th>-->
+<!--                                    <th scope="col">dose_unit</th>-->
+<!--                                    <th scope="col">dose_frequency</th>-->
+<!--                                    <th scope="col">dose_interval</th>-->
+<!--                                    <th scope="col">dose_specific_timig</th>-->
+<!--                                    <th scope="col">route</th>-->
+<!--                                    <th scope="col">body_site</th>-->
+<!--                                </tr>-->
+<!--                                </thead>-->
+<!--                                <tbody>-->
+<!--                                    {% for item  in items %}-->
+<!--                                  <tr>-->
+<!--                                        <td scope="row">{{item.medication_item}}</td>-->
+<!--                                        <td scope="row">{{item.name}}</td>-->
+<!--                                        <td scope="row">{{item.form}}</td>-->
+<!--                                        <td scope="row">{{item.category}}</td>-->
+<!--                                        <td scope="row">{{item.unit_of_prescription}}</td>-->
+<!--                                        <td scope="row">{{item.batch_id}}</td>-->
+<!--                                        <td scope="row">{{item.expiry}}</td>-->
+<!--                                        <td scope="row">{{item.dose_amount}}</td>-->
+<!--                                        <td scope="row">{{item.dose_duration}}</td>-->
+<!--                                        <td scope="row">{{item.dose_unit}}</td>-->
+<!--                                        <td scope="row">{{item.dose_frequency}}</td>-->
+<!--                                        <td scope="row">{{item.dose_interval}}</td>-->
+<!--                                        <td scope="row">{{item.dose_specific_timing}}</td>-->
+<!--                                        <td scope="row">{{item.route}}</td>-->
+<!--                                        <td scope="row">{{item.body_site}}</td>-->
+<!--                                  </tr>-->
+<!--                                  {% endfor %}-->
+<!--                                </tbody>-->
+<!--                            </table>-->
+<!--                        </div>-->
+<!--                </div>-->
+<!--                    {% endif %}-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--        {% endfor %}-->
         
 </div>
 {% endblock %}
