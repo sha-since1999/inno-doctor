@@ -58,12 +58,12 @@ class PatientTestViews(TestCase):
     def test_patient_update(self):
         url= reverse('patient_records:patient_create')
         response= self.client.post(url, {
-            'aadhaarId'          :97869876987,
+            'aadhaarId'          :'97869876987',
             'name'                 : 'geeta',
             'date_of_birth'    :'2020-01-10',
             'gender'               : 'F',
         })
-        patient2= Patient.objects.get(aadhaarId=97869876987)
+        patient2= Patient.objects.get(aadhaarId='97869876987')
         
         self.assertEqual(patient2.name,'geeta')
         self.assertEqual(patient2.gender,'F')
