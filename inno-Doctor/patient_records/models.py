@@ -1,6 +1,6 @@
 from statistics import mode
 from django.db import models
-
+from django.urls import reverse
 
 # Create your models here.
 class Patient(models.Model):
@@ -14,6 +14,12 @@ class Patient(models.Model):
     date_of_birth    = models.DateField( max_length=8,help_text= "patient date of birth")
     gender               = models.CharField( choices=GENDER_CHOICES, help_text="pateint gender", max_length=1)
 
+
+    def get_absolute_url(self):
+        return reverse("patient-detail", args=[str(self.id)])
+
+    def __str__(self):
+        return f"Name: {self.name} {self.aadhaarId}"
     
     # Patients  will be sorted using this field
     last_udpated_on = models.DateTimeField(auto_now=True)
@@ -22,6 +28,7 @@ class Patient(models.Model):
         verbose_name = "patient"
         verbose_name_plural = "patients"
         ordering = ["-last_udpated_on"]
+
 
 class ProblemList(models.Model):
     SEVERITY = (
