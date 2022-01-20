@@ -25,5 +25,7 @@ class TestModel(TestCase):
             )
         
     def test_model_vital_sign_methods(self):
-        pass;
+        vital_sign= VitalSign.objects.get(patient=self.patient1)
+        self.assertEqual(vital_sign.height,123)
+        
         #we have no method in vital_sign model to test

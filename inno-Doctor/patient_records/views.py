@@ -277,16 +277,17 @@ def patientProblemListView(request , id):
     return render(request,'patient_records/patient-problem-list-view.html',{'problemLists':forms,'patient' :patient})  
 
 def patientSocialHistoryView(request , id):
-    patient= Patient.objects.get(aadhaarId=id)
     try:
+        patient= Patient.objects.get(aadhaarId=id)
         form = SocialHistory.objects.get(patient=patient)
     except:
+        messages.error(request,"No Social History found ! ")
         return redirect(f'/patient_records/patient-social-history-create/{id}')
     return render(request,'patient_records/patient-social-history-view.html',{'form':form,'patient' :patient})
 
 def patientVitalSignView(request , id):
-    patient= Patient.objects.get(aadhaarId=id)
     try:
+        patient= Patient.objects.get(aadhaarId=id)
         form= get_object_or_404(VitalSign,patient=patient)
     except:
         messages.error(request,"No vital sign found ! ")
