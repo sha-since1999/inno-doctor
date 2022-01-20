@@ -287,7 +287,8 @@ def patientSocialHistoryView(request , id):
 def patientVitalSignView(request , id):
     patient= Patient.objects.get(aadhaarId=id)
     try:
-        form= VitalSign.objects.get(patient=patient)
+        form= get_object_or_404(VitalSign,patient=patient)
     except:
-        return redirect(f'/patient_records/patient-vital-sign-create/{id}')
+        messages.error(request,"No vital sign found ! ")
+        return redirect(f'/patient_records/patient-detail/{id}')
     return render(request,'patient_records/patient-vital-sign-view.html',{'form':form,'patient' :patient})
