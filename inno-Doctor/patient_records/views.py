@@ -57,7 +57,7 @@ def patientDetails(request):
                     context = {'patient': patient}
             )
         except:
-            messages.error(request, 'patient record found')
+            messages.error(request, 'patient record not found')
     return redirect('/patient_records/patient-check')
 
 
@@ -97,8 +97,8 @@ def patientCreate(request):
     else:
         form = PatientForm()
     return render(
-        request, 'patient_records/patient-create.html', {'form': form}
-        )
+            request, 'patient_records/patient-create.html', {'form': form}
+    )
 
 
 def patientUpdate(request, id):
@@ -119,8 +119,8 @@ def patientUpdate(request, id):
             except Exception as e:
                 messages.error(request, 'update error!')
     return render(
-        request, 'patient_records/patient-update.html', {'form': form}
-        )
+            request, 'patient_records/patient-update.html', {'form': form}
+    )
 
 
 def PatientView(request):
@@ -134,7 +134,7 @@ def PatientList(request):
             Patient.objects.filter(date_of_birth = date_of_birth).exists()):
         medication_id = MedicationStatement.objects.filter(
                 patient_id = aadhaarId,
-                medicationitem__medication_statement_id=F('id')
+                medicationitem__medication_statement_id = F('id')
         ).values_list('id', flat = True).order_by(
                 '-timestamp'
         )[:1]
@@ -229,14 +229,15 @@ def patientSocialHistoryUpdate(request, id):
     patient = Patient.objects.get(aadhaarId = id)
     socialhistory = SocialHistory.objects.get(patient = patient)
     form = SocialHistoryForm(
-            initial = {
-                'tobacco_smoking_status': socialhistory.tobacco_smoking_status,
-                'alcohol_consumption_status': socialhistory,
-                'alcohol_consumption_unit': socialhistory
-                    .alcohol_consumption_unit,
-                'alcohol_consumption_frequency': socialhistory
-                    .alcohol_consumption_frequency}
-    )
+        initial = {'patient': patient,
+                   'tobacco_smoking_status':
+                       socialhistory.tobacco_smoking_status,
+                   'alcohol_consumption_status': socialhistory,
+                   'alcohol_consumption_unit':
+                       socialhistory.alcohol_consumption_unit,
+                   'alcohol_consumption_frequency':
+                       socialhistory.alcohol_consumption_frequency}
+        )
     if request.method == "POST":
         form = SocialHistoryForm(request.POST, instance = socialhistory)
         if form.is_valid():
@@ -293,10 +294,12 @@ def patientVitalSignUpdate(request, id):
     )
 
 
-@transaction.atomic
 def medicationStatementCreate(request, id):
-    # with transaction.atomic():
     patient = Patient.objects.get(aadhaarId = id)
+    meditcation_statement = MedicationStatement.objects.filter(
+        patient = patient
+        )
+    # print("ka", meditcation_statement, patient)
     new_medication_statement = MedicationStatementForm().save(commit = False)
     try:
         print("fails")
@@ -338,6 +341,10 @@ def medicationStatementCreate(request, id):
 
 def eprescriptionCreate(request, id):
     patient = Patient.objects.get(aadhaarId = id)
+    meditcation_statement = MedicationStatement.objects.filter(
+        patient = patient
+        )
+    print("aaa", meditcation_statement)
     if request.method == "POST":
         form = MedicationItemForm(request.POST)
         if form.is_valid():
