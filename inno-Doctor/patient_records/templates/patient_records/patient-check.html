@@ -13,7 +13,7 @@
 <form action='patient-details/' method="POST" enctype='multipart/form-data'>
         {% csrf_token %}
         <label for="search-input"> Enter patient ID here <input id="search-input"  name="aadhaarId" type="text" placeholder='xxxx-xxxx-xxxx'>
-        <input type='submit' value="check">
+        <input type='submit' style="text-align:center;" value="check">
 </form>
 
 
@@ -42,7 +42,7 @@
             {% endfor %}
         </tbody> 
     </table>
-    <a type="button" class="btn btn-info" href="#top">scroll up</a>
+    <a type="button" style="text-align:center; margin-left: 40%;" class="btn btn-info" href="#top">Scroll up</a>
 </div>
 
 </div>
