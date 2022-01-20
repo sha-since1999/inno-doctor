@@ -33,8 +33,8 @@
    {% if request.user.is_authenticated %}
    <h2 class="my-3" style="color: white; text-align: center; "> Your health is an investment, not expense</h2>
     {% else %}
-   <a class="btn btn-danger my-3" href="{% url 'accounts:log_in' %}" style=" margin-left: 36%;">Login as Doctor</a>
-    <a class="btn btn-danger my-3" href="{% url 'patient_records:patient_record_form' %}" style=" margin-left: 3%;">Continue as Patient</a>
+   <button class="btn btn-danger my-3"  style=" margin-left: 36%;"><a  href="{% url 'accounts:log_in' %}" >Login as Doctor</a> </button>
+    <button class="btn btn-danger my-3" style=" margin-left: 3%;"> <a  href="{% url 'patient_records:patient_record_form' %}" >Continue as Patient</a></button>
     {% endif %}
 
 {% endblock %}
