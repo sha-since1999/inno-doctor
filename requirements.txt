@@ -16,3 +16,5 @@ pytz==2021.3
 soupsieve==2.3.1
 sqlparse==0.4.2
 typing_extensions==4.0.1
+pytest==6.2.5
+factory_boy==3.2.1
