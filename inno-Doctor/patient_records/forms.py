@@ -41,6 +41,16 @@ class VitalSignForm(ModelForm):
     
     class Meta:
         model = VitalSign
-        fields = '__all__'
+        fields = {'body_weight',
+                'height',
+                'respiration_rate',
+                'pulse_rate',
+                'body_temperature',
+                'head_circumference',
+                'pulse_oximetry',
+                'body_mass_index',
+                'blood_pressure_systolic',
+                'blood_pressure_diastolic' 
+                }
 
 
