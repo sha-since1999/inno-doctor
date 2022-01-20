@@ -6,11 +6,11 @@ import json
 class VitalSignTestViews(TestCase):
     def setUp(self) :
         self.client= Client()
-        self.vital_sign_view_url     =  reverse('patient_records:patient_vital_sign_view',args=['123412341234'])
-        self.vital_sign_create_url  = reverse('patient_records:patient_vital_sign_create',args=['123412341234'])
-        self.vital_sign_edit_url       = reverse('patient_records:patient_vital_sign_edit',args=['123412341234'])
-        self. vital_sign_test_obj     = VitalSign.objects.create(
-                id = 1 ,
+        self.vital_sign_view_url     =   reverse('patient_records:patient_vital_sign_view',args=['123412341234'])
+        self.vital_sign_create_url  =  reverse('patient_records:patient_vital_sign_create',args=['123412341234'])
+        self.vital_sign_edit_url      =  reverse('patient_records:patient_vital_sign_edit',args=['123412341234'])
+        self. vital_sign_test_obj    =  VitalSign.objects.create(
+                id=1,
                 patient = 123412341234,
                 body_weight = 123,
                 height = 123,
@@ -23,6 +23,7 @@ class VitalSignTestViews(TestCase):
                 blood_pressure_systolic = 123,
                 blood_pressure_diastolic = 123,
         )
+        
     def test_vital_sign_view_should_pass(self):
         vital_sign_view_url=  reverse('patient_records:patient_vital_sign_view',args=['123412341234'])
         response=self.client.get(vital_sign_view_url)
