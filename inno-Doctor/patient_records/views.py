@@ -44,8 +44,8 @@ def eprescriptionList(request, id):
 def patientDetails(request):
 
     if request.method == "POST":  
-        id= request.POST['aadhaarId']
         try:
+            id= request.POST['aadhaarId']
             patient= get_object_or_404(Patient,aadhaarId=id)
             return render(request,"patient_records/patient-details.html",context={'patient':patient})  
         except:
