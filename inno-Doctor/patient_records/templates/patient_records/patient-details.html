@@ -3,91 +3,103 @@
 {% load bootstrap4 %}
 {% load i18n %}
 
-{% block title %}patient-list{% endblock title %}
 {% block content %}
+<div class="container mt-4">
+    <h3 class="text-center mb-4">Basic Details</h3>
+    <div class="col-md-12 search-table-col m-4">
+        <div class="table-responsive table table-hover table-bordered results">
+            <table class="table table-hover table-bordered">
+                <thead class="bill-header cs">
+                    <tr>
+                        <th id="trs-hd-2" class="col-lg-2 text-center">Aadhar No.</th>
+                        <th id="trs-hd-3" class="col-lg-2 text-center">Date of Birth</th>
+                        <th id="trs-hd-1" class="col-lg-2 text-center">Name</th>
+                        <th id="trs-hd-4" class="col-lg-1 text-center">Gender</th>
+                        <th id="trs-hd-5" class="col-lg-1 text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tr>
+                    <tr>
+                        <td class="text-center">{{ patient.name }}</td>
+                        <td class="text-center">{{ patient.aadhaarId}}</td>
+                        <td class="text-center">{{ patient.date_of_birth }}</td>
+                        <td class="text-center">{{ patient.gender }}</td>
+                        <td class="text-center">
+                            <a href="/patient_records/patient-update/{{ patient.aadhaarId }}"><i class="fas fa-edit"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <section class="py-5">
+        <h3 class="text-center mb-4">Add New</h3>
+          <div class="container">
+            <div class="row">
+               <div class="col-lg-4 w-100">
+                  <div class="nav-wrapper position-relative end-0">
+                     <ul class="nav nav-pills nav-fill p-1" role="tablist">
+                        <li class="nav-item">
+                           <a class="nav-link mb-0 px-0 py-1 active" href="/patient_records/patient-medication-statement/{{ patient.aadhaarId }}" role="tab" aria-controls="eprescription" aria-selected="true">
+                               E-Prescription
+                           </a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link mb-0 px-0 py-1" href="/patient_records/patient-problem-list-create/{{ patient.aadhaarId }}" role="tab" aria-controls="problem" aria-selected="false">
+                               Problem
+                           </a>
+                        </li>
+                         <li class="nav-item">
+                           <a class="nav-link mb-0 px-0 py-1 active" href="/patient_records/patient-vital-sign-create/{{ patient.aadhaarId }}" role="tab" aria-controls="vitalsigns" aria-selected="false">
+                               Vital Signs
+                           </a>
+                        </li>
+                         <li class="nav-item">
+                           <a class="nav-link mb-0 px-0 py-1 active" href="/patient_records/patient-social-history-create/{{ patient.aadhaarId }}" role="tab" aria-controls="socialhistory" aria-selected="false">
+                               Social History
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+    </section>
 
+    <section class="py-5">
+        <h3 class="text-center mb-4">View Existing</h3>
+          <div class="container">
+            <div class="row">
+               <div class="col-lg-4 w-100">
+                  <div class="nav-wrapper position-relative end-0">
+                     <ul class="nav nav-pills nav-fill p-1" role="tablist">
+                        <li class="nav-item">
+                           <a class="nav-link mb-0 px-0 py-1 active" href="/patient_records/patient-eprescription/{{ patient.aadhaarId }}" role="tab" aria-controls="medicationstatements" aria-selected="true">
+                               Medication Statements
+                           </a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link mb-0 px-0 py-1" href="/patient_records/patient-problem-list-view/{{ patient.aadhaarId }}" role="tab" aria-controls="problem" aria-selected="false">
+                               Problem List
+                           </a>
+                        </li>
+                         <li class="nav-item">
+                           <a class="nav-link mb-0 px-0 py-1 active" href="/patient_records/patient-vital-sign-view/{{ patient.aadhaarId }}" role="tab" aria-controls="vitalsigns" aria-selected="false">
+                               Vital Signs
+                           </a>
+                        </li>
+                         <li class="nav-item">
+                           <a class="nav-link mb-0 px-0 py-1 active" href="/patient_records/patient-social-history-view/{{ patient.aadhaarId }}" role="tab" aria-controls="socialhistory" aria-selected="false">
+                               Social History
+                           </a>
+                        </li>
 
-
-<div class="card-body" style="margin-bottom: 5%;">
-    <a type="button" class="btn btn-success" href="/patient_records/patient-check">Back</a>
-    <h2 style="text-align: center;">Patient Information </h2> 
-    <hr>
-    {% comment %} <a  href="/patient_records/patient-eprescription/{{patient}}"> e-prescription</a> {% endcomment %}
-    {% comment %} <form action='patient-eprescription/' method="POST" enctype='multipart/form-data'>
-        {% csrf_token %}
-        <input type ='hidden' value= {{Patient.aadhaarId}} name= 'aadhaarId'
-        <input type='submit' value= "eprescirption"> 
-    </form> {% endcomment %}
-
-    
-   
-    {% comment %} <a type="button" class="btn btn-warning" href="/patient_records/patient-vital-sign/{{ patient.aadhaarId }}">Add Problem List</a>
-    <a type="button" class="btn btn-warning" href="/patient_records/patient-eprescription/{{ patient.aadhaarId }}">Add Problem List</a>
-    <a type="button" class="btn btn-warning" href="/patient_records/patient-eprescription/{{ patient.aadhaarId }}">Add Problem List</a> {% endcomment %}
-    {% comment %} <a  href="{% url 'eprescription' aadharId=Patient.aadhaarId %}" > e-prescription</a> {% endcomment %}
-    <div class="container" style="width: 30%;">
-    <div class=" col container-fluid d-d-inline-block">
-    <table class="table text-justify-content-center table table-striped table-responsive">
-        <tbody>
-            <tr>
-                <td scope="col">Patient Name</td>
-                <td>{{ patient.name }}</td>
-            </tr>
-             <tr>
-                <td scope="col">Aadhaar Id</td>
-                <td>{{ patient.aadhaarId }}</td>
-             </tr>
-            <tr>
-                <td scope="col">Date Of Birth</td>
-                <td>{{ patient.date_of_birth }}</td>
-            </tr>
-            <tr>
-                <td scope="col">Gender</td>
-                <td>{{ patient.gender }}</td>
-            </tr>
-            <tr>
-                <td colspan=2><a type="button" class="btn btn-info" href="/patient_records/patient-update/{{ patient.aadhaarId }}">Update Patient Details</a></td>
-            </tr>
-        </tbody>
-    </table>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+    </section>
 </div>
-</div>
-<hr class="my-3">
-<h2 style="text-align: center;">Medical History</h2> 
-    <div class="container" style="width: 40%; margin-bottom: 5%;">
-    <table class="table text-justify-content-around table table-striped table-responsive fixed-table-body">
-        <tbody>
-            <tr>
-
-                <td scope="col" ><a type="button" class="btn btn-primary btn-sm" href="/patient_records/patient-medication-statement/{{ patient.aadhaarId }}">New E-prescription</a></td>
-                <td scope="col"><a type="button" class="btn btn-secondary btn-sm" href="/patient_records/patient-eprescription-create/{{ patient.aadhaarId }}">Modify existing E-prescription</a></td>
-
-            </tr>
-            
-             <tr>
-
-                <td> <a type="button" class="btn btn-primary btn-sm" href="/patient_records/patient-problem-list-view/{{ patient.aadhaarId }}">Check Problem List</a></td>
-                <td> <a type="button" class="btn btn-secondary btn-sm" href="/patient_records/patient-problem-list-create/{{ patient.aadhaarId }}">Add Problem List</a></td>
-             </tr>
-          
-             <tr>
-                <td> <a type="button" class="btn btn-primary btn-sm" href="/patient_records/patient-vital-sign-view/{{ patient.aadhaarId }}">Check Vital Signs</a></td>
-                <td> <a type="button" class="btn btn-secondary btn-sm" href="/patient_records/patient-vital-sign-create/{{ patient.aadhaarId }}">Add Vital SIgns</a></td>
-             </tr>
-          
-             <tr>
-
-                <td> <a type="button" class="btn btn-primary btn-sm" href="/patient_records/patient-social-history-view/{{ patient.aadhaarId }}">Check Social History</a></td>
-                <td> <a type="button" class="btn btn-secondary btn-sm" href="/patient_records/patient-social-history-create/{{ patient.aadhaarId }}">Add Social History</a></td>
-             </tr>
-             <tr>
-                <td scope="col" colspan="2"><a type="button" class="btn btn-primary" href="/patient_records/patient-eprescription/{{ patient.aadhaarId }}">Check Medication Statements</a></td>
-
-            </tr>
-        
-        </tbody>
-    </table>
-</div>
-</div>
-
 {% endblock %}

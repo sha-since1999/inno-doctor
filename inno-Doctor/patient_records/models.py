@@ -25,14 +25,14 @@ class Patient(models.Model):
 
 class ProblemList(models.Model):
     SEVERITY = (
-        ("MILD", "Mild"),
-        ("MODERATE", "Moderate"),
-        ("SEVERE", "Severe")
+        ("Mild", "Mild"),
+        ("Moderate", "Moderate"),
+        ("Severe", "Severe")
     )
     DIGNOSTIC_CERTAINITY = (
-        ("S", "Suspected",),
-        ("P", "Probable",),
-        ("C", "Confirmed",),
+        ("Suspected", "Suspected",),
+        ("Probable", "Probable",),
+        ("Confirmed", "Confirmed",),
     )
     # id = models.IntegerField(primary_key=True)
     patient = models.ForeignKey(

@@ -2,23 +2,50 @@
 
 {% load bootstrap4 %}
 {% load i18n %}
+{% load widget_tweaks %}
+
 
 {% block content %}
-
-<div class="container" style="width:50%; padding-top: 10px; border-radius: 25px; margin-bottom: 5%; border: 2px solid black; ">
-
-
-    <h4 style="text-align: center;">{% trans 'Create an account' %}</h4>
-
-    <form method="post">
-
+<div class="container">
+    <form role="form" class="text-start" method="post">
         {% csrf_token %}
-        {% bootstrap_form form %}
-
-        <button class="btn btn-success my-3" style="margin-left: 43%;">{% trans 'Create' %}</button>
-
+        <div class="input-group input-group-dynamic my-3">
+            <label class="form-label">Username</label>
+            {% render_field form.username class="form-control" type="text"  %}
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="input-group input-group-dynamic my-3">
+                    <label class="form-label">First Name</label>
+                    {% render_field form.first_name class="form-control" type="text"  %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group input-group-dynamic my-3">
+                    <label class="form-label">Last Name</label>
+                    {% render_field form.last_name class="form-control" type="text"  %}
+                </div>
+            </div>
+        </div>
+        <div class="input-group input-group-dynamic my-3">
+            <label class="form-label">Email</label>
+            {% render_field form.email class="form-control" type="email"  %}
+        </div>
+        <div class="input-group input-group-dynamic my-3">
+            <label class="form-label">Password</label>
+            {% render_field form.password1 class="form-control" type="password" %}
+        </div>
+        <div class="input-group input-group-dynamic my-3">
+            <label class="form-label">Repeat Password</label>
+            {% render_field form.password2 class="form-control" type="password" %}
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn bg-gradient-info w-100 my-4 mb-2">Sign up</button>
+        </div>
+        <p class="mt-4 text-sm text-center">
+            Already have an account?
+            <a href="{% url 'accounts:log_in' %}" class="text-primary text-gradient font-weight-bold">Sign in</a>
+        </p>
     </form>
-
 </div>
-
 {% endblock %}

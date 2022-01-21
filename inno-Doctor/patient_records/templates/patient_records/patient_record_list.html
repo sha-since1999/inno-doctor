@@ -4,61 +4,72 @@
 {% load i18n %}
 {% block content %}
 
-<div class="container" style="width:50%; margin-top: 5%; margin-bottom:5%;">
-<h1 class="text-center my-3">My EPrescription</h1>
+<div class="container">
+    {% if not medication_items%}
+        <h3 class="text-center my-4">No E-Prescription Found</h3>
+    {% endif %}
 {% for medication_order in medication_items %}
-    <div class="border border-radius-2"></div>
-    <h3 class="my-3">Medication Order</h3>
-    <table class="table table-dark">
-        <tbody>
-            <tr>
-                <th scope="row">Name</th>
-                <td>{{medication_order.name}}</td>
-            </tr>
-            <tr>
-                <th scope="row">Medication item</th>
-                <td>{{medication_order.medication_item}}</td>
-            </tr>
-            <tr>
-                <th scope="row">Category</th>
-                <td>{{medication_order.category}}</td>
-            </tr>
-            <tr>
-                <th scope="row">route</th>
-                <td>{{medication_order.route}}</td>
-            </tr>
-        </tbody>
-    </table>
-    <h5>Dosage instructions</h5>
-          <table class="table table-dark">
-            <tbody>
-                <tr>
-                    <th scope="row">Dose amount</th>
-                    <td>{{medication_order.dose_amount}}</td>
+    <div class="container my-2 p-2">
+    <h3 class="text-center my-4">Medication Order</h3>
+    <div class="col-md-12 search-table-col m-4">
+        <div class="table-responsive table table-hover table-bordered results">
+            <table class="table bg-gradient-info text-white table-hover table-bordered">
+                <tbody>
+                    <tr>
+                        <th scope="row" class="col-lg-2 text-center">Name</th>
+                        <td class="text-center col-lg-3">{{medication_order.name}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="col-lg-2 text-center">Medication Item</th>
+                        <td class="text-center col-lg-3">{{medication_order.medication_item}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="col-lg-2 text-center">Category</th>
+                        <td class="text-center col-lg-3">{{medication_order.category}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="col-lg-2 text-center">Route</th>
+                        <td class="text-center col-lg-3">{{medication_order.route}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <h3 class="text-center my-4">Dosage instructions</h3>
+    <div class="col-md-12 search-table-col m-4">
+        <div class="table-responsive table table-hover table-bordered results">
+            <table class="table bg-gradient-primary text-white table-hover table-bordered">
+                <tbody>
+                    <tr>
+                    <th scope="row" class="col-lg-2 text-center">Amount</th>
+                    <td class="col-lg-3 text-center">{{medication_order.dose_amount}}</td>
                     </tr>
                   <tr>
-                    <th scope="row">Dose duration</th>
-                    <td>{{medication_order.dose_duration}}</td>
+                    <th scope="row" class="col-lg-2 text-center">Duration</th>
+                    <td class="col-lg-3 text-center">{{medication_order.dose_duration}}</td>
                   </tr>
                   <tr>
-                    <th scope="row">Dose unit</th>
-                    <td>{{medication_order.dose_unit}}</td>
+                    <th scope="row" class="col-lg-2 text-center">Unit</th>
+                    <td class="col-lg-3 text-center">{{medication_order.dose_unit}}</td>
                   </tr>
                   <tr>
-                    <th scope="row">Dose frequency</th>
-                    <td>{{medication_order.dose_frequency}}</td>
+                    <th scope="row" class="col-lg-2 text-center">Frequency</th>
+                    <td class="col-lg-3 text-center">{{medication_order.dose_frequency}}</td>
                   </tr>
                   <tr>
-                    <th scope="row">Dose interval</th>
-                    <td>{{medication_order.dose_interval}}</td>
+                    <th scope="row" class="col-lg-2 text-center">Interval</th>
+                    <td class="col-lg-3 text-center">{{medication_order.dose_interval}}</td>
                   </tr>
                   <tr>
-                    <th scope="row">Dose specific timing</th>
-                    <td>{{medication_order.dose_specific_timing}}</td>
+                    <th scope="row" class="col-lg-2 text-center">Specific Timing</th>
+                    <td class="col-lg-3 text-center">{{medication_order.dose_specific_timing}}</td>
                   </tr>
-            </tbody>
-          </table>
-    {% endfor %}
-
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+    <hr>
+{% endfor %}
 </div>
 {% endblock %}
