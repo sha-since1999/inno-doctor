@@ -41,6 +41,7 @@ class GuestOnlyView(View):
 
 class LogInView(GuestOnlyView, FormView):
     template_name = 'accounts/log_in.html'
+    extra_context = {'heading': 'Sign In', 'title': 'Log In', 'subheading': ' '}
 
     @staticmethod
     def get_form_class(**kwargs):
@@ -87,6 +88,7 @@ class LogInView(GuestOnlyView, FormView):
 
 class SignUpView(GuestOnlyView, FormView):
     template_name = 'accounts/sign_up.html'
+    extra_context = {'heading': 'Sign Up', 'title': 'Sign Up', 'subheading': ' '}
     form_class = SignUpForm
 
     def form_valid(self, form):
@@ -328,4 +330,7 @@ class RestorePasswordDoneView(BasePasswordResetDoneView):
 
 
 class LogOutView(LoginRequiredMixin, BaseLogoutView):
-    template_name = 'accounts/log_out.html'
+    # template_name = 'accounts/log_out.html'
+    def get(self, request):
+        messages.success(self.request, _('Logged out successfully'))
+        return redirect('index')

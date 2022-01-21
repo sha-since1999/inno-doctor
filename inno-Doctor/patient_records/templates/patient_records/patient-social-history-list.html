@@ -1,14 +1,44 @@
 {% extends 'layouts/default/page.html' %}
 {% load static %}
 {% load bootstrap4 %}
+{% load widget_tweaks %}
+
 {% load i18n %}
-{% block title %}social history create{% endblock title %}
+
+
 {% block content %}
 
-<div class="container" style="width:50%; margin-top: 5%; padding-top: 10px; border-radius: 25px; border: 2px solid black; margin-bottom:5%;  ">
-
- {% comment %} {% include 'patient_records/form.html'  with aadhaarId=patient.aadhaarId  form=form%} {% endcomment %}
- {% include 'patient_records/table.html'  with aadhaarId=patient.aadhaarId  form=form%}
+<div class="container">
+<form method = "post">
+    {% csrf_token %}
+    <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Tobacco Smoking Status:</label>
+        {% render_field form.tobacco_smoking_status class="form-control"%}
+    </div>
+    <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Alcohol Consumption Status:</label>
+        {% render_field form.alcohol_consumption_status class="form-control" %}
+    </div>
+    <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Alcohol Consumption Unit:</label>
+        {% render_field form.alcohol_consumption_unit class="form-control" type="number" %}
+    </div>
+    <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Alcohol Consumption Frequency:</label>
+        {% render_field form.alcohol_consumption_frequency class="form-control" type="text" %}
+    </div>
+    <div class="text-center">
+        <button type="submit" value="save" class="btn bg-gradient-info w-100 my-4 mb-2 mx-1">Save</button>
+    </div>
+</form>
 
 </div>
+
+<!--<div class="container" style="width:50%; margin-top: 5%; padding-top: 10px; border-radius: 25px; border: 2px solid black; margin-bottom:5%;  ">-->
+
+<!-- {% comment %} {% include 'patient_records/form.html'  with aadhaarId=patient.aadhaarId  form=form%} {% endcomment %}-->
+<!-- {% include 'patient_records/table.html'  with aadhaarId=patient.aadhaarId  form=form%}-->
+
+
+<!--</div>-->
 {% endblock content %}

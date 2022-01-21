@@ -2,24 +2,25 @@
 
 {% load bootstrap4 %}
 {% load i18n %}
+{% load widget_tweaks %}
 
 
 {% block content %}
 
-<div class="container" style="width:50%; margin-top: 5%; padding-top: 10px; border-radius: 25px; border: 2px solid black; margin-bottom:5%;  ">
-
-
-
-<form action= "{% url 'patient_records:patient_record_list' %}"  method = "post">
+<div class="container">
+<form action= "{% url 'patient_records:patient_record_list' %}" method = "post">
     {% csrf_token %}
-    <label class="my-2" for="aadharid"><b>Enter Aadhar Number:</b></label>
-        <input class="my-2" id="aadharid" type="number" name="aadharid" required><br/>
-        <label class="my-2" for="bdate"><b>Enter Date Of Birth:</b></label>
-        <input class="my-2" type="date" id="bdate" name="bdate"
-            value="2022-01-01" style="margin-left: 3.5%; width: 36%;" required><br/>
-        <input class="btn btn-success my-3" type="submit" value="See records" style="margin-left: 40%;">
+    <div class="input-group input-group-outline my-3">
+        <label for="aadharid" class="form-label-inline w-30">Enter Aadhar Number:</label>
+        <input id="aadharid" class="form-control" type="number" name="aadharid" maxlength="12" pattern=".{12}" required>
+    </div>
+    <div class="input-group input-group-outline my-3">
+        <label for="bdate" class="form-label-inline w-30">Enter Aadhar Number:</label>
+        <input id="bdate" class="form-control" type="date" name="bdate" required>
+    </div>
+    <div class="text-center">
+        <button type="submit" value="save" class="btn bg-gradient-info w-100 my-4 mb-2 mx-1">See Records</button>
+    </div>
 </form>
-
 </div>
-
 {% endblock %}
