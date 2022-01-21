@@ -5,10 +5,14 @@ app_name = 'patient_records'
 
 urlpatterns = [
     
-     path('patient-check', views.patientCheck, name='patient_check'),
+    path('patient-check', views.patientCheck, name='patient_check'),
     path('patient-details/',views.patientDetails, name ='patient_details'),
     path('patient-detail/<int:id>',views.patientDetail, name ='patient_detail'),
+    path('patient-create/<int:id>', views.patientCreate, name='patient_create'),
+
     path('patient-create/', views.patientCreate, name='patient_create'),
+
+
     path('patient-problem-list-create/<int:id>', views.patientProblemListCreate, name='patient_problem_list_create'),
     path('patient-social-history-create/<int:id>', views.patientSocialHistoryCreate, name='patient_social_histroy_create'),
     path('patient-social-history-edit/<int:id>', views.patientSocialHistoryUpdate, name='patient_social_histroy_update'),
