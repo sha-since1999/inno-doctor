@@ -10,7 +10,7 @@ from .models import Patient
 
 from django.shortcuts import render
 
-from .forms import (MedicationItemForm, PatientForm,
+from .forms import (MedicationItemForm, MedicationStatementFormSet, PatientForm,
                     SocialHistoryForm, VitalSignForm,
                     ProblemListForm,
                     MedicationStatementForm,
@@ -26,23 +26,16 @@ from django.forms.models import inlineformset_factory
 
 # Create your views here.
 def eprescriptionList(request, id):
+    print("geetha")
     patient = Patient.objects.get(aadhaarId = id)
-
-    # medicationStatements=get_object_or_404(MedicationStatement,
-    # patient=patient)
     medicationstatements = MedicationStatement.objects.filter(patient = patient)
-    # print(medicationstatements)
     medicationitems = {}
-    # medication_statement_ids=[]
     for medicationstatement in medicationstatements:
         medicationitem = MedicationItem.objects.filter(
             medication_statement = medicationstatement
             )
-        # print(medicationitem)
-        # medication_statement_ids.append(medicationstatement.id)
         if medicationitem is not None:
             medicationitems[medicationstatement.id] = medicationitem
-    # print(medicationitems.items())
     for a, b in medicationitems.items():
         print(a)
         for x in b:
@@ -138,9 +131,6 @@ def PatientView(request):
 def PatientList(request):
     aadhaarId = request.POST.get('aadharid')
     date_of_birth = request.POST.get('bdate')
-    print(aadhaarId)
-    print("debug")
-    print(date_of_birth)
     if (Patient.objects.filter(aadhaarId = aadhaarId).exists()) and (
     Patient.objects.filter(date_of_birth = date_of_birth).exists()):
         medication_id = MedicationStatement.objects.filter(
@@ -355,7 +345,6 @@ def medicationStatementCreate(request, id):
     patient = Patient.objects.get(aadhaarId = id)
     medication_statement = MedicationStatement(patient = patient)
     formset = MedicationStatementFormSet(instance = medication_statement)
-
     if request.method == "POST":
         formset = MedicationStatementFormSet(
             request.POST, instance = medication_statement
