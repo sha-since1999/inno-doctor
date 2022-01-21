@@ -6,7 +6,7 @@ cffi==1.15.0
 cssselect2==0.4.1
 Django==2.2.24
 django-bootstrap4==1.1.1
-django-widget-tweaks==1.4.12
+django-widget-tweaks
 djangorestframework==3.13.1
 factory-boy==3.2.1
 Faker==11.3.0
