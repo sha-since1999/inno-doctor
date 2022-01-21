@@ -24,4 +24,6 @@ typing_extensions==4.0.1
 weasyprint==54.0
 webencodings==0.5.1
 zopfli==0.1.9
+pytest==6.2.5
+factory_boy==3.2.1
 django-widget-tweaks

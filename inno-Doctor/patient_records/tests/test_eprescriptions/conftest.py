@@ -1,6 +1,6 @@
 import factory
 import datetime
-from .models import Patient, MedicationItem, MedicationStatement
+from patient_records.models import Patient, MedicationItem, MedicationStatement
 
 
 class PatientFactory(factory.django.DjangoModelFactory):

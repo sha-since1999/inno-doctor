@@ -2,8 +2,8 @@ import pytest
 from django.test import TestCase
 from django.test import RequestFactory
 from django.urls import resolve, reverse
-from .views import PatientView, PatientList
-from .conftest import PatientFactory
+from patient_records.views import PatientView, PatientList
+from ..test_eprescriptions.conftest import PatientFactory
 
 pytestmark = pytest.mark.django_db
 class PatientTestCase(TestCase):

@@ -49,8 +49,7 @@ class ProblemListModelTest(TestCase):
  
    # 3 for not equality.
     def test_patient_notequals_fields(self):                  
-       self.assertEqual(str(self.patients.problem),"cancer")
-       self.assertEqual(str(self.patients.body_site),"throat")
-       self.assertEqual(str(self.patients.severity),"intense")
-       self.assertEqual(str(self.patient.abatement_date),"2027-06-11")
-       self.assertEqual(str(self.patient.diagnostic_certainty),"unsure")
+       self.assertNotEqual(str(self.patients.body_site),"throat")
+       self.assertNotEqual(str(self.patients.severity),"intense")
+       self.assertNotEqual(str(self.patients.abatement_date),"2027-06-11")
+       self.assertNotEqual(str(self.patients.diagnostic_certainty),"unsure")

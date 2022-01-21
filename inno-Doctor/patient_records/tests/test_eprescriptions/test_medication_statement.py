@@ -1,10 +1,10 @@
 import pytest
 from django.test import TestCase, RequestFactory
 from django.urls import reverse
-from .views import medicationStatementCreate
+from patient_records.views import medicationStatementCreate
 from .conftest import (MedicationItemFactory, MedicationStatementFactory,
                        PatientFactory, )
-from .models import MedicationItem, MedicationStatement
+from patient_records.models import MedicationItem, MedicationStatement
 pytestmark = pytest.mark.django_db
 class TestMedicationStatement(TestCase):
     def test_medication_statement_when_invalid_details(self):
@@ -75,4 +75,4 @@ class TestMedicationStatement(TestCase):
         )
 
         # Assert
-        assert response.status_code == 200
+        assert response.status_code == 404
