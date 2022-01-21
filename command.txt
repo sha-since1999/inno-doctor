@@ -5,3 +5,8 @@ Part#2
 docker-compose build
 docker-compose run --rm app django-admin startproject myapp.
 docker-compose up
+
+
+docker build -t inno-doctor-repo .
+docker run -dit -p 8000:8000 inno-doctor-repo
+docker run --env VAR1 --env VAR2 ubuntu env | grep VAR

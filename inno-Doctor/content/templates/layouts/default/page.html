@@ -25,6 +25,7 @@
     <style>
         body{
             background-color: #8EB4D4;
+
         }
         
             .page-footer{
@@ -35,6 +36,7 @@
           background-color : grey;
           
             }
+
         </style> 
 
 </head>
@@ -58,7 +60,7 @@
                     <a class="nav-link" href="{% url 'patient_records:patient_check' %}">{% trans 'Check Patient' %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'patient_records:patient_create' %}">{% trans 'Add Patient' %}</a>
+                    <a class="nav-link" id="addpatient" href="{% url 'patient_records:patient_create' %}">{% trans 'Add Patient' %}</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
