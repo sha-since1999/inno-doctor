@@ -1,13 +1,67 @@
 {% extends 'layouts/default/page.html' %}
 {% load static %}
 {% load bootstrap4 %}
-{% load i18n %}
-{% block title %}vital-sign-create{% endblock title %}
-{% block content %}
-<div class="container" style="width:50%; margin-top: 5%; padding-top: 10px; border-radius: 25px; border: 2px solid black; margin-bottom:5%;  ">
+{% load widget_tweaks %}
 
- {% comment %} {% include 'patient_records/form.html'  with aadhaarId=patient.aadhaarId  form=form%} {% endcomment %}
- {% include 'patient_records/table.html'  with aadhaarId=patient.aadhaarId  form=form%}
+{% load i18n %}
+
+{% block content %}
+
+<div class="container">
+<form method = "post">
+    {% csrf_token %}
+    <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Body Weight:</label>
+        {% render_field form.body_weight class="form-control" %}
+    </div>
+    <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Height:</label>
+        {% render_field form.height class="form-control" %}
+    </div>
+    <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Respiration Rate:</label>
+        {% render_field form.respiration_rate class="form-control" %}
+    </div>
+    <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Pulse Rate:</label>
+        {% render_field form.pulse_rate class="form-control" %}
+    </div>
+    <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Body Temperature:</label>
+        {% render_field form.body_temperature class="form-control" %}
+    </div>
+    <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Head Circumference:</label>
+        {% render_field form.head_circumference class="form-control" %}
+    </div>
+    <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Pulse Oximetry:</label>
+        {% render_field form.pulse_oximetry class="form-control" %}
+    </div>
+    <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Body Mass Index:</label>
+        {% render_field form.body_mass_index class="form-control" %}
+    </div>
+    <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Blood Pressure Systolic:</label>
+        {% render_field form.blood_pressure_systolic class="form-control" %}
+    </div>
+    <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Blood Pressure Diastolic:</label>
+        {% render_field form.blood_pressure_diastolic class="form-control" %}
+    </div>
+    <div class="text-center">
+        <button type="submit" value="save" class="btn bg-gradient-info w-100 my-4 mb-2 mx-1">Save</button>
+    </div>
+</form>
 
 </div>
+
+
+<!--<div class="container" style="width:50%; margin-top: 5%; padding-top: 10px; border-radius: 25px; border: 2px solid black; margin-bottom:5%;  ">-->
+
+<!-- {% comment %} {% include 'patient_records/form.html'  with aadhaarId=patient.aadhaarId  form=form%} {% endcomment %}-->
+<!-- {% include 'patient_records/table.html'  with aadhaarId=patient.aadhaarId  form=form%}-->
+
+<!--</div>-->
 {% endblock content %}

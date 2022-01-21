@@ -2,6 +2,7 @@
 
 {% load bootstrap4 %}
 {% load i18n %}
+{% load widget_tweaks %}
 
 {% block content %}
 
@@ -22,9 +23,9 @@
 
     <hr>
 
-   
+
     <button class="btn btn-success my-1 mb-3">   <a href="{% url 'accounts:log_in' %}">{% trans 'Log in' %}</a> </button>
- 
+
 </div>
 
 {% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'layouts/default/page.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% load widget_tweaks %}
+
+{% load i18n %}
+
+{% block content %}
+ <div class="container">
+  <form action="" method="POST">
+   {% csrf_token %}
+   {{ formset.management_form }}
+   {% for form in formset %}
+     <div class="card mt-4">
+      <h3 class="text-center my-4">New Medication Item</h3>
+      <div class="container p-4">
+       <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Medication Item:</label>
+        {% render_field form.medication_item class="form-control" type="text" %}
+       </div>
+      <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Name:</label>
+        {% render_field form.name class="form-control" type="text" %}
+       </div>
+      <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Form:</label>
+        {% render_field form.form class="form-control" type="text" %}
+       </div>
+      <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Category:</label>
+        {% render_field form.category class="form-control" type="text" %}
+       </div>
+       <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Unit of Prescription:</label>
+        {% render_field form.unit_of_prescription class="form-control" type="text" %}
+       </div>
+       <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Batch Id:</label>
+        {% render_field form.batch_id class="form-control" type="text" %}
+       </div>
+       <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Expiry Date:</label>
+        {% render_field form.expiry class="form-control" type="date" %}
+       </div>
+       <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Dose Amount:</label>
+        {% render_field form.dose_amount class="form-control" type="number" %}
+       </div>
+       <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Dose Duration:</label>
+        {% render_field form.dose_duration class="form-control" type="text" %}
+       </div>
+       <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Dose Unit:</label>
+        {% render_field form.dose_unit class="form-control" type="text" %}
+       </div>
+       <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Dose Frequency:</label>
+        {% render_field form.dose_frequency class="form-control" type="text" %}
+       </div>
+       <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Dose Interval:</label>
+        {% render_field form.dose_interval class="form-control" type="text" %}
+       </div>
+       <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Dose Specific Timing:</label>
+        {% render_field form.dose_specific_timing class="form-control" type="time" %}
+       </div>
+       <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Route:</label>
+        {% render_field form.route class="form-control" type="text" %}
+       </div>
+       <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Body Site:</label>
+        {% render_field form.body_site class="form-control" type="text" %}
+       </div>
+      </div>
+     </div>
+   {% endfor %}
+
+    <div class="text-center">
+        <button type="submit" value="save" class="btn bg-gradient-info w-100 my-4 mb-2 mx-1">Submit</button>
+    </div>
+  </form>
+ </div>
+{% endblock content %}

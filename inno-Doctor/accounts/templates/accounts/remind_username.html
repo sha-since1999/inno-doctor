@@ -2,30 +2,42 @@
 
 {% load bootstrap4 %}
 {% load i18n %}
+{% load widget_tweaks %}
 
 {% block content %}
 
-<div class="container" style="width:50%; padding-top: 10px; border-radius: 25px; border: 2px solid black; ">
-
-
-
-    <h4 style="text-align: center;">{% trans 'Remind a username' %}</h4>
-
-    <form method="post">
-
+<form role="form" class="text-start" method="post">
         {% csrf_token %}
-        {% bootstrap_form form %}
+        <div class="input-group input-group-dynamic my-3">
+            <label class="form-label">Enter your registerd email</label>
+            {% render_field form.email class="form-control" type="email" %}
+        </div>
+    <div class="text-center">
+        <button type="submit" class="btn bg-gradient-info w-100 my-4 mb-2">Request Username</button>
+    </div>
+</form>
 
-        <button class="btn btn-primary">{% trans 'Next' %}</button>
+<!--<div class="container" style="width:50%; padding-top: 10px; border-radius: 25px; border: 2px solid black; ">-->
 
-    </form>
 
-    <hr>
 
-    
-    <button class="btn btn-success my-1 mb-3">       <a href="{% url 'accounts:log_in' %}">{% trans 'Log in' %}</a> </button>
-   
+<!--    <h4 style="text-align: center;">{% trans 'Remind a username' %}</h4>-->
 
-</div>
+<!--    <form method="post">-->
+
+<!--        {% csrf_token %}-->
+<!--        {% bootstrap_form form %}-->
+
+<!--        <button class="btn btn-primary">{% trans 'Next' %}</button>-->
+
+<!--    </form>-->
+
+<!--    <hr>-->
+
+<!--    -->
+<!--    <button class="btn btn-success my-1 mb-3">       <a href="{% url 'accounts:log_in' %}">{% trans 'Log in' %}</a> </button>-->
+<!--   -->
+
+<!--</div>-->
 
 {% endblock %}

@@ -13,7 +13,8 @@ from django.shortcuts import render
 from .forms import (MedicationItemForm, PatientForm,
                     SocialHistoryForm,VitalSignForm,
                      ProblemListForm,
-                      MedicationStatementForm, )
+                      MedicationStatementForm, MedicationStatementFormSet
+                    )
 
 from .models import (MedicationItem, Patient,
                      ProblemList,
@@ -21,31 +22,40 @@ from .models import (MedicationItem, Patient,
 
 
 from django.contrib import messages
+from django.forms.models import inlineformset_factory
 
 
 # Create your views here.
 def eprescriptionList(request, id):  
     patient = Patient.objects.get(aadhaarId=id)
-    try:
-        # medicationStatements=get_object_or_404(MedicationStatement, patient=patient)
-        medicationstatements=MedicationStatement.objects.filter(patient= patient)
-        medicationitems=[]
-        medication_statement_ids=[]
-        for medicationstatement in medicationstatements:
-            medicationitem = MedicationItem.objects.filter(medication_statement=medicationstatement)
-            medication_statement_ids.append(medicationstatement.id)
-            if medicationitem is not None:
-                medicationitems.append(medicationitem)
-        return render(request,"patient_records/eprescription.html" ,context={"medicationStatementIds":medication_statement_ids, "medicationItems": medicationitems,'aadhaarId':id})
-    except:
-            messages.error(request, 'no medication statemtment found!') 
+   
+    # medicationStatements=get_object_or_404(MedicationStatement, patient=patient)
+    medicationstatements=MedicationStatement.objects.filter(patient=patient)
+    # print(medicationstatements)
+    medicationitems={}
+    # medication_statement_ids=[]
+    for medicationstatement in medicationstatements:
+        medicationitem = MedicationItem.objects.filter(medication_statement=medicationstatement)
+        # print(medicationitem)
+        # medication_statement_ids.append(medicationstatement.id)
+        if medicationitem is not None:
+            medicationitems[medicationstatement.id] = medicationitem
+    # print(medicationitems.items())
+    for a, b in medicationitems.items():
+        print(a)
+        for x in b:
+            print(x.name)
+    context = {"medicationitems": medicationitems, 'aadhaarId': id}
+    return render(request,"patient_records/eprescription.html" , context=context)
+    # except:
+    #         messages.error(request, 'no medication statemtment found!') 
     return  redirect('/patient_records/patient-detail/{}'.format(id))  
 
 def patientDetails(request):
 
     if request.method == "POST":  
-        id= request.POST['aadhaarId']
         try:
+            id= request.POST['aadhaarId']
             patient= get_object_or_404(Patient,aadhaarId=id)
             return render(request,"patient_records/patient-details.html",context={'patient':patient})  
         except:
@@ -131,21 +141,27 @@ def patientProblemListCreate(request , id):
         form = ProblemListForm(request.POST, initial={ 'patient':patient })  
         if form.is_valid():  
             try:  
-                obj=form.save( commit=False) 
+                obj=form.save(commit=False)
                 obj.patient =Patient.objects.get(aadhaarId=id)
                 obj.save()
-                messages.success(request, 'New ProblemList is successfully added.!')
+                messages.success(request, 'New Problem is successfully added to the problem list!')
                 # model = form.instance
                 return  redirect('/patient_records/patient-detail/{}'.format(id))   
             except:  
-                messages.error(request, 'failed to add problem list')
+                messages.error(request, 'Failed to add problem to the problem list')
     else:  
         form = ProblemListForm( initial={ 'patient':patient } )  
     return render(request,'patient_records/patient-problem-list.html',{'form':form,'patient' :patient})  
 
 def patientSocialHistoryCreate(request , id):
     patient= Patient.objects.get(aadhaarId=id)
-    
+    try:
+        social_history = SocialHistory.objects.get(patient=patient)
+    except:
+        social_history = None
+    if social_history:
+        messages.error(request, 'Social History record already exists')
+        return redirect('/patient_records/patient-detail/{}'.format(id))
     if request.method == "POST":  
         form = SocialHistoryForm(request.POST, initial={ 'patient':patient })  
         if form.is_valid():  
@@ -164,7 +180,13 @@ def patientSocialHistoryCreate(request , id):
 
 def patientVitalSignCreate(request , id):
     patient= Patient.objects.get(aadhaarId=id)
-    
+    try:
+        vital_sign = VitalSign.objects.get(patient=patient)
+    except:
+        vital_sign = None
+    if vital_sign:
+        messages.error(request, 'Vital Signs records already exists')
+        return redirect('/patient_records/patient-detail/{}'.format(id))
     if request.method == "POST":  
         form = VitalSignForm(request.POST, initial={ 'patient':patient })  
         if form.is_valid():  
@@ -196,7 +218,7 @@ def patientSocialHistoryUpdate(request , id):
                 return  redirect('/patient_records/patient-detail/{}'.format(id)) 
             except:  
                 messages.error(request, 'failed to Update Social History list')
-    return render(request,'patient_records/genralForm.html',{'form':form,'patient' :patient})  
+    return render(request,'patient_records/patient-social-history-list.html',{'form':form,'patient' :patient})
 
 def patientVitalSignUpdate(request , id):
     patient= Patient.objects.get(aadhaarId=id)
@@ -215,36 +237,55 @@ def patientVitalSignUpdate(request , id):
             except:  
                 messages.error(request, 'failed to update vital sign')
                 
-    return render(request,'patient_records/genralForm.html',{'form':form,'patient' :patient})  
+    return render(request,'patient_records/patient-vital-sign.html',{'form':form,'patient' :patient})
 
 
-def medicationStatementCreate(request,id ):
-    patient= Patient.objects.get(aadhaarId=id)
-    meditcation_statement= MedicationStatement.objects.filter(patient=patient)
-    # print("ka", meditcation_statement, patient)
-    new_medication_statement = MedicationStatementForm().save(commit=False)
-    try:
-        print("fails")
-        new_medication_statement.patient= patient
-        new_medication_statement_obj=new_medication_statement.save()
-        # new_medication_statement_obj = new_medication_statement.instance
-        print("success")
-    except:
-        messages.error(request, 'failed to open new medicaiton Statement form')
-        return  redirect('/patient_records/patient-detail/{}'.format(id)) 
-        # model.instance
-    if request.method == "POST":  
-        form =MedicationItemForm( request.POST, initial={'medication_statement':new_medication_statement_obj})
-        if form.is_valid():  
-            try:  
-                form.save()
-                messages.success(request, 'New Medication statement is successfully added.!')
+# def medicationStatementCreate(request,id ):
+#     patient= Patient.objects.get(aadhaarId=id)
+#     meditcation_statement= MedicationStatement.objects.filter(patient=patient)
+#     # print("ka", meditcation_statement, patient)
+#     new_medication_statement = MedicationStatementForm().save(commit=False)
+#     try:
+#         print("fails")
+#         new_medication_statement.patient= patient
+#         new_medication_statement_obj=new_medication_statement.save()
+#         # new_medication_statement_obj = new_medication_statement.instance
+#         print("success")
+#     except:
+#         messages.error(request, 'failed to open new medicaiton Statement form')
+#         return  redirect('/patient_records/patient-detail/{}'.format(id))
+#         # model.instance
+#     if request.method == "POST":
+#         form =MedicationItemForm( request.POST, initial={'medication_statement':new_medication_statement_obj})
+#         if form.is_valid():
+#             try:
+#                 form.save()
+#                 messages.success(request, 'New Medication statement is successfully added.!')
+#             except:
+#                 messages.error(request, 'failed to Add New medicaiton Statement list')
+#             return  redirect('/patient_records/patient-detail/{}'.format(id))
+#     else :
+#         form=MedicationItemForm( initial={'medication_statement':new_medication_statement_obj})
+#     return render(request,'patient_records/patient-medication-item.html',{'form':form,'patient' :patient})
+
+def medicationStatementCreate(request, id):
+    patient = Patient.objects.get(aadhaarId=id)
+    medication_statement = MedicationStatement(patient=patient)
+    formset = MedicationStatementFormSet(instance=medication_statement)
+
+    if request.method == "POST":
+        formset  = MedicationStatementFormSet(request.POST ,instance=medication_statement)
+        if formset.is_valid():
+            try:
+                medication_statement.save()
+                formset.save()
+                messages.success(request, 'New E-Prescription is successfully added.!')
             except:
-                messages.error(request, 'failed to Add New medicaiton Statement list')
-            return  redirect('/patient_records/patient-detail/{}'.format(id))     
-    else :
-        form=MedicationItemForm( initial={'medication_statement':new_medication_statement_obj})
-    return render(request,'patient_records/patient-medication-item.html',{'form':form,'patient' :patient})  
+                messages.error(request, 'Failed to create new E-Prescription')
+            return  redirect('/patient_records/patient-detail/{}'.format(id))
+
+    return render(request,'patient_records/patient-medication-item-1.html',{'formset': formset,'patient': patient})
+
 
 def eprescriptionCreate(request,id):
     patient= Patient.objects.get(aadhaarId=id)
@@ -277,17 +318,19 @@ def patientProblemListView(request , id):
     return render(request,'patient_records/patient-problem-list-view.html',{'problemLists':forms,'patient' :patient})  
 
 def patientSocialHistoryView(request , id):
-    patient= Patient.objects.get(aadhaarId=id)
     try:
+        patient= Patient.objects.get(aadhaarId=id)
         form = SocialHistory.objects.get(patient=patient)
     except:
+        messages.error(request,"No Social History found ! ")
         return redirect(f'/patient_records/patient-social-history-create/{id}')
     return render(request,'patient_records/patient-social-history-view.html',{'form':form,'patient' :patient})
 
 def patientVitalSignView(request , id):
-    patient= Patient.objects.get(aadhaarId=id)
     try:
-        form= VitalSign.objects.get(patient=patient)
+        patient= Patient.objects.get(aadhaarId=id)
+        form= get_object_or_404(VitalSign,patient=patient)
     except:
-        return redirect(f'/patient_records/patient-vital-sign-create/{id}')
+        messages.error(request,"No vital sign found ! ")
+        return redirect(f'/patient_records/patient-detail/{id}')
     return render(request,'patient_records/patient-vital-sign-view.html',{'form':form,'patient' :patient})

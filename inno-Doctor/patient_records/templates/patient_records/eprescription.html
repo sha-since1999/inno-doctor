@@ -3,72 +3,126 @@
 {% load bootstrap4 %}
 {% load i18n %}
 
-{% block title %}e-prescription{% endblock title %}
 {% block content %}
-
-<div class="container-fluid" style="text-align: center;">
-     <a type="button" class="btn btn-danger" href="/patient_records/patient-detail/{{aadhaarId}}">🔙</a><h2 class="d-inline align-top">Patient Medical Statement </h2>
-    {% comment %} {% for medicationStatment in medicationStatements.iterator() %} {% endcomment %}
-
-        {% comment %} <p> medical statment : {{medicationStatement.id}}</p> {% endcomment %}
-        {% comment %} {% comment %} {% for medicationItem in medicationStatement.item_set.all()  %} {% endcomment %}
-        <br></br>
-        {% for medication_statement_id  in medicationStatementIds %}
-        <div class="my-2">
-            <h6> Medication Statement Id:{{medication_statement_id}}  </h6>
-            {% for  items  in medicationItems%}
-            {% if items %}  
-            <div class= "text-*-center small"  >
-                        <div class="container-fluid">
-                            <table class="table table-striped table-responsive fixed-table-body">
-                                <thead class="center-block">
-                                  <tr>
-
-                                    <th scope="col">medication_item</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Form</th>
-                                    <th scope="col">category</th>
-                                    <th scope="col">unit_of_presecription</th>
-                                    <th scope="col">batch_id</th>
-                                    <th scope="col">expiry</th>
-                                    <th scope="col">dose_amount</th>
-                                    <th scope="col">dose_duration</th>
-                                    <th scope="col">dose_unit</th>
-                                    <th scope="col">dose_frequency</th>
-                                    <th scope="col">dose_interval</th>
-                                    <th scope="col">dose_specific_timig</th>
-                                    <th scope="col">route</th>
-                                    <th scope="col">body_site</th>
+<div class="container mt-4">
+    {% for i,j in medicationitems.items %}
+        <div class="card my-5 p-2">
+            <h3 class="text-center mb-4">Medication Statement Id: {{i}}</h3>
+            <div class="container">
+            <div class="col-md-12 search-table-col m-4">
+                <div class="table-responsive table table-hover table-bordered results">
+                    <table class="table table-hover table-bordered">
+                        <thead class="bill-header cs">
+                            <tr>
+                                <th class="text-center" id="trs-hd-1" class="col-lg-1">Medication Item</th>
+                                <th class="text-center" id="trs-hd-2" class="col-lg-1">Name</th>
+                                <th class="text-center" id="trs-hd-3" class="col-lg-1">Form</th>
+                                <th class="text-center" id="trs-hd-4" class="col-lg-1">Category</th>
+                                <th class="text-center" id="trs-hd-5" class="col-lg-1">Unit of Prescription</th>
+                                <th class="text-center" id="trs-hd-6" class="col-lg-1">Batch Id</th>
+                                <th class="text-center" id="trs-hd-7" class="col-lg-1">Expiry</th>
+                                <th class="text-center" id="trs-hd-8" class="col-lg-1">Dose Amount</th>
+                                <th class="text-center" id="trs-hd-9" class="col-lg-1">Dose Duration</th>
+                                <th class="text-center" id="trs-hd-10" class="col-lg-1">Dose Unit</th>
+                                <th class="text-center" id="trs-hd-11" class="col-lg-1">Dose Frequency</th>
+                                <th class="text-center" id="trs-hd-12" class="col-lg-1">Dose Interval</th>
+                                <th class="text-center" id="trs-hd-13" class="col-lg-1">Dose Specific Timings</th>
+                                <th class="text-center" id="trs-hd-14" class="col-lg-1">Route</th>
+                                <th class="text-center" id="trs-hd-15" class="col-lg-1">Body Site</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tr>
+                            {% for item in j %}
+                                {%if item%}
+                                <tr>
+                                    <td  class="text-center">{{item.medication_item}}</td>
+                                    <td  class="text-center">{{item.name}}</td>
+                                    <td  class="text-center">{{item.form}}</td>
+                                    <td  class="text-center">{{item.category}}</td>
+                                    <td  class="text-center">{{item.unit_of_prescription}}</td>
+                                    <td  class="text-center">{{item.batch_id}}</td>
+                                    <td  class="text-center">{{item.expiry}}</td>
+                                    <td  class="text-center">{{item.dose_amount}}</td>
+                                    <td  class="text-center">{{item.dose_duration}}</td>
+                                    <td  class="text-center">{{item.dose_unit}}</td>
+                                    <td  class="text-center">{{item.dose_frequency}}</td>
+                                    <td  class="text-center">{{item.dose_interval}}</td>
+                                    <td  class="text-center">{{item.dose_specific_timing}}</td>
+                                    <td  class="text-center">{{item.route}}</td>
+                                    <td  class="text-center">{{item.body_site}}</td>
                                 </tr>
-                                </thead>
-                                <tbody>
-                                    {% for item  in items %}
-                                  <tr>
-                                        <td scope="row">{{item.medication_item}}</td>
-                                        <td scope="row">{{item.name}}</td>
-                                        <td scope="row">{{item.form}}</td>
-                                        <td scope="row">{{item.category}}</td>
-                                        <td scope="row">{{item.unit_of_prescription}}</td>
-                                        <td scope="row">{{item.batch_id}}</td>
-                                        <td scope="row">{{item.expiry}}</td>
-                                        <td scope="row">{{item.dose_amount}}</td>
-                                        <td scope="row">{{item.dose_duration}}</td>
-                                        <td scope="row">{{item.dose_unit}}</td>
-                                        <td scope="row">{{item.dose_frequency}}</td>
-                                        <td scope="row">{{item.dose_interval}}</td>
-                                        <td scope="row">{{item.dose_specific_timing}}</td>
-                                        <td scope="row">{{item.route}}</td>
-                                        <td scope="row">{{item.body_site}}</td>
-                                  </tr>
-                                  {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
-                    {% endif %}
-            {% endfor %}
+            </div>
+            </div>
         </div>
-        {% endfor %}
-        
+    {% endfor %}
 </div>
+<!--<div class="container-fluid" style="text-align: center;">-->
+<!--     <a type="button" class="btn btn-danger" href="/patient_records/patient-detail/{{aadhaarId}}">🔙</a><h2 class="d-inline align-top">Patient Medical Statement </h2>-->
+<!--        <hr>-->
+<!--        {% for i,j in medicationitems.items %}-->
+<!--        <div class="my-2">-->
+<!--            <h6> Medication Statement Id:{{i}}</h6>-->
+<!--&lt;!&ndash;            {{ i }}&ndash;&gt;-->
+<!--            <div class= "text-*-center small"  >-->
+<!--                        <div class="container-fluid">-->
+<!--                            <table class="table table-striped table-responsive fixed-table-body">-->
+<!--                                <thead class="center-block">-->
+<!--                                  <tr>-->
+
+<!--                                    <th scope="col">medication_item</th>-->
+<!--                                    <th scope="col">Name</th>-->
+<!--                                    <th scope="col">Form</th>-->
+<!--                                    <th scform-label-->
+<!--form-label-->
+<!--form-label-->
+<!--form-labelope="col">category</th>-->
+<!--                                    <th scope="col">unit_of_presecription</th>-->
+<!--                                    <th scope="col">batch_id</th>-->
+<!--                                    <th scope="col">expiry</th>-->
+<!--                                    <th scope="col">dose_amount</th>-->
+<!--                                    <th scope="col">dose_duration</th>-->
+<!--                                    <th scope="col">dose_unit</th>-->
+<!--                                    <th scope="col">dose_frequency</th>-->
+<!--                                    <th scope="col">dose_interval</th>-->
+<!--                                    <th scope="col">dose_specific_timing</th>-->
+<!--                                    <th scope="col">route</th>-->
+<!--                                    <th scope="col">body_site</th>-->
+<!--                                </tr>-->
+<!--                                </thead>-->
+<!--                                <tbody>-->
+<!--                            {% for item in j %}-->
+<!--                                {% if item %}-->
+<!--                                    <tr>-->
+<!--                                        <td scope="row">{{item.medication_item}}</td>-->
+<!--                                        <td scope="row">{{item.name}}</td>-->
+<!--                                        <td scope="row">{{item.form}}</td>-->
+<!--                                        <td scope="row">{{item.category}}</td>-->
+<!--                                        <td scope="row">{{item.unit_of_prescription}}</td>-->
+<!--                                        <td scope="row">{{item.batch_id}}</td>-->
+<!--                                        <td scope="row">{{item.expiry}}</td>-->
+<!--                                        <td scope="row">{{item.dose_amount}}</td>-->
+<!--                                        <td scope="row">{{item.dose_duration}}</td>-->
+<!--                                        <td scope="row">{{item.dose_unit}}</td>-->
+<!--                                        <td scope="row">{{item.dose_frequency}}</td>-->
+<!--                                        <td scope="row">{{item.dose_interval}}</td>-->
+<!--                                        <td scope="row">{{item.dose_specific_timing}}</td>-->
+<!--                                        <td scope="row">{{item.route}}</td>-->
+<!--                                        <td scope="row">{{item.body_site}}</td>-->
+<!--                                  </tr>-->
+<!--                                    {% endif %}-->
+<!--                                  {% endfor %}-->
+<!--                                </tbody>-->
+<!--                            </table>-->
+<!--                        </div>-->
+<!--                </div>-->
+
+<!--            <hr>-->
+<!--    {% endfor %}-->
+<!--</div>-->
 {% endblock %}

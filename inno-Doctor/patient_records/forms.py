@@ -1,14 +1,16 @@
-from django.forms import ModelForm
-
+from django.forms import ModelForm, DateField
+import datetime
 from .models import (MedicationItem, Patient,
                      ProblemList,
                      VitalSign, SocialHistory, MedicationStatement, )
-
+from django.forms.models import inlineformset_factory
 
 class PatientForm(ModelForm):
+    # date_of_birth = DateField(initial=datetime.date.today) 
     class Meta:
         model = Patient
-        fields = '__all__'
+        fields = ['aadhaarId', 'name', 'gender', 'date_of_birth']
+        # widgets = {'date_of_birth': DateField(datetime.date.today)}
         
 class MedicationItemForm(ModelForm):
     class Meta:
@@ -27,20 +29,53 @@ class MedicationStatementForm(ModelForm):
         fields = ("patient",)
         
 class ProblemListForm(ModelForm):
+
     class Meta:
         model = ProblemList
-        fields = '__all__'
+        fields = ['problem', 'body_site', 'severity', 'abatement_date', 'diagnostic_certainty',]
         
 class SocialHistoryForm(ModelForm):
     
     class Meta:
         model = SocialHistory
-        fields = '__all__'
-        
+        fields = ['tobacco_smoking_status', 'alcohol_consumption_status', 'alcohol_consumption_unit', 'alcohol_consumption_frequency']
+
 class VitalSignForm(ModelForm):
     
     class Meta:
         model = VitalSign
-        fields = '__all__'
+        fields = {'body_weight',
+                'height',
+                'respiration_rate',
+                'pulse_rate',
+                'body_temperature',
+                'head_circumference',
+                'pulse_oximetry',
+                'body_mass_index',
+                'blood_pressure_systolic',
+                'blood_pressure_diastolic' 
+                }
+        
 
 
+MedicationStatementFormSet = inlineformset_factory(MedicationStatement, 
+                                                       MedicationItem, 
+                                                       fields=(
+                                                           'medication_item', 
+                                                           'name', 
+                                                           'form', 
+                                                           'category', 
+                                                           'unit_of_prescription', 
+                                                           'batch_id', 
+                                                           'expiry',
+                                                           'dose_amount',
+                                                           'dose_duration',
+                                                           'dose_unit', 
+                                                           'dose_frequency',
+                                                           'dose_interval',
+                                                           'dose_specific_timing',
+                                                           'route',
+                                                           'body_site'
+                                                       ),
+                                                        extra=5
+                                                   )

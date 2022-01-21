@@ -1,21 +1,35 @@
 {% extends 'layouts/default/page.html' %}
-{% block title %}patient-update{% endblock title %}
+{% load static %}
 {% load bootstrap4 %}
+{% load widget_tweaks %}
 {% load i18n %}
 
 {% block content %}
 
-<div class="container" style="width:50%; padding-top: 10px; border-radius: 25px; border: 2px solid black; margin-bottom:5%;  ">
-
-<div class="card-body">
-    <h4 style="text-align: center;">Update Patient</h4> 
-    <form method="post">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        <a type="button" class="btn btn-danger" href="/patient_records/patient-check" style="margin-left: 33%;">Cancel</a>
-        <button type="submit" class="btn btn-success" style="margin-left: 3%;">Update</button>
-    </form>
-</div>
+<div class="container">
+<form method = "post">
+    {% csrf_token %}
+    <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Patient Name:</label>
+        {% render_field form.name class="form-control" type="text" %}
+    </div>
+    <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Aadhar No:</label>
+        {% render_field form.aadhaarId class="form-control" type="number" %}
+    </div>
+    <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Gender:</label>
+        {% render_field form.gender class="form-control" %}
+    </div>
+    <div class="input-group input-group-outline my-3">
+        <label class="form-label-inline w-30">Date of Birth:</label>
+        {% render_field form.date_of_birth class="form-control" type="date" %}
+    </div>
+    <div class="text-center">
+        <button type="submit" value="save" class="btn bg-gradient-info w-40 my-4 mb-2 mx-2">Update</button>
+        <a class="btn bg-gradient-danger w-40 my-4 mb-2 mx-2" href="{% url 'patient_records:patient_check' %}">Cancel</a>
+    </div>
+</form>
 
 </div>
 {% endblock %}

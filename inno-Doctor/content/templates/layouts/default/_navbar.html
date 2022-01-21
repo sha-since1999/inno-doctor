@@ -1,0 +1,108 @@
+{% load static %}
+{% load bootstrap4 %}
+{% load i18n %}
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg  blur border-radius-xl top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+  <div class="container-fluid px-0">
+    <a class="navbar-brand font-weight-bolder ms-sm-3" href="/" rel="tooltip" data-placement="bottom">
+      InnoDoctor
+    </a>
+    <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon mt-2">
+        <span class="navbar-toggler-bar bar1"></span>
+        <span class="navbar-toggler-bar bar2"></span>
+        <span class="navbar-toggler-bar bar3"></span>
+      </span>
+    </button>
+    <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
+      <ul class="navbar-nav navbar-nav-hover ms-auto">
+        {% if request.user.is_authenticated %}
+          <li class="nav-item ms-lg-auto">
+            <a class="nav-link nav-link-icon me-2" href="{% url 'patient_records:patient_check' %}">
+              <i class="fas fa-stethoscope" aria-hidden="true"></i>
+              <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Modify Patient Record">Check Patient</p>
+            </a>
+          </li>
+
+          <li class="nav-item ms-lg-auto">
+            <a class="nav-link nav-link-icon me-2" href="{% url 'patient_records:patient_create' %}">
+              <i class="fas fa-plus-circle" aria-hidden="true"></i>
+              <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Add New Patient Record">Add Patient</p>
+            </a>
+          </li>
+
+        <li class="nav-item dropdown dropdown-hover mx-2">
+          <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="material-icons opacity-6 me-2 text-md">dashboard</i>
+            Profile
+            <img src="{% static 'img/down-arrow-dark.svg' %} " alt="down-arrow" class="arrow ms-auto ms-md-2">
+          </a>
+          <div class="dropdown-menu dropdown-menu-animation ms-n3 dropdown-md p-3 border-radius-xl mt-0 mt-lg-3" aria-labelledby="dropdownMenuPages">
+            <div class="d-none d-lg-block">
+              <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
+                Edit Profile
+              </h6>
+              <a href="{% url 'accounts:change_password' %}" class="dropdown-item border-radius-md">
+                <span>Change Password</span>
+              </a>
+              <a href="{% url 'accounts:change_profile' %}" class="dropdown-item border-radius-md">
+                <span>Change Name</span>
+              </a>
+              <a href="{% url 'accounts:change_email' %}" class="dropdown-item border-radius-md">
+                <span>Change Email</span>
+              </a>
+              <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1 mt-3">
+                Actions
+              </h6>
+              <a href="{% url 'accounts:log_out' %}" class="dropdown-item border-radius-md">
+                <span>Logout</span>
+              </a>
+            </div>
+            <div class="d-lg-none">
+              <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
+                Edit Profile
+              </h6>
+              <a href="{% url 'accounts:change_password' %}" class="dropdown-item border-radius-md">
+                <span>Change Password</span>
+              </a>
+              <a href="{% url 'accounts:change_profile' %}" class="dropdown-item border-radius-md">
+                <span>Change Name</span>
+              </a>
+              <a href="{% url 'accounts:change_email' %}" class="dropdown-item border-radius-md">
+                <span>Change Email</span>
+              </a>
+              <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1 mt-3">
+                Actions
+              </h6>
+              <a href="{% url 'accounts:log_out' %}" class="dropdown-item border-radius-md">
+                <span>Logout</span>
+              </a>
+            </div>
+          </div>
+        </li>
+        {% endif %}
+        <li class="nav-item ms-lg-auto">
+          <a class="nav-link nav-link-icon me-2" href="https://github.com/sha-since1999/inno-doctor" target="_blank">
+            <i class="fa fa-github me-1"></i>
+            <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Star us on Github">Github</p>
+          </a>
+        </li>
+        <li class="nav-item ms-lg-auto">
+          <a class="nav-link nav-link-icon me-2" href="{% url 'change_language' %}">
+            <i class="fas fa-language"></i>
+            <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Language">Languages</p>
+          </a>
+        </li>
+        {% if not request.user.is_authenticated %}
+        <li class="nav-item my-auto ms-3 ms-lg-0">
+          <a href="{% url 'accounts:log_in' %}" class="btn btn-sm  bg-gradient-info  mb-0 me-1 mt-2 mt-md-0">Doctor Login</a>
+        </li>
+        <li class="nav-item my-auto ms-3 ms-lg-0">
+          <a href="{% url 'patient_records:patient_record_form' %}" class="btn btn-sm  bg-gradient-primary  mb-0 me-1 mt-2 mt-md-0">Continue as Patient</a>
+        </li>
+        {% endif %}
+
+      </ul>
+    </div>
+  </div>
+</nav>
