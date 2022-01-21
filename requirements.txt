@@ -24,3 +24,4 @@ typing_extensions==4.0.1
 weasyprint==54.0
 webencodings==0.5.1
 zopfli==0.1.9
+django-widget-tweaks
