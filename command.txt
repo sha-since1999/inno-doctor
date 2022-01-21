@@ -10,3 +10,8 @@ docker-compose up
 docker build -t inno-doctor-repo .
 docker run -dit -p 8000:8000 inno-doctor-repo
 docker run --env VAR1 --env VAR2 ubuntu env | grep VAR
+
+docker-compose up -d --build
+
+docker-compose exec web python manage.py migrate
+docker-compose exec web python manage.py createsuperuser

@@ -85,10 +85,22 @@ EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+TIME_ZONE = 'UTC'
+USE_TZ = True
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'HOST': 'db', # set in docker-compose.yml
+        'PORT': 5432, # default postgres port
     }
 }
 
@@ -134,8 +146,6 @@ LANGUAGES = [
     ('fr', _('French')),
 ]
 
-TIME_ZONE = 'UTC'
-USE_TZ = True
 
 STATIC_ROOT = os.path.join(CONTENT_DIR, 'static')
 STATIC_URL = '/static/'
