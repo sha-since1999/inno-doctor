@@ -1,5 +1,3 @@
- This is a basic workflow to help you get started with Actions
-
 name: CI Django Tests
 on:
   # Allows you to run this workflow manually from the Actions tab
