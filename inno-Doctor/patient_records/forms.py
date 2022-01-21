@@ -44,8 +44,18 @@ class VitalSignForm(ModelForm):
     
     class Meta:
         model = VitalSign
-        fields = ['body_weight', 'height', 'respiration_rate', 'pulse_rate', 'body_temperature', 'head_circumference', 'pulse_oximetry', 'body_mass_index', 'blood_pressure_systolic', 'blood_pressure_diastolic',]
-
+        fields = {'body_weight',
+                'height',
+                'respiration_rate',
+                'pulse_rate',
+                'body_temperature',
+                'head_circumference',
+                'pulse_oximetry',
+                'body_mass_index',
+                'blood_pressure_systolic',
+                'blood_pressure_diastolic' 
+                }
+        
 
 
 MedicationStatementFormSet = inlineformset_factory(MedicationStatement, 
