@@ -3,7 +3,7 @@
 # from django.test import SimpleTestCase
 # # from unittest import TestCase
 # from django.urls import resolve
-# from patient_records.views import patientCreate,patientCheck,patientDetails,PatientList,PatientView
+# from patient_records.views import patientCreate,patientCheck, patientDetail,patientDetails,PatientList,PatientView
 # app_name = 'patient_records'
 
 # class TestUrls(SimpleTestCase):
@@ -23,8 +23,8 @@
 
     
 #     def test_for_patient_details_resolves(self):
-#         url = reverse('patient_records:patient_details',args=['123'])
-#         self.assertEqual(resolve(url).func,patientDetails)
+#         url = reverse('patient_records:patient_detail',args=['123'])
+#         self.assertEqual(resolve(url).func,patientDetail)
     
 #     def test_for_patient_details_resolved(self):
 #         url = reverse('patient_records:patient_details')

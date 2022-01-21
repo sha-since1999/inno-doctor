@@ -6,11 +6,15 @@ app_name = 'patient_records'
 urlpatterns = [
     
     path('patient-check', views.patientCheck, name='patient_check'),
+
     path('patient-details/',views.patientDetails, name ='patient_details'),
     path('patient-detail/<int:id>',views.patientDetail, name ='patient_detail'),
-    path('patient-create/<int:id>', views.patientCreate, name='patient_create'),
 
+    path('patient-create/<int:id>', views.patientCreate, name='patient_create'),
     path('patient-create/', views.patientCreate, name='patient_create'),
+
+    path('patient-update/<int:id>/', views.patientUpdate, name='patient_update'),
+    # path('patient-update/', views.patientUpdate, name='patient_updates'),
 
 
     path('patient-problem-list-create/<int:id>', views.patientProblemListCreate, name='patient_problem_list_create'),
@@ -24,7 +28,8 @@ urlpatterns = [
     path('patient-vital-sign-edit/<int:id>', views.patientVitalSignUpdate, name='patient_vital_sign_edit'),
    
     path('patient-medication-statement/<int:id>', views.medicationStatementCreate, name='add_new_patient_medication_statement_by_POST'),
-    path('patient-update/<int:id>', views.patientUpdate, name='patient_update'),
+    
+
     path('patient-eprescription/<int:id>', views.eprescriptionList, name='eprescription'),
     path('patient-eprescription-create/<int:id>', views.eprescriptionCreate, name='eprescription-create'),
 

@@ -1,11 +1,10 @@
 
-
 # app_name = 'patient_records'
 
 # from datetime import datetime
 # from django.test import TestCase
 
-# from patient_records.models import Patient
+# from patient_records.models import Patient,ProblemList
 
 # # (a) 
 # class patientModelTest(TestCase):  
@@ -19,7 +18,7 @@
 #             date_of_birth="1997-06-12",
 #             gender="Male"
 #         ) 
-
+    
 #     # (1) this is first case.
 #     def test_it_has_information_fields(self):                   
 #         self.assertIsInstance(self.patient.name, str)
@@ -47,6 +46,57 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# app_name = 'patient_records'
+# from datetime import datetime
+# from django.test import TestCase
+# from patient_records.models import Patient, ProblemList
+# (a)
+# class patientModelTest(TestCase):
+  # (b)  we create a single patient instance to be used by the rest of the test methods.
+#   @classmethod
+#   def setUpTestData(cls):                                   
+    #   cls.patients = ProblemList.objects.create(
+    #       problem ="corona",
+    #       body_site = "lungs",
+    #       onset_date = "2021-06-12",
+    #       abatement_date = "2027-06-12",
+    #       diagnostic_certainty = "confirm",
+    #       severity="high"
+    #   )
+#    # (1) this is the first case.
+#    def test_it_has_information_fields(self):                 
+#        self.assertIsInstance(self.patient.problem, str)
+#        self.assertIsInstance(self.patient.adhaarId, str)
+#        self.assertIsInstance(self.patient.date_of_birth, str)
+#        self.assertIsInstance(self.patient.gender, str)
+  # 2 for equality
+    # def test_patient_equals_fields(self):                 
+    #     self.assertEqual(str(self.patients.problem),'corona')
+    #     self.assertEqual(str(self.patients.body_site),'lungs')
+    #     self.assertEqual(str(self.patients.onset_date),"2021-06-12")
+    #     self.assertEqual(str(self.patients.abatement_date),"2027-06-12")
+    #     self.assertEqual(str(self.patients.diagnostic_certainty),"confirm")
 
 
 
