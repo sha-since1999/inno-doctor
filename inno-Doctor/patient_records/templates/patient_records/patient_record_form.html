@@ -1,0 +1,19 @@
+{% extends 'layouts/default/page.html' %}
+
+{% load bootstrap4 %}
+{% load i18n %}
+
+
+{% block content %}
+
+<form action= "{% url 'patient_records:patient_record_list' %}"  %} method = "post">
+    {% csrf_token %}
+    <label for="aadharid">Enter aadhar number</label>
+        <input id="aadharid" type="number" name="aadharid" required><br/>
+        <label for="bdate">Enter birthdate:</label>
+        <input type="date" id="bdate" name="bdate"
+            value="2022-01-01" required><br/>
+        <input type="submit" value="See records">
+</form>
+
+{% endblock %}
