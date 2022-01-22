@@ -1,26 +1,29 @@
 version: "3.8"
 services:
-#  db:
-#    image: "postgres:11"
-#    environment:
-#      - "POSTGRES_HOST_AUTH_METHOD=trust"
-#    volumes:
-#      - postgres_data:/var/lib/postgresql/data/
+  db:
+    image: "postgres:11"
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
   app:
     build: .
-#    volumes:
-#      - ./inno-Doctor:/inno-doctor
+    volumes:
+      - ./inno-Doctor:/inno-doctor
     ports:
       - 80:8000
-    image: inno-dcotor:django
-    # environment: 
-    #   - EMAIL_HOST_USER  :  ${EMAIL_HOST_USER}
-    #   - EMAIL_HOST_PASSWORD :  ${EMAIL_HOST_PASSWORD}
+    image: inno-doctor:django
+    environment:
+      - IS_PRODUCTION=${IS_PRODUCTION}
+      - EMAIL_HOST=${EMAIL_HOST}
+      - EMAIL_HOST_USER=${EMAIL_HOST_USER}
+      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
+      - EMAIL_PORT=${EMAIL_PORT}
     container_name: django_container
 
-    command: python manage.py runserver 0.0.0.0:8000
-#    depends_on:
-#        - db
-#
-#volumes:
-#  postgres_data:
+#    command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+        - db
+
+volumes:
+  postgres_data:
