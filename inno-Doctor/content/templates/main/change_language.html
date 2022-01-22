@@ -19,7 +19,7 @@
             <label class="form-label-inline w-30" for="language-field">{% trans 'Select the language' %}:</label>
             <select name="language" class="form-control" id="language-field">
                 {% for code, name in languages %}
-                    <option value="{{ code }}" {% if code == language_code %} selected="selected"{% endif %}>
+                    <option value="{{ code }}" {% if code = language_code %} selected="selected"{% endif %}>
                         {{ name }} ({{ code }})
                     </option>
                 {% endfor %}
