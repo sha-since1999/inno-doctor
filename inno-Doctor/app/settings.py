@@ -1,6 +1,7 @@
 import os
 
 IS_PRODUCTION = os.environ.get('IS_PRODUCTION', ' ') != 'False'
+
 # IS_PRODUCTION = False
 # print('IP', IS_PRODUCTION)
 

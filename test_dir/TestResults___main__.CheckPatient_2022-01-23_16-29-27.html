@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unittest Results</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="text-capitalize">Unittest Results</h2>
+                <p class='attribute'><strong>Start Time: </strong>2022-01-23 16:29:28</p>
+                <p class='attribute'><strong>Duration: </strong>14.34 s</p>
+                <p class='attribute'><strong>Summary: </strong>Total: 1, Pass: 0, Fail: 1</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-md-10">
+                <table class='table table-hover table-responsive'>
+                    <thead>
+                        <tr>
+                            <th>__main__.CheckPatient</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class='danger'>
+                            <td class="col-xs-10">test_viewsocialhistory</td>
+                            <td class="col-xs-1">
+                                <span class="label label-danger" style="display:block;width:40px;">Fail</span>
+                            </td>
+                            <td class="col-xs-1">
+                                <button class="btn btn-default btn-xs">View</button>
+                            </td>
+                        </tr>
+                        <tr style="display:none;">
+                            <td class="col-xs-9" colspan="3"><p style="color:maroon;">AssertionError: 'http://127.0.0.1:8000/patient_records/patient-social-history-view/923412347234' != 'http://0.0.0.0:8000/patient_records/patient-social-history-view/923412347235'
+- http://127.0.0.1:8000/patient_records/patient-social-history-view/923412347234
+?        ^^^     ^                                                             ^
++ http://0.0.0.0:8000/patient_records/patient-social-history-view/923412347235
+?        ^     ^                                                             ^
+</p><p style="color:maroon;">Traceback (most recent call last):
+  File "/home/adminroot/Desktop/final-assignment/inno-doctor/testing-work/test_viewsocialhistory.py", line 41, in test_viewsocialhistory
+    self.assertEqual(actual_url,expected_url)
+AssertionError: 'http://127.0.0.1:8000/patient_records/patient-social-history-view/923412347234' != 'http://0.0.0.0:8000/patient_records/patient-social-history-view/923412347235'
+- http://127.0.0.1:8000/patient_records/patient-social-history-view/923412347234
+?        ^^^     ^                                                             ^
++ http://0.0.0.0:8000/patient_records/patient-social-history-view/923412347235
+?        ^     ^                                                             ^
+
+/home/adminroot/Desktop/final-assignment/inno-doctor/testing-work/test_viewsocialhistory.py:17: DeprecationWarning: find_element_by_* commands are deprecated. Please use find_element() instead
+  Baseconfig.driver.find_element_by_xpath('//*[@id="navigation"]/ul/li[3]/a').click()
+/home/adminroot/Desktop/final-assignment/inno-doctor/testing-work/test_viewsocialhistory.py:18: DeprecationWarning: find_element_by_* commands are deprecated. Please use find_element() instead
+  Baseconfig.driver.find_element_by_id('id_email').send_keys(Configuration.USER_EMAIL)
+/home/adminroot/Desktop/final-assignment/inno-doctor/testing-work/test_viewsocialhistory.py:20: DeprecationWarning: find_element_by_* commands are deprecated. Please use find_element() instead
+  Baseconfig.driver.find_element_by_id('id_password').send_keys(Configuration.USER_PASSWORD)
+/home/adminroot/Desktop/final-assignment/inno-doctor/testing-work/test_viewsocialhistory.py:21: DeprecationWarning: find_element_by_* commands are deprecated. Please use find_element() instead
+  Baseconfig.driver.find_element_by_xpath('//*[@id="rememberMe"]').click()
+/home/adminroot/Desktop/final-assignment/inno-doctor/testing-work/test_viewsocialhistory.py:23: DeprecationWarning: find_element_by_* commands are deprecated. Please use find_element() instead
+  button=Baseconfig.driver.find_element_by_id('doctor_signin')
+/home/adminroot/Desktop/final-assignment/inno-doctor/testing-work/test_viewsocialhistory.py:27: DeprecationWarning: find_element_by_* commands are deprecated. Please use find_element() instead
+  checkpatient=Baseconfig.driver.find_element_by_xpath('//*[@id="navigation"]/ul/li[1]/a/p')
+/home/adminroot/Desktop/final-assignment/inno-doctor/testing-work/test_viewsocialhistory.py:30: DeprecationWarning: find_element_by_* commands are deprecated. Please use find_element() instead
+  element=Baseconfig.driver.find_element_by_name("aadhaarId")
+/home/adminroot/Desktop/final-assignment/inno-doctor/testing-work/test_viewsocialhistory.py:38: DeprecationWarning: find_element_by_* commands are deprecated. Please use find_element() instead
+  Submitbutton=Baseconfig.driver.find_element_by_css_selector("body > div.card.card-body.blur.shadow-blur.mx-3.mx-md-4.mt-n6 > div > section:nth-child(4) > div > div > div > div > ul > li:nth-child(4) > a")
+</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                Total: 1, Pass: 0, Fail: 1 -- Duration: 14.34 s
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('td').on('click', '.btn', function(e){
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                var $this = $(this);
+                var $nextRow = $this.closest('tr').next('tr');
+                $nextRow.slideToggle("fast");
+                $this.text(function(i, text){
+                    if (text === 'View') {
+                        return 'Hide';
+                    } else {
+                        return 'View';
+                    };
+                });
+            });
+        });
+    </script>
+</body>
+</html

@@ -33,48 +33,48 @@
 
         <li class="nav-item dropdown dropdown-hover mx-2">
           <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="material-icons opacity-6 me-2 text-md">dashboard</i>
+            <i class="material-icons opacity-6 me-2 text-md" name="dashboard">dashboard</i>
             Profile
             <img src="{% static 'img/down-arrow-dark.svg' %} " alt="down-arrow" class="arrow ms-auto ms-md-2">
           </a>
           <div class="dropdown-menu dropdown-menu-animation ms-n3 dropdown-md p-3 border-radius-xl mt-0 mt-lg-3" aria-labelledby="dropdownMenuPages">
             <div class="d-none d-lg-block">
-              <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
+              <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1" name="editprofile">
                 Edit Profile
               </h6>
-              <a href="{% url 'accounts:change_password' %}" class="dropdown-item border-radius-md">
+              <a href="{% url 'accounts:change_password' %}" class="dropdown-item border-radius-md" name="changepassword">
                 <span>Change Password</span>
               </a>
-              <a href="{% url 'accounts:change_profile' %}" class="dropdown-item border-radius-md">
+              <a href="{% url 'accounts:change_profile' %}" class="dropdown-item border-radius-md" name="changename">
                 <span>Change Name</span>
               </a>
-              <a href="{% url 'accounts:change_email' %}" class="dropdown-item border-radius-md">
+              <a href="{% url 'accounts:change_email' %}" class="dropdown-item border-radius-md" name="changeemail">
                 <span>Change Email</span>
               </a>
-              <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1 mt-3">
+              <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1 mt-3" name="actions">
                 Actions
               </h6>
-              <a href="{% url 'accounts:log_out' %}" class="dropdown-item border-radius-md">
+              <a href="{% url 'accounts:log_out' %}" class="dropdown-item border-radius-md" name="logout">
                 <span>Logout</span>
               </a>
             </div>
             <div class="d-lg-none">
-              <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
+              <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1" id="editprofile">
                 Edit Profile
               </h6>
-              <a href="{% url 'accounts:change_password' %}" class="dropdown-item border-radius-md">
+              <a href="{% url 'accounts:change_password' %}" class="dropdown-item border-radius-md" id="changepassword">
                 <span>Change Password</span>
               </a>
-              <a href="{% url 'accounts:change_profile' %}" class="dropdown-item border-radius-md">
+              <a href="{% url 'accounts:change_profile' %}" class="dropdown-item border-radius-md" id="changename">
                 <span>Change Name</span>
               </a>
-              <a href="{% url 'accounts:change_email' %}" class="dropdown-item border-radius-md">
+              <a href="{% url 'accounts:change_email' %}" class="dropdown-item border-radius-md" id="changeemail">
                 <span>Change Email</span>
               </a>
               <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1 mt-3">
                 Actions
               </h6>
-              <a href="{% url 'accounts:log_out' %}" class="dropdown-item border-radius-md">
+              <a href="{% url 'accounts:log_out' %}" class="dropdown-item border-radius-md" id="logout">
                 <span>Logout</span>
               </a>
             </div>
@@ -95,10 +95,10 @@
         </li>
         {% if not request.user.is_authenticated %}
         <li class="nav-item my-auto ms-3 ms-lg-0">
-          <a href="{% url 'accounts:log_in' %}" class="btn btn-sm  bg-gradient-info  mb-0 me-1 mt-2 mt-md-0">Doctor Login</a>
+          <a href="{% url 'accounts:log_in' %}" class="btn btn-sm  bg-gradient-info  mb-0 me-1 mt-2 mt-md-0" id='doctorlogin'>Doctor Login</a>
         </li>
         <li class="nav-item my-auto ms-3 ms-lg-0">
-          <a href="{% url 'patient_records:patient_record_form' %}" class="btn btn-sm  bg-gradient-primary  mb-0 me-1 mt-2 mt-md-0">Continue as Patient</a>
+          <a href="{% url 'patient_records:patient_record_form' %}" class="btn btn-sm  bg-gradient-primary  mb-0 me-1 mt-2 mt-md-0" id="continueaspatient">Continue as Patient</a>
         </li>
         {% endif %}
 
