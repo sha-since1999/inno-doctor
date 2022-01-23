@@ -2,7 +2,7 @@ name: Deploy to EBS
 
 on:
   push:
-    branches: [ main ]
+    branches: [ deployment ]
   pull_request:
     branches: [ main ]
   workflow_dispatch:
