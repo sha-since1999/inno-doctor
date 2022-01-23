@@ -2,33 +2,37 @@
 
 {% load bootstrap4 %}
 {% load i18n %}
+{% load widget_tweaks %}
 
 {% block content %}
 
-<div class="container" style="width:50%; padding-top: 10px; border-radius: 25px; border: 2px solid black; ">
-
-
-    <h4 style="text-align: center;">{% trans 'Log in' %}</h4>
-
-    <form method="post">
-
+<div class="container">
+    <form role="form" class="text-start" method="post">
         {% csrf_token %}
-        {% bootstrap_form form %}
-
-        <button class="btn btn-primary">{% trans 'Log in' %}</button>
-
+        <div class="input-group input-group-dynamic my-3">
+            <label class="form-label">Email</label>
+            {% render_field form.email class="form-control" type="email" %}
+        </div>
+        <div class="input-group input-group-dynamic mb-3">
+            <label class="form-label">Password</label>
+            {% render_field form.password class="form-control" type="password" %}
+        </div>
+        <div class="form-check form-switch d-flex align-items-center mb-3">
+            {% render_field form.remember_me class="form-check-input" type="checkbox" id="rememberMe" %}
+            <label class="form-check-label mb-0 ms-2" for="rememberMe">Remember me</label>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn bg-gradient-info w-100 my-4 mb-2" id="doctor_signin">Sign in</button>
+        </div>
+        <p class="mt-4 text-sm text-center">
+            Don't have an account?
+            <a href="{% url 'accounts:sign_up' %}" class="text-primary text-gradient font-weight-bold">Sign up</a>
+        </p>
+        <p class="text-xs text-center">
+            <a href="% url 'accounts:restore_password' %}" class="text-info text-gradient font-weight-bold mx-2">Forgot Password?</a>
+            <a href="{% url 'accounts:remind_username' %}" class="text-info text-gradient font-weight-bold mx-2">Forgot Username?</a>
+            <a href="{% url 'accounts:resend_activation_code' %}" class="text-info text-gradient font-weight-bold mx-2">Resend Activation Code?</a>
+        </p>
     </form>
-
-    <hr>
-
-   
-          {% comment %} <button class="btn btn-primary my-1 small text-muted">  <a href="{% url 'accounts:restore_password' %}" style="color: white">{% trans 'Forgot your password?' %}</a></button> <br/>
-       
-            <button class="btn btn-primary"><a href="{% url 'accounts:remind_username' %}" style="color: white">{% trans 'Forgot your username?' %}</a></button><br/>
-       
-            <button class="btn btn-primary my-1 mb-3"> <a href="{% url 'accounts:resend_activation_code' %}" style="color: white">{% trans 'Resend activation code' %}</a></button> {% endcomment %}
-            <a class="text-muted" href="{% url 'accounts:restore_password' %}"> {% trans 'Forgot your password?' %}</a><br/>
-            <a class="text-muted" href="{% url 'accounts:remind_username' %}"> {% trans 'Forgot your username?' %}</a><br/>
-            <a class="text-muted" href="{% url 'accounts:resend_activation_code' %}"> {% trans 'Resend activation code' %}</a><br/>
-</div>    
+</div>
 {% endblock %}

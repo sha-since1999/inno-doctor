@@ -3,57 +3,103 @@
 {% load bootstrap4 %}
 {% load i18n %}
 
-{% block title %}patient-vital-sign-view{% endblock title %}
 {% block content %}
 
-<div class="container" style="width:50%; margin-top: 5%; padding-top: 10px; border-radius: 25px; border: 2px solid black; margin-bottom:5%;  ">
-
-<div class="container-fluid">
-     <a type="button" class="btn btn-danger" href="/patient_records/patient-detail/{{patient.aadhaarId}}">🔙</a><h2 class="d-inline align-top">Patient Vital Sign View </h2> 
- <br></br>
- <div>
-     <div class= "text-*-center small"  >
-         <div class="container-fluid">
-             <table class="table table-striped table-responsive fixed-table-body">
-                 <thead class="center-block">
-                     <tr>
-
-                         <th scope="col">body_weight</th>
-                         <th scope="col">height</th>
-                         <th scope="col">respiration_rate</th>
-                         <th scope="col">pulse_rate</th> 
-                         <th scope="col">body_temperature</th> 
-                         <th scope="col">head_circumference</th> 
-                         <th scope="col">pulse_oximetry</th> 
-                         <th scope="col">body_mass_index</th> 
-                         <th scope="col">blood_pressure_systolic</th> 
-                         <th scope="col">blood_pressure_diastolic</th> 
-
-
-                        </tr>
-                    </tr>
-                </thead>
+<div class="container my-2 p-2">
+    <h3 class="text-center my-4">Vital Signs <a href="/patient_records/patient-vital-sign-edit/{{ patient.aadhaarId }}"><i class="fas fa-edit"></i></a></h3>
+    <div class="col-md-12 search-table-col m-4">
+        <div class="table-responsive table table-hover table-bordered results">
+            <table class="table bg-gradient-info text-white table-hover table-bordered">
                 <tbody>
                     <tr>
-                        <td scope="row">{{form.body_weight}}</td>
-                        <td scope="row">{{form.height}}</td>
-                        <td scope="row">{{form.respiration_rate}}</td>
-                        <td scope="row">{{form.pulse_rate}}</td>
-                        <td scope="row">{{form.body_temperature}}</td>
-                        <td scope="row">{{form.head_circumference}}</td>
-                        <td scope="row">{{form.pulse_oximetry}}</td>
-                        <td scope="row">{{form.body_mass_index}}</td>
-                        <td scope="row">{{form.blood_pressure_systolic}}</td>
-                        <td scope="row">{{form.blood_pressure_diastolic}}</td>
-
-                        <td> <a type="button" class="btn btn-warning" href="/patient_records/patient-vital-sign-edit/{{ patient.aadhaarId }}">Edit </a></td>
+                        <th scope="row" class="col-lg-2 text-center">Body Weight</th>
+                        <td class="text-center col-lg-3">{{form.body_weight}}</td>
                     </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                </div>
+                    <tr>
+                        <th scope="row" class="col-lg-2 text-center">Height</th>
+                        <td class="text-center col-lg-3">{{form.height}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="col-lg-2 text-center">Respiration Rate</th>
+                        <td class="text-center col-lg-3">{{form.respiration_rate}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="col-lg-2 text-center">Pulse Rate</th>
+                        <td class="text-center col-lg-3">{{form.pulse_rate}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="col-lg-2 text-center">Body Temperatur</th>
+                        <td class="text-center col-lg-3">{{form.body_temperature}}</td>
+                    </tr><tr>
+                        <th scope="row" class="col-lg-2 text-center">Head Circumference</th>
+                        <td class="text-center col-lg-3">{{form.head_circumference}}</td>
+                    </tr><tr>
+                        <th scope="row" class="col-lg-2 text-center">Pulse Oximetry</th>
+                        <td class="text-center col-lg-3">{{form.pulse_oximetry}}</td>
+                    </tr><tr>
+                        <th scope="row" class="col-lg-2 text-center">Body Mass Index</th>
+                        <td class="text-center col-lg-3">{{form.body_mass_index}}</td>
+                    </tr><tr>
+                        <th scope="row" class="col-lg-2 text-center">Blood Pressure Systolic</th>
+                        <td class="text-center col-lg-3">{{form.blood_pressure_systolic}}</td>
+                    </tr><tr>
+                        <th scope="row" class="col-lg-2 text-center">Blood Pressure Diastolic</th>
+                        <td class="text-center col-lg-3">{{form.blood_pressure_diastolic}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        
+    </div>
 </div>
-</div>
+
+<!--<div class="container" style="width:50%; margin-top: 5%; padding-top: 10px; border-radius: 25px; border: 2px solid black; margin-bottom:5%;  ">-->
+
+<!--<div class="container-fluid">-->
+<!--     <a type="button" class="btn btn-danger" href="/patient_records/patient-detail/{{patient.aadhaarId}}">🔙</a><h2 class="d-inline align-top">Patient Vital Sign View </h2> -->
+<!-- <br></br>-->
+<!-- <div>-->
+<!--     <div class= "text-*-center small"  >-->
+<!--         <div class="container-fluid">-->
+<!--             <table class="table table-striped table-responsive fixed-table-body">-->
+<!--                 <thead class="center-block">-->
+<!--                     <tr>-->
+
+<!--                         <th scope="col">body_weight</th>-->
+<!--                         <th scope="col">height</th>-->
+<!--                         <th scope="col">respiration_rate</th>-->
+<!--                         <th scope="col">pulse_rate</th> -->
+<!--                         <th scope="col">body_temperature</th> -->
+<!--                         <th scope="col">head_circumference</th> -->
+<!--                         <th scope="col">pulse_oximetry</th> -->
+<!--                         <th scope="col">body_mass_index</th> -->
+<!--                         <th scope="col">blood_pressure_systolic</th> -->
+<!--                         <th scope="col">blood_pressure_diastolic</th> -->
+
+
+<!--                        </tr>-->
+<!--                    </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--                    <tr>-->
+<!--                        <td scope="row">{{form.body_weight}}</td>-->
+<!--                        <td scope="row">{{form.height}}</td>-->
+<!--                        <td scope="row">{{form.respiration_rate}}</td>-->
+<!--                        <td scope="row">{{form.pulse_rate}}</td>-->
+<!--                        <td scope="row">{{form.body_temperature}}</td>-->
+<!--                        <td scope="row">{{form.head_circumference}}</td>-->
+<!--                        <td scope="row">{{form.pulse_oximetry}}</td>-->
+<!--                        <td scope="row">{{form.body_mass_index}}</td>-->
+<!--                        <td scope="row">{{form.blood_pressure_systolic}}</td>-->
+<!--                        <td scope="row">{{form.blood_pressure_diastolic}}</td>-->
+
+<!--                        <td> <a type="button" class="btn btn-warning" href="/patient_records/patient-vital-sign-edit/{{ patient.aadhaarId }}">Edit </a></td>-->
+<!--                    </tr>-->
+<!--                                </tbody>-->
+<!--                            </table>-->
+<!--                        </div>-->
+<!--                </div>-->
+<!--        </div>-->
+<!--        -->
+<!--</div>-->
+<!--</div>-->
 {% endblock %}

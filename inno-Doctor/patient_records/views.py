@@ -218,7 +218,7 @@ def patientSocialHistoryUpdate(request , id):
                 return  redirect('/patient_records/patient-detail/{}'.format(id)) 
             except:  
                 messages.error(request, 'failed to Update Social History list')
-    return render(request,'patient_records/genralForm.html',{'form':form,'patient' :patient})  
+    return render(request,'patient_records/patient-social-history-list.html',{'form':form,'patient' :patient})
 
 def patientVitalSignUpdate(request , id):
     patient= Patient.objects.get(aadhaarId=id)
@@ -237,7 +237,7 @@ def patientVitalSignUpdate(request , id):
             except:  
                 messages.error(request, 'failed to update vital sign')
                 
-    return render(request,'patient_records/genralForm.html',{'form':form,'patient' :patient})  
+    return render(request,'patient_records/patient-vital-sign.html',{'form':form,'patient' :patient})
 
 
 # def medicationStatementCreate(request,id ):
