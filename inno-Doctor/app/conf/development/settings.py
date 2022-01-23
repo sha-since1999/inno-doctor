@@ -10,7 +10,7 @@ CONTENT_DIR = os.path.join(BASE_DIR, 'content')
 
 SECRET_KEY = 'NhfTvayqggTBPswCXXhWaN69HuglgZIkM'
 
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['*','0.0.0.0']
 
 SITE_ID = 1
@@ -83,33 +83,26 @@ EMAIL_HOST_USER=os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = os.environ.get('EMAIL_PORT') or 465
 EMAIL_USE_TLS = True
-
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER=os.environ.get('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = False
 # EMAIL_USE_SSL = True
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-TIME_ZONE = 'UTC'
-USE_TZ = True
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'HOST': 'localhost', # set in docker-compose.yml
-        'PORT': 5432, # default postgres port
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+TIME_ZONE = 'UTC'
+USE_TZ = True
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'postgres',
+#         'USER': 'postgres',
+#         'HOST': 'db', # set in docker-compose.yml
+#         'PORT': 5432, # default postgres port
+#     }
+# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {

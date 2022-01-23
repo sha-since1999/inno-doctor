@@ -129,8 +129,9 @@ def PatientList(request):
         args = {'medication_items': medication_items }
         return render(request, "patient_records/patient_record_list.html", args)
     else:
-        messages.error(request, 'Patient is not registered')
-        return render(request, "patient_records/patient_record_form.html")
+        # messages.error(request, 'Patient is not registered')
+        # return render(request, "patient_records/patient_record_form.html")
+        return redirect('/patient_records/patient_record_form')
 
 
 
