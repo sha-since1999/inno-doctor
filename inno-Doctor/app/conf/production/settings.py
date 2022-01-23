@@ -92,12 +92,7 @@ EMAIL_USE_TLS = True
 # EMAIL_USE_SSL = True
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+
 TIME_ZONE = 'UTC'
 USE_TZ = True
 
@@ -106,7 +101,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',
-        'HOST': 'localhost', # set in docker-compose.yml
+        'HOST': 'db', # set in docker-compose.yml
         'PORT': 5432, # default postgres port
     }
 }

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unittest Results</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="text-capitalize">Unittest Results</h2>
+                <p class='attribute'><strong>Start Time: </strong>2022-01-23 16:52:58</p>
+                <p class='attribute'><strong>Duration: </strong>7.12 s</p>
+                <p class='attribute'><strong>Summary: </strong>Total: 1, Pass: 0, Error: 1</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-md-10">
+                <table class='table table-hover table-responsive'>
+                    <thead>
+                        <tr>
+                            <th>__main__.ViewVitalSign</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class='warning'>
+                            <td class="col-xs-10">test_viewvitalsign</td>
+                            <td class="col-xs-1">
+                                <span class="label label-warning" style="display:block;width:40px;">Error</span>
+                            </td>
+                            <td class="col-xs-1">
+                                <button class="btn btn-default btn-xs">View</button>
+                            </td>
+                        </tr>
+                        <tr style="display:none;">
+                            <td class="col-xs-9" colspan="3"><p style="color:maroon;">NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="doctor_signin"]"}
+  (Session info: chrome=96.0.4664.110)
+Stacktrace:
+#0 0x56472d4cfee3 <unknown>
+#1 0x56472cf9d608 <unknown>
+#2 0x56472cfd3aa1 <unknown>
+#3 0x56472cfd3c61 <unknown>
+#4 0x56472d006714 <unknown>
+#5 0x56472cff129d <unknown>
+#6 0x56472d0043bc <unknown>
+#7 0x56472cff1163 <unknown>
+#8 0x56472cfc6bfc <unknown>
+#9 0x56472cfc7c05 <unknown>
+#10 0x56472d501baa <unknown>
+#11 0x56472d517651 <unknown>
+#12 0x56472d502b05 <unknown>
+#13 0x56472d518a68 <unknown>
+#14 0x56472d4f705f <unknown>
+#15 0x56472d533818 <unknown>
+#16 0x56472d533998 <unknown>
+#17 0x56472d54eeed <unknown>
+#18 0x7f068d051609 <unknown>
+</p><p style="color:maroon;">Traceback (most recent call last):
+  File "/home/sumant/Desktop/final_presentation/inno-doctor/test_selenium/check_vital_sign.py", line 23, in test_viewvitalsign
+    button=Baseconfig.driver.find_element_by_id('doctor_signin')
+  File "/home/sumant/Desktop/final_presentation/venv/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 472, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+  File "/home/sumant/Desktop/final_presentation/venv/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 1244, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "/home/sumant/Desktop/final_presentation/venv/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "/home/sumant/Desktop/final_presentation/venv/lib/python3.8/site-packages/selenium/webdriver/remote/errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="doctor_signin"]"}
+  (Session info: chrome=96.0.4664.110)
+Stacktrace:
+#0 0x56472d4cfee3 <unknown>
+#1 0x56472cf9d608 <unknown>
+#2 0x56472cfd3aa1 <unknown>
+#3 0x56472cfd3c61 <unknown>
+#4 0x56472d006714 <unknown>
+#5 0x56472cff129d <unknown>
+#6 0x56472d0043bc <unknown>
+#7 0x56472cff1163 <unknown>
+#8 0x56472cfc6bfc <unknown>
+#9 0x56472cfc7c05 <unknown>
+#10 0x56472d501baa <unknown>
+#11 0x56472d517651 <unknown>
+#12 0x56472d502b05 <unknown>
+#13 0x56472d518a68 <unknown>
+#14 0x56472d4f705f <unknown>
+#15 0x56472d533818 <unknown>
+#16 0x56472d533998 <unknown>
+#17 0x56472d54eeed <unknown>
+#18 0x7f068d051609 <unknown>
+
+/home/sumant/Desktop/final_presentation/inno-doctor/test_selenium/check_vital_sign.py:17: DeprecationWarning: find_element_by_* commands are deprecated. Please use find_element() instead
+  Baseconfig.driver.find_element_by_xpath('//*[@id="navigation"]/ul/li[3]/a').click()
+/home/sumant/Desktop/final_presentation/inno-doctor/test_selenium/check_vital_sign.py:18: DeprecationWarning: find_element_by_* commands are deprecated. Please use find_element() instead
+  Baseconfig.driver.find_element_by_id('id_email').send_keys(Configuration.USER_EMAIL)
+/home/sumant/Desktop/final_presentation/inno-doctor/test_selenium/check_vital_sign.py:20: DeprecationWarning: find_element_by_* commands are deprecated. Please use find_element() instead
+  Baseconfig.driver.find_element_by_id('id_password').send_keys(Configuration.USER_PASSWORD)
+/home/sumant/Desktop/final_presentation/inno-doctor/test_selenium/check_vital_sign.py:21: DeprecationWarning: find_element_by_* commands are deprecated. Please use find_element() instead
+  Baseconfig.driver.find_element_by_xpath('//*[@id="rememberMe"]').click()
+/home/sumant/Desktop/final_presentation/inno-doctor/test_selenium/check_vital_sign.py:23: DeprecationWarning: find_element_by_* commands are deprecated. Please use find_element() instead
+  button=Baseconfig.driver.find_element_by_id('doctor_signin')
+</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                Total: 1, Pass: 0, Error: 1 -- Duration: 7.12 s
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('td').on('click', '.btn', function(e){
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                var $this = $(this);
+                var $nextRow = $this.closest('tr').next('tr');
+                $nextRow.slideToggle("fast");
+                $this.text(function(i, text){
+                    if (text === 'View') {
+                        return 'Hide';
+                    } else {
+                        return 'View';
+                    };
+                });
+            });
+        });
+    </script>
+</body>
+</html

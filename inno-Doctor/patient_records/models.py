@@ -128,4 +128,3 @@ class MedicationItem(models.Model):
     dose_specific_timing = models.TimeField()
     route = models.CharField(max_length=100, null=False, blank=False)
     body_site = models.CharField(max_length=100, null=False, blank=False)
-   

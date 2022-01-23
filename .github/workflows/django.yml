@@ -5,6 +5,7 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -28,4 +29,4 @@ jobs:
     - name: Run Tests
       run: |
         cd inno-Doctor
-        python manage.py test
+        python manage.py test --no-input
