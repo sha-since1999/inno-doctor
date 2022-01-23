@@ -1,4 +1,4 @@
-name: CI Django Tests
+name: CI Django Tests[postgres test]
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -13,7 +13,10 @@ jobs:
       postgres_main:
         image: postgres:12
         env:
-          POSTGRES_HOST_AUTH_METHOD: trust
+#           POSTGRES_USER: postgres
+          POSTGRES_HOST_AUTH_METHOD : trust
+#           POSTGRES_PASSWORD: postgres
+#           POSTGRES_DB: djtesting
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
@@ -22,27 +25,15 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Setup Python 3.6
+      - name: Setup Python 3.9
         uses: actions/setup-python@v2
         with:
-          python-version: 3.6
+          python-version: 3.9
       - name: Install requirements
         run: |
           pip install -r requirements.txt
-#      - name: Run Tests
-#        env:
-#          POSTGRES_USER: postgres
-#          POSTGRES_PASSWORD: postgres
-#          POSTGRES_DB: djtesting
-#          POSTGRES_PORT: 5432
-#        run: |
-#          python manage.py test
-
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       - name: Run Tests
+#         env:
         run: |
-            cd inno-Doctor
-            python manage.py test
+          cd inno-Doctor
+          python manage.py test --no-input
