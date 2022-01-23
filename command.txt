@@ -10,3 +10,20 @@ docker-compose up
 docker build -t inno-doctor-repo .
 docker run -dit -p 8000:8000 inno-doctor-repo
 docker run --env VAR1 --env VAR2 ubuntu env | grep VAR
+
+docker-compose up -d --build
+
+docker-compose exec web python manage.py migrate
+docker-compose exec web python manage.py createsuperuser
+
+
+Procedure[ to debug the container and images]
+
+ Stop the container(s) using the following command:
+docker-compose down
+ Delete all containers using the following command:
+docker rm -f $(docker ps -a -q)
+ Delete all volumes using the following command:
+docker volume rm $(docker volume ls -q)
+ Restart the containers using the following command:
+docker-compose up -d

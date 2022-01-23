@@ -1,6 +1,6 @@
 from statistics import mode
 from django.db import models
-# from django.urls import reverse
+from django.urls import reverse
 
 
 # Create your models here.
@@ -10,11 +10,11 @@ class Patient(models.Model):
         ("F", "Female"),
         ("O", "Other")
     )
+
     aadhaarId = models.CharField(primary_key=True, max_length=12, help_text= "12 digit aadhar no" )
     name = models.CharField(max_length=20)
     date_of_birth = models.DateField(max_length=8, help_text="YYYY-MM-DD")
     gender = models.CharField(choices=GENDER_CHOICES, max_length=1)
-
     
     # Patients  will be sorted using this field
     last_updated_on = models.DateTimeField(auto_now=True)

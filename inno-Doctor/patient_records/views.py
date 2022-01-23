@@ -54,8 +54,8 @@ def eprescriptionList(request, id):
 def patientDetails(request):
 
     if request.method == "POST":  
-        id= request.POST['aadhaarId']
         try:
+            id= request.POST['aadhaarId']
             patient= get_object_or_404(Patient,aadhaarId=id)
             return render(request,"patient_records/patient-details.html",context={'patient':patient})  
         except:
@@ -319,17 +319,19 @@ def patientProblemListView(request , id):
     return render(request,'patient_records/patient-problem-list-view.html',{'problemLists':forms,'patient' :patient})  
 
 def patientSocialHistoryView(request , id):
-    patient= Patient.objects.get(aadhaarId=id)
     try:
+        patient= Patient.objects.get(aadhaarId=id)
         form = SocialHistory.objects.get(patient=patient)
     except:
+        messages.error(request,"No Social History found ! ")
         return redirect(f'/patient_records/patient-social-history-create/{id}')
     return render(request,'patient_records/patient-social-history-view.html',{'form':form,'patient' :patient})
 
 def patientVitalSignView(request , id):
-    patient= Patient.objects.get(aadhaarId=id)
     try:
-        form= VitalSign.objects.get(patient=patient)
+        patient= Patient.objects.get(aadhaarId=id)
+        form= get_object_or_404(VitalSign,patient=patient)
     except:
-        return redirect(f'/patient_records/patient-vital-sign-create/{id}')
+        messages.error(request,"No vital sign found ! ")
+        return redirect(f'/patient_records/patient-detail/{id}')
     return render(request,'patient_records/patient-vital-sign-view.html',{'form':form,'patient' :patient})
