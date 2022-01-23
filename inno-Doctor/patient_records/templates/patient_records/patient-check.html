@@ -40,8 +40,8 @@
                     </tr>
                     {% for patient in patients %}
                     <tr>
+                      <td class="text-center">{{ patient.name }}</td>
                         <td class="text-center">{{ patient.aadhaarId}}</td>
-                        <td class="text-center">{{ patient.name }}</td>
                         <td class="text-center">{{ patient.date_of_birth }}</td>
                         <td class="text-center">{{ patient.gender }}</td>
                         <td class="text-center">

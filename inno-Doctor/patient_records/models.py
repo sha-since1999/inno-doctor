@@ -17,12 +17,18 @@ class Patient(models.Model):
     gender = models.CharField(choices=GENDER_CHOICES, max_length=1)
     
     # Patients  will be sorted using this field
-    last_updated_on = models.DateTimeField(auto_now=True)
+    last_updated_on = models.IntegerField(default=1)
     
     class Meta:
         verbose_name = "patient"
         verbose_name_plural = "patients"
         ordering = ["-last_updated_on"]
+    # def save(self):
+    #     self.last_updated_on = Patient.objects.count()
+    #     super(Patient, self).save()
+    def save(self, *args, **kwargs):
+        self.last_updated_on = Patient.objects.count()
+        super(Patient, self).save(*args, **kwargs)
 
 class ProblemList(models.Model):
     SEVERITY = (
