@@ -13,10 +13,8 @@ jobs:
       postgres_main:
         image: postgres:12
         env:
-#           POSTGRES_USER: postgres
-          POSTGRES_HOST_AUTH_METHOD : trust
-#           POSTGRES_PASSWORD: postgres
-#           POSTGRES_DB: djtesting
+          POSTGRES_HOST_AUTH_METHOD: trust
+
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
@@ -37,3 +35,4 @@ jobs:
         run: |
           cd inno-Doctor
           python manage.py test --no-input
+

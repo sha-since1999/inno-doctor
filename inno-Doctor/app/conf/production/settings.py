@@ -10,7 +10,7 @@ CONTENT_DIR = os.path.join(BASE_DIR, 'content')
 
 SECRET_KEY = 'NhfTvayqggTBPswCXXhWaN69HuglgZIkM'
 
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['*','0.0.0.0']
 
 SITE_ID = 1
@@ -106,7 +106,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',
-        'HOST': 'db', # set in docker-compose.yml
+        'HOST': 'localhost', # set in docker-compose.yml
         'PORT': 5432, # default postgres port
     }
 }
