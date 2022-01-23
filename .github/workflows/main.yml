@@ -13,9 +13,10 @@ jobs:
       postgres_main:
         image: postgres:12
         env:
+          POSTGRES_HOST_AUTH_METHOD : trust
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: djtesting
+          POSTGRES_DB: db
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
@@ -35,7 +36,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: djtesting
+          POSTGRES_DB: db
           POSTGRES_PORT: 5432
         run: |
           cd inno-Doctor
