@@ -27,7 +27,7 @@ jobs:
       - name: Setup Python 3.8
         uses: actions/setup-python@v2
         with:
-          python-version: 3.6
+          python-version: 3.9
       - name: Install requirements
         run: |
           pip install -r requirements.txt
@@ -38,4 +38,5 @@ jobs:
           POSTGRES_DB: db
           POSTGRES_PORT: 5432
         run: |
+          cd inno-Doctor
           python manage.py test
