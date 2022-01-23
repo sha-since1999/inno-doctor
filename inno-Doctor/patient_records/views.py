@@ -1,21 +1,14 @@
-from email.message import Message
-
 from django.contrib.auth.decorators import login_required
-from django.http.response import HttpResponse
 from django.shortcuts import render, get_object_or_404, render_to_response
-from django.contrib import messages
-from django.views.generic.detail import DetailView
-from django.urls import reverse
 
 from django.shortcuts import redirect
-from .models import Patient
 
 from django.shortcuts import render
 
 from .forms import (MedicationItemForm, PatientForm,
                     SocialHistoryForm, VitalSignForm,
                     ProblemListForm,
-                    MedicationStatementForm, MedicationStatementFormSet,
+                    MedicationStatementFormSet,
                     )
 
 from .models import (MedicationItem, Patient,
@@ -23,7 +16,6 @@ from .models import (MedicationItem, Patient,
                      VitalSign, SocialHistory, MedicationStatement, )
 
 from django.contrib import messages
-from django.forms.models import inlineformset_factory
 
 
 # Create your views here.
@@ -46,9 +38,10 @@ def eprescriptionList(request, id):
         request, "patient_records/eprescription.html", context = context
         )
 
-    return redirect('/patient_records/patient-detail/{}'.format(id))
+    # return redirect('/patient_records/patient-detail/{}'.format(id))
 
 
+@login_required()
 def patientDetails(request):
     if request.method == "POST":
         try:
