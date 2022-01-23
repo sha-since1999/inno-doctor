@@ -16,7 +16,7 @@ class PatientTestViews(TestCase):
             aadhaarId          = 123412341234,
             name                 = 'unknown',
             date_of_birth    = '2020-01-10',
-            gender               = 'Male',
+            gender               = 'M',
         )
         
     def test_patient_details_POST_view(self):

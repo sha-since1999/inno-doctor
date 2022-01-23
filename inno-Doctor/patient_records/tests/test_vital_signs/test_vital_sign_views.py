@@ -13,13 +13,13 @@ class VitalSignTestViews(TestCase):
             aadhaarId          = '123412341234',
             name                 = 'unknown',
             date_of_birth    = '2020-01-10',
-            gender               = 'Male',
+            gender               = 'M',
             )
         self.patient2= Patient.objects.create( 
             aadhaarId          = '98475638475',
             name                 = 'unknown2',
             date_of_birth    = '2020-01-10',
-            gender               = 'Female',
+            gender               = 'F',
             )
         self. vital_sign1  = VitalSign.objects.create(
                 patient = self.patient1,
