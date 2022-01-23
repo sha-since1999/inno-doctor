@@ -33,11 +33,7 @@ jobs:
         run: |
           pip install -r requirements.txt
       - name: Run Tests
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: db
-          POSTGRES_PORT: 5432
+        # env:
         run: |
           cd inno-Doctor
-          python manage.py test
+          python manage.py test --no-input
