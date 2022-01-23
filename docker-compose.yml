@@ -11,7 +11,7 @@ services:
     volumes:
       - ./inno-Doctor:/inno-doctor
     ports:
-      - 80:8000
+      - 8000:8000
     image: inno-doctor:django
     environment:
       - IS_PRODUCTION=${IS_PRODUCTION}
@@ -21,7 +21,7 @@ services:
       - EMAIL_PORT=${EMAIL_PORT}
     container_name: django_container
 
-#    command: python manage.py runserver 0.0.0.0:8000
+    # command: python manage.py runserver 0.0.0.0:8000
     depends_on:
         - db
 

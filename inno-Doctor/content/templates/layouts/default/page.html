@@ -44,19 +44,9 @@
     </div>
   </div>
 
-<!--  {% if messages %}-->
-<!--      <div class="container position-fixed top-20">-->
-<!--            <div class="row">-->
-<!--              {% for message in messages %}-->
-<!--                <div class="alert alert-info alert-dismissible fade show text-white font-weight-bold text-center mx-auto h-1" role="alert">-->
-<!--                  {{ message }}-->
-<!--                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">x</button>-->
-<!--                </div>-->
-<!--              {% endfor %}-->
-<!--            </div>-->
-<!--  {% endif %}-->
 
   {% block header %}
+  
     <header class="header-2">
       <div class="page-header min-vh-75 relative" style="background-image: url('{% static "img/b.jpg" %}')">
           <span class="mask bg-gradient-info opacity-6"></span>
@@ -82,6 +72,18 @@
   {% endblock %}
 
   <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+    <div>  {% if messages %}
+      <div class="container position-fixed top-20">
+            <div class="row">
+              {% for message in messages %}
+                <div class="alert alert-info alert-dismissible fade show text-white font-weight-bold text-center mx-auto h-1" role="alert">
+                  {{ message }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">x</button>
+                </div>
+              {% endfor %}
+    </div>
+  {% endif %}
+</div>
     {% block content %}
     {% endblock %}
   </div>
