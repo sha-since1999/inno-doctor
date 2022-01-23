@@ -1,6 +1,5 @@
 from django.urls import path
 from . import views
-from .models import Patient
 app_name = 'patient_records'
 
 urlpatterns = [
@@ -30,7 +29,3 @@ urlpatterns = [
     path('patient_record_list/', views.PatientList, name='patient_record_list'),
     
 ]
-
-
-
-
