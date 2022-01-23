@@ -11,14 +11,17 @@ services:
     volumes:
       - ./inno-Doctor:/inno-doctor
     ports:
-      - 8000:8000
-    image: inno-dcotor:django
-    # environment: 
-    #   - EMAIL_HOST_USER  :  ${EMAIL_HOST_USER}
-    #   - EMAIL_HOST_PASSWORD :  ${EMAIL_HOST_PASSWORD}
+      - 80:8000
+    image: inno-doctor:django
+    environment:
+      - IS_PRODUCTION=${IS_PRODUCTION}
+      - EMAIL_HOST=${EMAIL_HOST}
+      - EMAIL_HOST_USER=${EMAIL_HOST_USER}
+      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
+      - EMAIL_PORT=${EMAIL_PORT}
     container_name: django_container
 
-    command: python manage.py runserver 0.0.0.0:8000
+#    command: python manage.py runserver 0.0.0.0:8000
     depends_on:
         - db
 
