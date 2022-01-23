@@ -1,0 +1,144 @@
+{
+    "ipcMode": null,
+    "executionRoleArn": "arn:aws:iam::052250720528:role/ecsTaskExecutionRole",
+    "containerDefinitions": [
+      {
+        "dnsSearchDomains": null,
+        "environmentFiles": null,
+        "logConfiguration": null,
+        "entryPoint": null,
+        "portMappings": [
+          {
+            "hostPort": 8000,
+            "protocol": "tcp",
+            "containerPort": 8000
+          }
+        ],
+        "command": null,
+        "linuxParameters": null,
+        "cpu": 0,
+        "environment": [
+          {
+            "name": "DB_HOST",
+            "value":  "<DB_HOST>" 
+          },
+          {
+            "name": "DB_NAME",
+            "value": ""
+          },
+          {
+            "name": "DB_PASSWORD",
+            "value": "<DB_PASSWORD>"
+          },
+          {
+            "name": "DB_USER",
+            "value": ""
+          },
+          {
+            "name": "EMAIL_HOST_PASSWORD",
+            "value": "<EMAIL_HOST_PASSWORD>"
+          },
+          {
+            "name": "EMAIL_HOST_USER",
+            "value": "<EMAIL_HOST_USER>"
+          }
+        ],
+        "resourceRequirements": null,
+        "ulimits": null,
+        "dnsServers": null,
+        "mountPoints": [],
+        "workingDirectory": null,
+        "secrets": null,
+        "dockerSecurityOptions": null,
+        "memory": null,
+        "memoryReservation": 500,
+        "volumesFrom": [],
+        "stopTimeout": null,
+        "image": "052250720528.dkr.ecr.us-east-1.amazonaws.com/inno-dcotor-ecr:latest",
+        "startTimeout": null,
+        "firelensConfiguration": null,
+        "dependsOn": null,
+        "disableNetworking": null,
+        "interactive": null,
+        "healthCheck": {
+          "retries": 3,
+          "command": [
+            "python manage.py runserver 0.0.0.0:8000"
+          ],
+          "timeout": 5,
+          "interval": 30,
+          "startPeriod": null
+        },
+        "essential": true,
+        "links": null,
+        "hostname": null,
+        "extraHosts": null,
+        "pseudoTerminal": null,
+        "user": null,
+        "readonlyRootFilesystem": null,
+        "dockerLabels": null,
+        "systemControls": null,
+        "privileged": null,
+        "name": "inno-doctor-container"
+      }
+    ],
+    "placementConstraints": [],
+    "memory": null,
+    "taskRoleArn": "arn:aws:iam::052250720528:role/ecsTaskExecutionRole",
+    "compatibilities": [
+      "EXTERNAL",
+      "EC2"
+    ],
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:052250720528:task-definition/inno-doctor-task:1",
+    "family": "inno-doctor-task",
+    "requiresAttributes": [
+      {
+        "targetId": null,
+        "targetType": null,
+        "value": null,
+        "name": "com.amazonaws.ecs.capability.docker-remote-api.1.24"
+      },
+      {
+        "targetId": null,
+        "targetType": null,
+        "value": null,
+        "name": "com.amazonaws.ecs.capability.ecr-auth"
+      },
+      {
+        "targetId": null,
+        "targetType": null,
+        "value": null,
+        "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
+      },
+      {
+        "targetId": null,
+        "targetType": null,
+        "value": null,
+        "name": "com.amazonaws.ecs.capability.task-iam-role"
+      },
+      {
+        "targetId": null,
+        "targetType": null,
+        "value": null,
+        "name": "ecs.capability.container-health-check"
+      },
+      {
+        "targetId": null,
+        "targetType": null,
+        "value": null,
+        "name": "ecs.capability.execution-role-ecr-pull"
+      }
+    ],
+    "pidMode": null,
+    "requiresCompatibilities": [
+      "EC2"
+    ],
+    "networkMode": null,
+    "runtimePlatform": null,
+    "cpu": null,
+    "revision": 1,
+    "status": "ACTIVE",
+    "inferenceAccelerators": null,
+    "proxyConfiguration": null,
+    "volumes": []
+  }

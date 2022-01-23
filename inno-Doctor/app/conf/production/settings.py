@@ -88,16 +88,18 @@ EMAIL_USE_TLS = True
 TIME_ZONE = 'UTC'
 USE_TZ = True
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
+        'NAME': 'rsdb',
         'USER': 'postgres',
-        'HOST': 'db', # set in docker-compose.yml
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),  # set in docker-compose.yml
         'PORT': 5432, # default postgres port
+        # 'DATABASE_URL' : 'postgres://postgres:postgres@db:5432/postgres',
     }
 }
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',

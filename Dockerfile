@@ -6,7 +6,4 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY ./inno-Doctor .
 EXPOSE 8000
-COPY entrypoint.sh .
-ADD entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod 777 /usr/local/bin/entrypoint.sh
-CMD /usr/local/bin/entrypoint.sh
+CMD ./entrypoint.sh .
