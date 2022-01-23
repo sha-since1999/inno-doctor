@@ -35,4 +35,5 @@ jobs:
       - name: Run Tests
 #         env:
         run: |
+          cd inno-Doctor
           python manage.py test
