@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unittest Results</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="text-capitalize">Unittest Results</h2>
+                <p class='attribute'><strong>Start Time: </strong>2022-01-23 15:06:46</p>
+                <p class='attribute'><strong>Duration: </strong>2.21 s</p>
+                <p class='attribute'><strong>Summary: </strong>Total: 2, Pass: 0, Error: 2</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-md-10">
+                <table class='table table-hover table-responsive'>
+                    <thead>
+                        <tr>
+                            <th>__main__.CheckPatientEps</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class='warning'>
+                            <td class="col-xs-10">test_check_patient_eps</td>
+                            <td class="col-xs-1">
+                                <span class="label label-warning" style="display:block;width:40px;">Error</span>
+                            </td>
+                            <td class="col-xs-1">
+                                <button class="btn btn-default btn-xs">View</button>
+                            </td>
+                        </tr>
+                        <tr style="display:none;">
+                            <td class="col-xs-9" colspan="3"><p style="color:maroon;">NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="navigation"]/ul/li[4]/a"}
+  (Session info: chrome=97.0.4692.71)
+Stacktrace:
+#0 0x55704721eee3 <unknown>
+#1 0x557046cec608 <unknown>
+#2 0x557046d22aa1 <unknown>
+#3 0x557046d22c61 <unknown>
+#4 0x557046d55714 <unknown>
+#5 0x557046d4029d <unknown>
+#6 0x557046d533bc <unknown>
+#7 0x557046d40163 <unknown>
+#8 0x557046d15bfc <unknown>
+#9 0x557046d16c05 <unknown>
+#10 0x557047250baa <unknown>
+#11 0x557047266651 <unknown>
+#12 0x557047251b05 <unknown>
+#13 0x557047267a68 <unknown>
+#14 0x55704724605f <unknown>
+#15 0x557047282818 <unknown>
+#16 0x557047282998 <unknown>
+#17 0x55704729deed <unknown>
+#18 0x7f7d9cebb609 <unknown>
+</p><p style="color:maroon;">Traceback (most recent call last):
+  File "/home/adminroot/Desktop/final-assignment/inno-doctor/testing-work/patienteps_test.py", line 14, in test_check_patient_eps
+    Baseconfig.driver.find_element_by_xpath('//*[@id="navigation"]/ul/li[4]/a').click()
+  File "/home/adminroot/Desktop/final-assignment/inno-doctor/venv/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 520, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "/home/adminroot/Desktop/final-assignment/inno-doctor/venv/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 1244, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "/home/adminroot/Desktop/final-assignment/inno-doctor/venv/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "/home/adminroot/Desktop/final-assignment/inno-doctor/venv/lib/python3.8/site-packages/selenium/webdriver/remote/errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="navigation"]/ul/li[4]/a"}
+  (Session info: chrome=97.0.4692.71)
+Stacktrace:
+#0 0x55704721eee3 <unknown>
+#1 0x557046cec608 <unknown>
+#2 0x557046d22aa1 <unknown>
+#3 0x557046d22c61 <unknown>
+#4 0x557046d55714 <unknown>
+#5 0x557046d4029d <unknown>
+#6 0x557046d533bc <unknown>
+#7 0x557046d40163 <unknown>
+#8 0x557046d15bfc <unknown>
+#9 0x557046d16c05 <unknown>
+#10 0x557047250baa <unknown>
+#11 0x557047266651 <unknown>
+#12 0x557047251b05 <unknown>
+#13 0x557047267a68 <unknown>
+#14 0x55704724605f <unknown>
+#15 0x557047282818 <unknown>
+#16 0x557047282998 <unknown>
+#17 0x55704729deed <unknown>
+#18 0x7f7d9cebb609 <unknown>
+
+/home/adminroot/Desktop/final-assignment/inno-doctor/testing-work/patienteps_test.py:14: DeprecationWarning: find_element_by_* commands are deprecated. Please use find_element() instead
+  Baseconfig.driver.find_element_by_xpath('//*[@id="navigation"]/ul/li[4]/a').click()
+</p>
+                            </td>
+                        </tr>
+                        <tr class='warning'>
+                            <td class="col-xs-10">test_check_patient_eps_invalid</td>
+                            <td class="col-xs-1">
+                                <span class="label label-warning" style="display:block;width:40px;">Error</span>
+                            </td>
+                            <td class="col-xs-1">
+                                <button class="btn btn-default btn-xs">View</button>
+                            </td>
+                        </tr>
+                        <tr style="display:none;">
+                            <td class="col-xs-9" colspan="3"><p style="color:maroon;">NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="navigation"]/ul/li[4]/a"}
+  (Session info: chrome=97.0.4692.71)
+Stacktrace:
+#0 0x55704721eee3 <unknown>
+#1 0x557046cec608 <unknown>
+#2 0x557046d22aa1 <unknown>
+#3 0x557046d22c61 <unknown>
+#4 0x557046d55714 <unknown>
+#5 0x557046d4029d <unknown>
+#6 0x557046d533bc <unknown>
+#7 0x557046d40163 <unknown>
+#8 0x557046d15bfc <unknown>
+#9 0x557046d16c05 <unknown>
+#10 0x557047250baa <unknown>
+#11 0x557047266651 <unknown>
+#12 0x557047251b05 <unknown>
+#13 0x557047267a68 <unknown>
+#14 0x55704724605f <unknown>
+#15 0x557047282818 <unknown>
+#16 0x557047282998 <unknown>
+#17 0x55704729deed <unknown>
+#18 0x7f7d9cebb609 <unknown>
+</p><p style="color:maroon;">Traceback (most recent call last):
+  File "/home/adminroot/Desktop/final-assignment/inno-doctor/testing-work/patienteps_test.py", line 27, in test_check_patient_eps_invalid
+    Baseconfig.driver.find_element_by_xpath('//*[@id="navigation"]/ul/li[4]/a').click()
+  File "/home/adminroot/Desktop/final-assignment/inno-doctor/venv/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 520, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "/home/adminroot/Desktop/final-assignment/inno-doctor/venv/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 1244, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "/home/adminroot/Desktop/final-assignment/inno-doctor/venv/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "/home/adminroot/Desktop/final-assignment/inno-doctor/venv/lib/python3.8/site-packages/selenium/webdriver/remote/errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="navigation"]/ul/li[4]/a"}
+  (Session info: chrome=97.0.4692.71)
+Stacktrace:
+#0 0x55704721eee3 <unknown>
+#1 0x557046cec608 <unknown>
+#2 0x557046d22aa1 <unknown>
+#3 0x557046d22c61 <unknown>
+#4 0x557046d55714 <unknown>
+#5 0x557046d4029d <unknown>
+#6 0x557046d533bc <unknown>
+#7 0x557046d40163 <unknown>
+#8 0x557046d15bfc <unknown>
+#9 0x557046d16c05 <unknown>
+#10 0x557047250baa <unknown>
+#11 0x557047266651 <unknown>
+#12 0x557047251b05 <unknown>
+#13 0x557047267a68 <unknown>
+#14 0x55704724605f <unknown>
+#15 0x557047282818 <unknown>
+#16 0x557047282998 <unknown>
+#17 0x55704729deed <unknown>
+#18 0x7f7d9cebb609 <unknown>
+
+/home/adminroot/Desktop/final-assignment/inno-doctor/testing-work/patienteps_test.py:27: DeprecationWarning: find_element_by_* commands are deprecated. Please use find_element() instead
+  Baseconfig.driver.find_element_by_xpath('//*[@id="navigation"]/ul/li[4]/a').click()
+</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                Total: 2, Pass: 0, Error: 2 -- Duration: 2.21 s
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('td').on('click', '.btn', function(e){
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                var $this = $(this);
+                var $nextRow = $this.closest('tr').next('tr');
+                $nextRow.slideToggle("fast");
+                $this.text(function(i, text){
+                    if (text === 'View') {
+                        return 'Hide';
+                    } else {
+                        return 'View';
+                    };
+                });
+            });
+        });
+    </script>
+</body>
+</html
