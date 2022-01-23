@@ -36,4 +36,4 @@ jobs:
 #         env:
         run: |
           cd inno-Doctor
-          python manage.py test
+          python manage.py test --no-input
