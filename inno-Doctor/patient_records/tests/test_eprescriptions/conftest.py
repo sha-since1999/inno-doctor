@@ -10,11 +10,7 @@ class PatientFactory(factory.django.DjangoModelFactory):
     aadhaarId = factory.Sequence(lambda n: '69812485192%d' % n)
     name = factory.Sequence(lambda n: "patient_%d" % n)
     date_of_birth = '2022-10-11'
-    gender = factory.Iterator(
-            [("M", "Male"),
-             ("F", "Female"),
-             ("O", "Other")]
-    )
+    gender = 'M'
     last_updated_on = factory.LazyFunction(datetime.datetime.utcnow)
 
 

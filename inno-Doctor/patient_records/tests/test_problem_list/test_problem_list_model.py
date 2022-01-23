@@ -12,7 +12,7 @@ class ProblemListModelTest(TestCase):
             aadhaarId = 123123123123,
             name     = "jadoo",
             date_of_birth  = "2021-08-12",
-            gender  ="Male"
+            gender  ="M"
         )
 
  

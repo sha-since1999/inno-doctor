@@ -7,7 +7,7 @@ class TestModel(TestCase):
             aadhaarId          = 123412341234,
             name                 = 'unknown',
             date_of_birth    = '2020-01-10',
-            gender               = 'Male',
+            gender               = 'M',
             )
         
     def test_model_patient_methods(self):
