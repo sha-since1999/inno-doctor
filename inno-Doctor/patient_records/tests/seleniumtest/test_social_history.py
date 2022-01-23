@@ -44,15 +44,38 @@ class PatientTest(unittest.TestCase):
         enter.send_keys('923412347234')
         enter.send_keys(Keys.ENTER)
 
-        actual_url="http://127.0.0.1:8000/patient_records/patient-social-history-view/923412347234"
 
-# To Check Social history Statements
-        Submitbutton=selenium.find_element_by_css_selector("body > div.card.card-body.blur.shadow-blur.mx-3.mx-md-4.mt-n6 > div > section:nth-child(4) > div > div > div > div > ul > li:nth-child(4) > a")
+
+# Social History Start fro mere.
+
+        actual_url="http://127.0.0.1:8000/patient_records/patient-detail/923412347234"
+
+        clickONeprescription=selenium.find_element_by_xpath("/html/body/div[2]/div/section[1]/div/div/div/div/ul/li[4]/a")
+        selenium.execute_script("arguments[0].click();",clickONeprescription)
+
+ # select options
+        TobaccoSmokingStatusselect = Select(selenium.find_element_by_name("tobacco_smoking_status"))
+        TobaccoSmokingStatusselect.select_by_visible_text("Current Smoker")
+
+        AlcoholConsumptionStatuselect = Select(selenium.find_element_by_name("alcohol_consumption_status"))
+        AlcoholConsumptionStatuselect.select_by_visible_text("Current Drinker")
+
+        AlcoholConsumptionUnit=selenium.find_element_by_id("id_alcohol_consumption_unit").send_keys("4")
+
+        AlcoholConsumptionFrequency=selenium.find_element_by_id("id_alcohol_consumption_frequency").send_keys("5")
+
+        Submitbutton=selenium.find_element_by_css_selector("body > div.card.card-body.blur.shadow-blur.mx-3.mx-md-4.mt-n6 > div > form > div.text-center > button")
         selenium.execute_script("arguments[0].click();", Submitbutton)
         expected_url=selenium.current_url
         self.assertEqual(actual_url,expected_url)
-
         
+
+
+
+
+
+
+
 
 
 
