@@ -26,7 +26,7 @@
         {% render_field form.date_of_birth class="form-control" type="date" %}
     </div>
     <div class="text-center">
-        <button type="submit" value="save" class="btn bg-gradient-info w-40 my-4 mb-2 mx-1">Add</button>
+        <button type="submit" value="save" class="btn bg-gradient-info w-40 my-4 mb-2 mx-1" name="addpatient">Add</button>
         <a class="btn bg-gradient-danger w-40 my-4 mb-2 mx-1" href="{% url 'patient_records:patient_check' %}">Cancel</a>
     </div>
 </form>
