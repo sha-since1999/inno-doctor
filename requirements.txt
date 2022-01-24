@@ -49,3 +49,4 @@ weasyprint==54.0
 webencodings==0.5.1
 zipp==3.7.0
 zopfli==0.1.9
+whitenoise==5.3.0
