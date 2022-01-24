@@ -26,8 +26,9 @@ urlpatterns = [
     path('patient-eprescription/<int:id>', views.eprescriptionList, name='eprescription'),
     path('patient-eprescription-create/<int:id>', views.eprescriptionCreate, name='eprescription-create'),
     path('patient-medication-statement/<int:id>', views.medicationStatementCreate, name='add_new_patient_medication_statement_by_POST'),
-
+    path('patient-eprescription/genrate-pdf/<int:id>',views.genratePdf, name='genrate-pdf'),
     path('patient_record_form/', views.PatientView, name='patient_record_form'),
     path('patient_record_list/', views.PatientList, name='patient_record_list'),
     
-]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
+]
+

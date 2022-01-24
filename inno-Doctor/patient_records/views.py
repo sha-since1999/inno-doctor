@@ -42,6 +42,35 @@ def eprescriptionList(request, id):
 
 
 @login_required()
+def genratePdf(request, id):
+    patient = Patient.objects.get(aadhaarId=id)
+    try:
+        # medicationStatements = get_object_or_404(MedicationStatement, patient=patient)
+        medicationstatements = MedicationStatement.objects.filter(
+            patient=patient)
+        medicationitems = []
+        medication_statement_ids = []
+        for medicationstatement in medicationstatements:
+
+            medicationitem = MedicationItem.objects.filter(
+                medication_statement=medicationstatement)
+            medication_statement_ids.append(medicationstatement.id)
+            if medicationitem is not None:
+                medicationitems.append(medicationitem)
+        context = {"medicationStatementIds": medication_statement_ids,
+                   "medicationItems": medicationitems, 'aadhaarId': id}
+        template_name = "patient_records/eprescription.html"
+        pdf = render_to_pdf("patient_records/pdf_eprescription.html", context)
+        return HttpResponse(pdf, content_type='application/pdf')
+
+    except:
+        messages.error(request, 'no medication statemtment found!')
+    return redirect('/patient_records/patient-detail/{}'.format(id))
+
+
+
+
+@login_required()
 def patientDetails(request):
     if request.method == "POST":
         try:

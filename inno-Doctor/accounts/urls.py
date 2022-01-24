@@ -28,4 +28,5 @@ urlpatterns = [
     path('change/password/', ChangePasswordView.as_view(), name='change_password'),
     path('change/email/', ChangeEmailView.as_view(), name='change_email'),
     path('change/email/<code>/', ChangeEmailActivateView.as_view(), name='change_email_activation'),
-]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
+]
+

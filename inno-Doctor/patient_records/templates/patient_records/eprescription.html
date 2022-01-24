@@ -5,8 +5,10 @@
 
 {% block content %}
 <div class="container mt-4">
+    <a href="genrate-pdf/{{aadhaarId}}"><button class="btn btn-info"> GenratePdf</button> </a>
+
     {% for i,j in medicationitems.items %}
-        <div class="card my-5 p-2">
+        <div class="card my-5 p-2"> 
             <h3 class="text-center mb-4">Medication Statement Id: {{i}}</h3>
             <div class="container">
             <div class="col-md-12 search-table-col m-4">
