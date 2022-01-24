@@ -70,7 +70,7 @@ jobs:
     #     cd inno-Doctor
     #     python manage.py test
     - name: Add secrets to Task Definition
-        run: |
+        run:|
           sed -i "s/<DB_HOST>/$DB_HOST/g" aws-task-definition.json 
           sed -i "s/<DB_PASSWORD>/$DB_PASSWORD/g" aws-task-definition.json 
           sed -i "s/<EMAIL_HOST_PASSWORD>/$EMAIL_HOST_PASSWORD/g" aws-task-definition.json 
