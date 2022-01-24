@@ -33,14 +33,14 @@ on:
   workflow_dispatch:
 env:
   AWS_REGION: 'us-east-1'                   # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: 'inno-doctor-ecr'           # set this to your Amazon ECR repository name
+  ECR_REPOSITORY: 'inno-dcotor-ecr'           # set this to your Amazon ECR repository name
   ECS_SERVICE: 'inno-doctor-service'                 # set this to your Amazon ECS service name
   ECS_CLUSTER: 'inno-doctor'                 # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: 'aws-task-definition.json' # set this to the path to your Amazon ECS task definition
                                                # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: 'inno-doctor-container'           # set this to the name of the container in the
                                                # containerDefinitions section of your task definition
-  EMAIL_HOST_USER: $ {{secrets.EMAIL_HOST_USER}}
+  EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
   EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
   DB_HOST : ${{secrets.DB_HOST}}
   DB_PASSWORD: ${{secrets.DB_PASSWORD}}
