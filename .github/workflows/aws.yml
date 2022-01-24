@@ -40,13 +40,27 @@ env:
                                                # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: 'inno-doctor-container'           # set this to the name of the container in the
                                                # containerDefinitions section of your task definition
-  EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
-  EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
-  DB_HOST : ${{secrets.DB_HOST}}
-  DB_PASSWORD: ${{secrets.DB_PASSWORD}}
+  
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Add secrets to Task Definition
+          run:|
+            sed -i "s/<DB_HOST>/$DB_HOST/g" aws-task-definition.json 
+            sed -i "s/<DB_PASSWORD>/$DB_PASSWORD/g" aws-task-definition.json 
+            sed -i "s/<EMAIL_HOST_PASSWORD>/$EMAIL_HOST_PASSWORD/g" aws-task-definition.json 
+            sed -i "s/<EMAIL_HOST_USER>/$EMAIL_HOST_USER/g" aws-task-definition.json 
+        env:
+          EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
+          EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
+          DB_HOST : ${{secrets.DB_HOST}}
+          DB_PASSWORD: ${{secrets.DB_PASSWORD}}
+
   deploy:
+  
     name: Deploy
     runs-on: ubuntu-latest
     environment: production
