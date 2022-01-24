@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 app_name = 'patient_records'
 
 urlpatterns = [
@@ -28,4 +30,4 @@ urlpatterns = [
     path('patient_record_form/', views.PatientView, name='patient_record_form'),
     path('patient_record_list/', views.PatientList, name='patient_record_list'),
     
-]
+]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
