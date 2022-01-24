@@ -69,7 +69,13 @@ jobs:
     #     export IS_PRODUCTION=False
     #     cd inno-Doctor
     #     python manage.py test
-
+    - name: Add secrets to Task Definition
+        run: |
+          sed -i "s/<DB_HOST>/$DB_HOST/g" task.json 
+          sed -i "s/<DB_PASSWORD>/$DB_PASSWORD/g" task.json 
+          sed -i "s/<EMAIL_HOST_PASSWORD>/$EMAIL_HOST_PASSWORD/g" task.json 
+          sed -i "s/<EMAIL_HOST_USER>/$EMAIL_HOST_USER/g" task.json 
+          
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
