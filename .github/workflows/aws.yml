@@ -40,46 +40,48 @@ env:
                                                # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: 'inno-doctor-container'           # set this to the name of the container in the
                                                # containerDefinitions section of your task definition
-  
+  EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
+  EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
+  DB_HOST : ${{secrets.DB_HOST}}
+  DB_PASSWORD: ${{secrets.DB_PASSWORD}}
 
 jobs:
   deploy:
-  
     name: Deploy
     runs-on: ubuntu-latest
     environment: production
 
-#     steps:
-#     - name: Checkout
-#       uses: actions/checkout@v2
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
 
-#       # run test cases
-#     - name: Set up Python ${{ matrix.python-version }}
-#       uses: actions/setup-python@v2
-#       with:
-#         python-version: 3.9
-#     - name: Install Dependencies
-#       run: |
-#         python -m pip install --upgrade pip
-#         pip install -r requirements.txt
-#     - name: Run Tests
-#       run: |
-#         export IS_PRODUCTION=False
-#         cd inno-Doctor
-#         python manage.py test 
-    
-    - name: Add secrets to Task Definition
-      run: |
-        sed -i "s/<DB_HOST>/$DB_HOST/g" aws-task-definition.json 
-        sed -i "s/<DB_PASSWORD>/$DB_PASSWORD/g" aws-task-definition.json 
-        sed -i "s/<EMAIL_HOST_PASSWORD>/$EMAIL_HOST_PASSWORD/g" aws-task-definition.json 
-        sed -i "s/<EMAIL_HOST_USER>/$EMAIL_HOST_USER/g" aws-task-definition.json 
-      env:
-        EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
-        EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
-        DB_HOST : ${{secrets.DB_HOST}}
-        DB_PASSWORD: ${{secrets.DB_PASSWORD}}
-        
+    #   # run test cases
+    # - name: Set up Python ${{ matrix.python-version }}
+    #   uses: actions/setup-python@v2
+    #   with:
+    #     python-version: 3.9
+    # - name: Install Dependencies
+    #   run: |
+    #     python -m pip install --upgrade pip
+    #     pip install -r requirements.txt
+    # - name: Run Tests
+    #   run: |
+    #     export IS_PRODUCTION=False
+    #     cd inno-Doctor
+  #   #     python manage.py test
+  # - name: Add secrets to Task Definition
+  #       uses: actions/checkout@v2
+  #         run:|
+  #           sed -i "s/<DB_HOST>/$DB_HOST/g" aws-task-definition.json 
+  #           sed -i "s/<DB_PASSWORD>/$DB_PASSWORD/g" aws-task-definition.json 
+  #           sed -i "s/<EMAIL_HOST_PASSWORD>/$EMAIL_HOST_PASSWORD/g" aws-task-definition.json 
+  #           sed -i "s/<EMAIL_HOST_USER>/$EMAIL_HOST_USER/g" aws-task-definition.json 
+  #       env:
+  #         EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
+  #         EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
+  #         DB_HOST : ${{secrets.DB_HOST}}
+  #         DB_PASSWORD: ${{secrets.DB_PASSWORD}}
+
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:

@@ -89,16 +89,29 @@ TIME_ZONE = 'UTC'
 USE_TZ = True
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'rsdb',
+#         'USER': 'postgres',
+#         'PASSWORD': os.environ.get('DB_PASSWORD'),
+#         'HOST': os.environ.get('DB_HOST'),  # set in docker-compose.yml
+#         'PORT': 5432, # default postgres port
+#         # 'DATABASE_URL' : 'postgres://postgres:postgres@db:5432/postgres',
+#     }
+# }
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'rsdb',
-        'USER': 'postgres',
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),  # set in docker-compose.yml
-        'PORT': 5432, # default postgres port
-        # 'DATABASE_URL' : 'postgres://postgres:postgres@db:5432/postgres',
-    }
+'default': {
+'ENGINE': 'django.db.backends.postgresql',
+'NAME': 'rsdb',
+'USER': 'postgres',
+'PASSWORD': 'rs-admin',
+'HOST': 'postgres-rsdb.cayn3utpakrm.us-east-1.rds.amazonaws.com', # set in docker-compose.yml
+'PORT': 5432, # default postgres port
+# 'DATABASE_URL' : 'postgres://postgres:postgres@db:5432/postgres',
+}
 }
 AUTH_PASSWORD_VALIDATORS = [
     {
