@@ -44,10 +44,11 @@ env:
 
 jobs:
   build:
+    name: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - name: Add secrets to Task Definition
+        uses: actions/checkout@v2
           run:|
             sed -i "s/<DB_HOST>/$DB_HOST/g" aws-task-definition.json 
             sed -i "s/<DB_PASSWORD>/$DB_PASSWORD/g" aws-task-definition.json 
