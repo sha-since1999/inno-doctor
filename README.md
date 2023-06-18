@@ -1,8 +1,5 @@
 # Inno Doctor
-
-A web application for creating and maintaining Patient Records and Prescriptions
-for each of the registered patients. The intended users of this app will be
-Doctors/ Health care providers.
+A web application aims to streamline and enhance the management of patient records for doctors. The project leverages the Django framework and incorporates containerization using Docker for efficient deployment. Hosted on AWS ECS (Elastic Container Service), the application offers seamless integration with GitHub CI (Continuous Integration) pipeline for automated builds and deployments.
 
 ## Project Setup
 
